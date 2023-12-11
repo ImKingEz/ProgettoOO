@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//ciao angiole
 public class Autore extends Utente {
     private ArrayList<Pagina> pagineCreate = new ArrayList<Pagina>();
     private ArrayList<Valutazione> valutazioniEffettuate = new ArrayList<Valutazione>();
