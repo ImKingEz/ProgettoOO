@@ -1,0 +1,53 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Pagina {
+    private String titolo;
+    private Date dataEOraCreazione;
+    private Autore autore;
+    private ArrayList<Utente> utentiVisionatori = new ArrayList<Utente>();
+    private ArrayList<Frase> frasiCheLinkano = new ArrayList<Frase>();
+    private Testo testo;
+    public Pagina(String titolo, Date dataEOraCreazione, Autore autore) {
+        this.titolo = titolo;
+        this.dataEOraCreazione = dataEOraCreazione;
+
+        this.autore = autore;
+        autore.getPagineCreate().add(this);
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public Date getDataEOraCreazione() {
+        return dataEOraCreazione;
+    }
+
+    public ArrayList<Utente> getUtentiVisionatori() {
+        return utentiVisionatori;
+    }
+
+    public Autore getAutore() {
+        return autore;
+    }
+
+    public ArrayList<Frase> getFrasiCheLinkano() {
+        return frasiCheLinkano;
+    }
+
+    public void setFrasiCheLinkano(ArrayList<Frase> frasiCheLinkano) {
+        this.frasiCheLinkano = frasiCheLinkano;
+    }
+
+    public Testo getTesto() {
+        return testo;
+    }
+
+    public void setTesto(Testo testo) {
+        this.testo = testo;
+        testo.setPaginaDiAppartenenza(this);
+    }
+}
