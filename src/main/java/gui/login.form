@@ -2,10 +2,11 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.Login">
   <grid id="27dc6" binding="panelLogin" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
     <constraints>
-      <xy x="20" y="20" width="696" height="400"/>
+      <xy x="20" y="19" width="696" height="401"/>
     </constraints>
     <properties>
-      <preferredSize width="49" height="30"/>
+      <minimumSize width="384" height="50"/>
+      <preferredSize width="500" height="300"/>
       <visible value="true"/>
     </properties>
     <border type="none"/>
@@ -13,7 +14,7 @@
       <grid id="ba5ee" binding="panelUsername" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties>
-          <preferredSize width="88" height="40"/>
+          <preferredSize width="128" height="30"/>
         </properties>
         <border type="none"/>
         <children>
@@ -29,7 +30,7 @@
       <grid id="fcd53" binding="panelPassword" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties>
-          <preferredSize width="88" height="40"/>
+          <preferredSize width="128" height="30"/>
         </properties>
         <border type="none"/>
         <children>
@@ -44,7 +45,9 @@
       </grid>
       <grid id="466e4" binding="panelBotton" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
-        <properties/>
+        <properties>
+          <preferredSize width="128" height="30"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="e5272" class="javax.swing.JButton" binding="inviaCredenzialiButton">

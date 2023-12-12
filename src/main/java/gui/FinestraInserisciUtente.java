@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import model.invalidLoginException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class FinestraInserisciUtente {
     private JPanel panelInserisciUsername;
     private JPanel panelInseritoPasssword;
     private JPanel panelButtonInseritiValori;
+    private JButton annullaButton;
     private static JFrame frameChiamante;
     private static JFrame frame;
     private Controller controller;
@@ -26,6 +28,7 @@ public class FinestraInserisciUtente {
         this.controller = controller;
         frame = new JFrame("Registrazione Utente");
         frame.setContentPane(panelInserisciUtente);
+        frameChiamante.setVisible(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -48,14 +51,20 @@ public class FinestraInserisciUtente {
                 usernameInserito = usernameInseritoTextField.getText();
                 char[] passwordChars = passwordInseritaField.getPassword();  // per ottenere la password
                 passwordInserita = new String(passwordChars);
- //               try {
-   //                 if (!(usernameInserito.isEmpty() || passwordInserita.isEmpty())) {
-                        controller.setUtente(usernameInserito, passwordInserita);
-     //               }
-       //         } catch (invalidLoginException il) {
-         //           throw new RuntimeException(il);
-           //     }
-                JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " Benvenuto nel nostro sistema");
+                try {
+                    controller.setUtente(usernameInserito, passwordInserita);
+                    JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " benvenuto nel nostro sistema");
+                    frameChiamante.setVisible(true);
+                    frame.setVisible(false);
+                    frame.dispose();
+                } catch (invalidLoginException il) {
+                    JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                }
+            }
+        });
+        annullaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 frameChiamante.setVisible(true);
                 frame.setVisible(false);
                 frame.dispose();
@@ -101,6 +110,16 @@ public class FinestraInserisciUtente {
         registrazioneButton = new JButton();
         registrazioneButton.setText("Registrati");
         panelButtonInseritiValori.add(registrazioneButton);
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panel1.setPreferredSize(new Dimension(102, 40));
+        panelInserisciUtente.add(panel1);
+        annullaButton = new JButton();
+        annullaButton.setMaximumSize(new Dimension(92, 30));
+        annullaButton.setMinimumSize(new Dimension(92, 30));
+        annullaButton.setPreferredSize(new Dimension(92, 30));
+        annullaButton.setText("Annulla");
+        panel1.add(annullaButton);
     }
 
     /**

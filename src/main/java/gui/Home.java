@@ -23,16 +23,17 @@ public class Home {
         inserisciUtenteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               FinestraInserisciUtente inserisciUtente = new FinestraInserisciUtente(frame, controller);
-               //String nome = JOptionPane.showInputDialog("Inserisci il tuo username"); ti apre una nuova scheda
-                loginButton.setEnabled(true);
+                FinestraInserisciUtente inserisciUtente = new FinestraInserisciUtente(frame, controller);
+                if (controller.almenoUnAutoreOUnUtente())
+                    loginButton.setEnabled(true);
             }
         });
         inserisciAutoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FinestraInserisciAutore finestraInserisciAutore = new FinestraInserisciAutore(frame, controller);
-                loginButton.setEnabled(true);
+                //if(controller.almenoUnAutoreOUnUtente())
+                //loginButton.setEnabled(true);
             }
         });
         loginButton.addActionListener(new ActionListener() {
@@ -48,7 +49,6 @@ public class Home {
         frame.setContentPane(new Home().panelHome);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(300, 200);
         frame.setVisible(true);
     }
 
@@ -69,6 +69,7 @@ public class Home {
     private void $$$setupUI$$$() {
         panelHome = new JPanel();
         panelHome.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelHome.setPreferredSize(new Dimension(500, 300));
         panelRegistrazioneUtente = new JPanel();
         panelRegistrazioneUtente.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelHome.add(panelRegistrazioneUtente);
@@ -95,4 +96,5 @@ public class Home {
     public JComponent $$$getRootComponent$$$() {
         return panelHome;
     }
+
 }

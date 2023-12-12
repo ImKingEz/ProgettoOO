@@ -50,6 +50,22 @@
           </component>
         </children>
       </grid>
+      <grid id="96e27" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="25d73" class="javax.swing.JButton" binding="annullaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <maximumSize width="92" height="30"/>
+              <minimumSize width="92" height="30"/>
+              <preferredSize width="92" height="30"/>
+              <text value="Annulla"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

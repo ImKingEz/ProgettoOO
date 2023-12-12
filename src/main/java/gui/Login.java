@@ -2,6 +2,8 @@ package gui;
 
 import controller.Controller;
 import model.invalidLoginException;
+import model.passwordNotFoundException;
+import model.usernameNotFoundException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,10 +27,11 @@ public class Login {
     public Login(JFrame frameChiamante, Controller controller) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
-        frame = new JFrame("Registrazione Utente");
+        frame = new JFrame("Area login");
         frame.setContentPane(panelLogin);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frameChiamante.setVisible(false);
         frame.setVisible(true);
         usernameTextField.addActionListener(new ActionListener() {
             @Override
@@ -49,16 +52,18 @@ public class Login {
                 passwordInserita = new String(passwordChars);
                 String returnLogin = "";
                 try {
-                    if (!(usernameInserito.isEmpty() || passwordInserita.isEmpty())) {
-                        returnLogin = controller.login(usernameInserito, passwordInserita);
-                    }
+                    returnLogin = controller.login(usernameInserito, passwordInserita);
+                    JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " sei un " + returnLogin);
+                    frameChiamante.setVisible(true);
+                    frame.setVisible(false);
+                    frame.dispose();
                 } catch (invalidLoginException il) {
-                    throw new RuntimeException(il);
+                    JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                } catch (usernameNotFoundException unf) {
+                    JOptionPane.showMessageDialog(frame, "Username non esistente.");
+                } catch (passwordNotFoundException pnf) {
+                    JOptionPane.showMessageDialog(frame, "Password errata.");
                 }
-                JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " sei un " + returnLogin);
-                frameChiamante.setVisible(true);
-                frame.setVisible(false);
-                frame.dispose();
             }
         });
     }
@@ -80,11 +85,12 @@ public class Login {
     private void $$$setupUI$$$() {
         panelLogin = new JPanel();
         panelLogin.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelLogin.setPreferredSize(new Dimension(49, 30));
+        panelLogin.setMinimumSize(new Dimension(384, 50));
+        panelLogin.setPreferredSize(new Dimension(500, 300));
         panelLogin.setVisible(true);
         panelUsername = new JPanel();
         panelUsername.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelUsername.setPreferredSize(new Dimension(88, 40));
+        panelUsername.setPreferredSize(new Dimension(128, 30));
         panelLogin.add(panelUsername);
         usernameTextField = new JTextField();
         usernameTextField.setPreferredSize(new Dimension(78, 30));
@@ -92,7 +98,7 @@ public class Login {
         panelUsername.add(usernameTextField);
         panelPassword = new JPanel();
         panelPassword.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelPassword.setPreferredSize(new Dimension(88, 40));
+        panelPassword.setPreferredSize(new Dimension(128, 30));
         panelLogin.add(panelPassword);
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension(78, 30));
@@ -100,6 +106,7 @@ public class Login {
         panelPassword.add(passwordField);
         panelBotton = new JPanel();
         panelBotton.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelBotton.setPreferredSize(new Dimension(128, 30));
         panelLogin.add(panelBotton);
         inviaCredenzialiButton = new JButton();
         inviaCredenzialiButton.setText("Login");

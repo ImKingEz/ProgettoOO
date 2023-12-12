@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import model.invalidLoginException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class FinestraInserisciAutore {
     private JPanel panelInserisciUsername;
     private JPanel panelInseritoPassword;
     private JPanel panelButtonInseritiValori;
+    private JButton annullaButton;
     private static JFrame frameChiamante;
     private static JFrame frame;
     private Controller controller;
@@ -28,6 +30,7 @@ public class FinestraInserisciAutore {
         frame.setContentPane(panelInserisciAutore);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frameChiamante.setVisible(false);
         frame.setVisible(true);
         usernameInseritoTextField.addActionListener(new ActionListener() {
             @Override
@@ -48,17 +51,15 @@ public class FinestraInserisciAutore {
                 usernameInserito = usernameInseritoTextField.getText();
                 String passwordChars = passwordInseritaField.getText();  // per ottenere la password
                 passwordInserita = new String(passwordChars);
-                //               try {
-                //                 if (!(usernameInserito.isEmpty() || passwordInserita.isEmpty())) {
-                controller.setAutore(usernameInserito, passwordInserita);
-                //               }
-                //         } catch (invalidLoginException il) {
-                //           throw new RuntimeException(il);
-                //     }
-                JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " Benvenuto nel nostro sistema");
-                frameChiamante.setVisible(true);
-                frame.setVisible(false);
-                frame.dispose();
+                try {
+                    controller.setAutore(usernameInserito, passwordInserita);
+                    JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " benvenuto nel nostro sistema");
+                    frameChiamante.setVisible(true);
+                    frame.setVisible(false);
+                    frame.dispose();
+                } catch (invalidLoginException il) {
+                    JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                }
             }
         });
     }
@@ -100,6 +101,15 @@ public class FinestraInserisciAutore {
         registrazioneButton = new JButton();
         registrazioneButton.setText("Registrati");
         panelButtonInseritiValori.add(registrazioneButton);
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelInserisciAutore.add(panel1);
+        annullaButton = new JButton();
+        annullaButton.setMaximumSize(new Dimension(92, 30));
+        annullaButton.setMinimumSize(new Dimension(92, 30));
+        annullaButton.setPreferredSize(new Dimension(92, 30));
+        annullaButton.setText("Annulla");
+        panel1.add(annullaButton);
     }
 
     /**
@@ -108,4 +118,5 @@ public class FinestraInserisciAutore {
     public JComponent $$$getRootComponent$$$() {
         return panelInserisciAutore;
     }
+
 }
