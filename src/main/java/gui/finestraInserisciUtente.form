@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.FinestraInserisciUtente">
+  <grid id="27dc6" binding="panelInserisciUtente" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="cdf8a" binding="panelInserisciUsername" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="88" height="40"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="c36f8" class="javax.swing.JTextField" binding="usernameInseritoTextField">
+            <constraints/>
+            <properties>
+              <preferredSize width="78" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="28370" binding="panelInseritoPasssword" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="88" height="40"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="b1672" class="javax.swing.JPasswordField" binding="passwordInseritaField">
+            <constraints/>
+            <properties>
+              <preferredSize width="78" height="30"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d2fac" binding="panelButtonInseritiValori" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="5859f" class="javax.swing.JButton" binding="registrazioneButton">
+            <constraints/>
+            <properties>
+              <text value="Registrati"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.Login">
+  <grid id="27dc6" binding="panelLogin" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="696" height="400"/>
+    </constraints>
+    <properties>
+      <preferredSize width="49" height="30"/>
+      <visible value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="ba5ee" binding="panelUsername" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="88" height="40"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="a8f0d" class="javax.swing.JTextField" binding="usernameTextField">
+            <constraints/>
+            <properties>
+              <preferredSize width="78" height="30"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="fcd53" binding="panelPassword" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="88" height="40"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="9a564" class="javax.swing.JPasswordField" binding="passwordField">
+            <constraints/>
+            <properties>
+              <preferredSize width="78" height="30"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="466e4" binding="panelBotton" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="e5272" class="javax.swing.JButton" binding="inviaCredenzialiButton">
+            <constraints/>
+            <properties>
+              <text value="Login"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.Home">
+  <grid id="27dc6" binding="panelHome" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="a2578" binding="panelRegistrazioneUtente" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="b843f" class="javax.swing.JButton" binding="inserisciUtenteButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Inserisci Utente"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="754e2" binding="panelRegistrazioneAutore" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="7630c" class="javax.swing.JButton" binding="inserisciAutoreButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Inserisci Autore"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="aa1de" binding="panelLogin" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="516ce" class="javax.swing.JButton" binding="loginButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Login"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
