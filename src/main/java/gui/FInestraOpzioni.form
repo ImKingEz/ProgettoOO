@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.FinestraOpzioni">
+  <grid id="27dc6" binding="panelOpzioni" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="836" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="2a109" binding="panelCreaPagina" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="94481" class="javax.swing.JButton" binding="creaUnaPaginaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Crea Una Pagina"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="78dc5" binding="panelCercaPagina" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="914f1" class="javax.swing.JButton" binding="cercaUnaPaginaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Cerca Una Pagina"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="feca4" binding="panelProponiModifica" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="462ff" class="javax.swing.JButton" binding="proponiUnaModificaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Proponi Una Modifica"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="89142" binding="panelValutaModifica" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="3e627" class="javax.swing.JButton" binding="valutaUnaModificaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Valuta Una Modifica"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="4639e" binding="panelAnnulla" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="18eb7" class="javax.swing.JButton" binding="annullaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Torna All'Area Login"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

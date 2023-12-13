@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import model.Utente;
 import model.invalidLoginException;
 import model.passwordNotFoundException;
 import model.usernameNotFoundException;
@@ -9,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Login {
     private JPanel panelLogin;
@@ -23,13 +26,23 @@ public class Login {
     private static JFrame frameChiamante;
     private String usernameInserito;
     private String passwordInserita;
+    private Utente u;
 
     public Login(JFrame frameChiamante, Controller controller) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
         frame = new JFrame("Area login");
         frame.setContentPane(panelLogin);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Evita la chiusura automatica
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Logica quando la finestra di inserimento autore sta chiudendo
+                // Puoi inserire qui eventuali operazioni di pulizia o gestione della chiusura
+                frameChiamante.setVisible(true);
+                frame.dispose(); // Chiude la finestra di inserimento autore
+            }
+        });
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
@@ -54,7 +67,8 @@ public class Login {
                 try {
                     returnLogin = controller.login(usernameInserito, passwordInserita);
                     JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " sei un " + returnLogin);
-                    frameChiamante.setVisible(true);
+                    u = controller.controllaIdentita(usernameInserito, passwordInserita, returnLogin);
+                    FinestraOpzioni finestraOpzioni = new FinestraOpzioni(frame, controller, u, returnLogin);
                     frame.setVisible(false);
                     frame.dispose();
                 } catch (invalidLoginException il) {
@@ -90,25 +104,37 @@ public class Login {
         panelLogin.setVisible(true);
         panelUsername = new JPanel();
         panelUsername.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelUsername.setPreferredSize(new Dimension(128, 30));
+        panelUsername.setMinimumSize(new Dimension(138, 40));
+        panelUsername.setPreferredSize(new Dimension(138, 40));
         panelLogin.add(panelUsername);
         usernameTextField = new JTextField();
-        usernameTextField.setPreferredSize(new Dimension(78, 30));
+        usernameTextField.setMaximumSize(new Dimension(128, 30));
+        usernameTextField.setMinimumSize(new Dimension(128, 30));
+        usernameTextField.setPreferredSize(new Dimension(128, 30));
         usernameTextField.setToolTipText("");
+        usernameTextField.setVerifyInputWhenFocusTarget(true);
         panelUsername.add(usernameTextField);
         panelPassword = new JPanel();
         panelPassword.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelPassword.setPreferredSize(new Dimension(128, 30));
+        panelPassword.setMinimumSize(new Dimension(138, 40));
+        panelPassword.setPreferredSize(new Dimension(138, 40));
         panelLogin.add(panelPassword);
         passwordField = new JPasswordField();
-        passwordField.setPreferredSize(new Dimension(78, 30));
+        passwordField.setMaximumSize(new Dimension(128, 30));
+        passwordField.setMinimumSize(new Dimension(128, 30));
+        passwordField.setPreferredSize(new Dimension(128, 30));
         passwordField.setToolTipText("");
+        passwordField.setVerifyInputWhenFocusTarget(true);
         panelPassword.add(passwordField);
         panelBotton = new JPanel();
         panelBotton.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelBotton.setPreferredSize(new Dimension(128, 30));
+        panelBotton.setMinimumSize(new Dimension(138, 40));
+        panelBotton.setPreferredSize(new Dimension(138, 40));
         panelLogin.add(panelBotton);
         inviaCredenzialiButton = new JButton();
+        inviaCredenzialiButton.setMaximumSize(new Dimension(128, 30));
+        inviaCredenzialiButton.setMinimumSize(new Dimension(128, 30));
+        inviaCredenzialiButton.setPreferredSize(new Dimension(128, 30));
         inviaCredenzialiButton.setText("Login");
         panelBotton.add(inviaCredenzialiButton);
     }

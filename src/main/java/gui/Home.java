@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
 
 public class Home {
     private JPanel panelHome;
@@ -24,14 +25,14 @@ public class Home {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FinestraInserisciUtente inserisciUtente = new FinestraInserisciUtente(frame, controller);
-                if (controller.almenoUnAutoreOUnUtente())
-                    loginButton.setEnabled(true);
+                loginButton.setEnabled(true);
             }
         });
         inserisciAutoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FinestraInserisciAutore finestraInserisciAutore = new FinestraInserisciAutore(frame, controller);
+                loginButton.setEnabled(true);
             }
         });
         loginButton.addActionListener(new ActionListener() {
@@ -40,18 +41,17 @@ public class Home {
                 Login login = new Login(frame, controller);
             }
         });
+        panelHome.addComponentListener(new ComponentAdapter() {
+        });
     }
 
     public static void main(String[] args) {
         frame = new JFrame("Progetto OO");
+        Home home = new Home();
         frame.setContentPane(new Home().panelHome);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public void abilitaLogin() {
-        loginButton.setEnabled(true);
     }
 
     {
@@ -76,6 +76,8 @@ public class Home {
         panelRegistrazioneUtente.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelHome.add(panelRegistrazioneUtente);
         inserisciUtenteButton = new JButton();
+        inserisciUtenteButton.setMinimumSize(new Dimension(128, 30));
+        inserisciUtenteButton.setPreferredSize(new Dimension(128, 30));
         inserisciUtenteButton.setText("Inserisci Utente");
         panelRegistrazioneUtente.add(inserisciUtenteButton);
         panelRegistrazioneAutore = new JPanel();

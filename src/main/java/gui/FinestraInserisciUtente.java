@@ -2,11 +2,14 @@ package gui;
 
 import controller.Controller;
 import model.invalidLoginException;
+import model.usernameGiaEsistenteException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class FinestraInserisciUtente {
     private JPanel panelInserisciUtente;
@@ -28,9 +31,17 @@ public class FinestraInserisciUtente {
         this.controller = controller;
         frame = new JFrame("Registrazione Utente");
         frame.setContentPane(panelInserisciUtente);
-        frameChiamante.setVisible(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Evita la chiusura automatica
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Logica quando la finestra di inserimento autore sta chiudendo
+                frameChiamante.setVisible(true);
+                frame.dispose(); // Chiude la finestra di inserimento autore
+            }
+        });
         frame.pack();
+        frameChiamante.setVisible(false);
         frame.setVisible(true);
         usernameInseritoTextField.addActionListener(new ActionListener() {
             @Override
@@ -59,6 +70,8 @@ public class FinestraInserisciUtente {
                     frame.dispose();
                 } catch (invalidLoginException il) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                } catch (usernameGiaEsistenteException ex) {
+                    JOptionPane.showMessageDialog(frame, "L'username inserito è già esistente");
                 }
             }
         });

@@ -17,6 +17,8 @@
           <component id="b843f" class="javax.swing.JButton" binding="inserisciUtenteButton" default-binding="true">
             <constraints/>
             <properties>
+              <minimumSize width="128" height="30"/>
+              <preferredSize width="128" height="30"/>
               <text value="Inserisci Utente"/>
             </properties>
           </component>
