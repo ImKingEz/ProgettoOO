@@ -50,7 +50,7 @@
           </component>
         </children>
       </grid>
-      <grid id="96e27" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <grid id="96e27" binding="panelButtonAnnulla" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties/>
         <border type="none"/>

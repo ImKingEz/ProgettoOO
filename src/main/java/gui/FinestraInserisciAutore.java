@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FinestraInserisciAutore {
+public class FinestraInserisciAutore extends JFrame {
     private JPanel panelInserisciAutore;
     private JTextField usernameInseritoTextField;
     private JTextField passwordInseritaField;
@@ -17,6 +17,7 @@ public class FinestraInserisciAutore {
     private JPanel panelInseritoPassword;
     private JPanel panelButtonInseritiValori;
     private JButton annullaButton;
+    private JPanel panelButtonAnnulla;
     private static JFrame frameChiamante;
     private static JFrame frame;
     private Controller controller;
@@ -28,10 +29,11 @@ public class FinestraInserisciAutore {
         this.controller = controller;
         frame = new JFrame("Registrazione Autore");
         frame.setContentPane(panelInserisciAutore);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
+
         usernameInseritoTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,6 +62,14 @@ public class FinestraInserisciAutore {
                 } catch (invalidLoginException il) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                 }
+            }
+        });
+        annullaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameChiamante.setVisible(true);
+                frame.setVisible(false);
+                frame.dispose();
             }
         });
     }
@@ -101,15 +111,15 @@ public class FinestraInserisciAutore {
         registrazioneButton = new JButton();
         registrazioneButton.setText("Registrati");
         panelButtonInseritiValori.add(registrazioneButton);
-        final JPanel panel1 = new JPanel();
-        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelInserisciAutore.add(panel1);
+        panelButtonAnnulla = new JPanel();
+        panelButtonAnnulla.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelInserisciAutore.add(panelButtonAnnulla);
         annullaButton = new JButton();
         annullaButton.setMaximumSize(new Dimension(92, 30));
         annullaButton.setMinimumSize(new Dimension(92, 30));
         annullaButton.setPreferredSize(new Dimension(92, 30));
         annullaButton.setText("Annulla");
-        panel1.add(annullaButton);
+        panelButtonAnnulla.add(annullaButton);
     }
 
     /**

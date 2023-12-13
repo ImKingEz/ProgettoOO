@@ -32,8 +32,6 @@ public class Home {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FinestraInserisciAutore finestraInserisciAutore = new FinestraInserisciAutore(frame, controller);
-                //if(controller.almenoUnAutoreOUnUtente())
-                //loginButton.setEnabled(true);
             }
         });
         loginButton.addActionListener(new ActionListener() {
@@ -50,6 +48,10 @@ public class Home {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public void abilitaLogin() {
+        loginButton.setEnabled(true);
     }
 
     {

@@ -1,32 +1,31 @@
 
-`	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(½üı­úÿÿÿÿ
->
-java:S1604!"(Make this anonymous inner class a lambda(ºÙò
-=
-java:S1604&"(Make this anonymous inner class a lambda(«ìãK
->
-java:S1604,"(Make this anonymous inner class a lambda(²¼âú
-u
-java:S1450"ZRemove the "panelBotton" field and declare it as a local variable in the relevant methods.(º°Øöıÿÿÿÿ
-w
-java:S1450"\Remove the "panelPassword" field and declare it as a local variable in the relevant methods.(•ŸóÎüÿÿÿÿ
-w
-java:S1450"\Remove the "panelUsername" field and declare it as a local variable in the relevant methods.(ßÖÎüÿÿÿÿ
-A
-java:S3010"+Remove this assignment of "frameChiamante".(³òËã
-8
-java:S3010""Remove this assignment of "frame".(†´¡ç
-K
-java:S2209"5Change this instance-reference to a static reference.(³òËã
-_
-java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(¢¡´
-œ
-java:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ
-œ
-java:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ
-t
-java:S1171B"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
-h	java:S100P"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ
-h	java:S100p"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ
-M
-java:S1068"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ
+E
+java:S1604$"(Make this anonymous inner class a lambda(ºÙò8úŸ¯ûÅ1
+D
+java:S1604)"(Make this anonymous inner class a lambda(«ìãK8ûŸ¯ûÅ1
+E
+java:S1604/"(Make this anonymous inner class a lambda(²¼âú8ûŸ¯ûÅ1
+|
+java:S1450"ZRemove the "panelBotton" field and declare it as a local variable in the relevant methods.(º°Øöıÿÿÿÿ8† ¯ûÅ1
+~
+java:S1450"\Remove the "panelPassword" field and declare it as a local variable in the relevant methods.(•ŸóÎüÿÿÿÿ8† ¯ûÅ1
+~
+java:S1450"\Remove the "panelUsername" field and declare it as a local variable in the relevant methods.(ßÖÎüÿÿÿÿ8† ¯ûÅ1
+H
+java:S3010"+Remove this assignment of "frameChiamante".(³òËã8ˆ ¯ûÅ1
+D
+java:S3010""Remove this assignment of "frame".(ı‡‰›úÿÿÿÿ8ˆ ¯ûÅ1
+R
+java:S2209"5Change this instance-reference to a static reference.(³òËã8‰ ¯ûÅ1
+f
+java:S3252 "IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(¢¡´8‰ ¯ûÅ1
+£
+java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8Š ¯ûÅ1
+£
+java:S1186+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8‹ ¯ûÅ1
+{
+java:S1171G"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8 ¯ûÅ1
+o	java:S100U"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8 ¯ûÅ1
+o	java:S100w"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8’ ¯ûÅ1
+T
+java:S1068"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ8’ ¯ûÅ1
