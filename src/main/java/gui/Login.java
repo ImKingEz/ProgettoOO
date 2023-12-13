@@ -21,6 +21,8 @@ public class Login {
     private JButton inviaCredenzialiButton;
     private JPanel panelPassword;
     private JPanel panelBotton;
+    private JButton tornaAllaHomeButton;
+    private JPanel panelBottonTornaHome;
     private static JFrame frame;
     private Controller controller;
     private static JFrame frameChiamante;
@@ -80,6 +82,14 @@ public class Login {
                 }
             }
         });
+        tornaAllaHomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameChiamante.setVisible(true);
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
     }
 
     {
@@ -137,6 +147,12 @@ public class Login {
         inviaCredenzialiButton.setPreferredSize(new Dimension(128, 30));
         inviaCredenzialiButton.setText("Login");
         panelBotton.add(inviaCredenzialiButton);
+        panelBottonTornaHome = new JPanel();
+        panelBottonTornaHome.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelLogin.add(panelBottonTornaHome);
+        tornaAllaHomeButton = new JButton();
+        tornaAllaHomeButton.setText("Torna alla Home");
+        panelBottonTornaHome.add(tornaAllaHomeButton);
     }
 
     /**

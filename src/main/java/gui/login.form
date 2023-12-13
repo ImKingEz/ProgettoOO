@@ -70,6 +70,19 @@
           </component>
         </children>
       </grid>
+      <grid id="b4003" binding="panelBottonTornaHome" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="415af" class="javax.swing.JButton" binding="tornaAllaHomeButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Torna alla Home"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

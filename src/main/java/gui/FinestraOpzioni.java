@@ -46,12 +46,22 @@ public class FinestraOpzioni {
             valutaUnaModificaButton.setEnabled(false);
         }
 
+        if (!(controller.esisteAlmenoUnaPagina())) {
+            cercaUnaPaginaButton.setEnabled(false);
+            proponiUnaModificaButton.setEnabled(false);
+            valutaUnaModificaButton.setEnabled(false);
+        }
         creaUnaPaginaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina");
                 Date now = controller.getCurrentDateTime();
                 controller.setPagina(titolo, now, (Autore) u);
+                // crea in controller set testo
+                JOptionPane.showMessageDialog(frame, "Ciao " + u.getUsername() + " hai creato una pagina");
+                cercaUnaPaginaButton.setEnabled(true);
+                proponiUnaModificaButton.setEnabled(true);
+                valutaUnaModificaButton.setEnabled(true);
             }
         });
         cercaUnaPaginaButton.addActionListener(new ActionListener() {

@@ -1,31 +1,39 @@
 
 E
-java:S1604$"(Make this anonymous inner class a lambda(ºÙò8úŸ¯ûÅ1
+java:S16043"(Make this anonymous inner class a lambda(ºÙò8úŸ¯ûÅ1
 D
-java:S1604)"(Make this anonymous inner class a lambda(«ìãK8ûŸ¯ûÅ1
+java:S16048"(Make this anonymous inner class a lambda(«ìãK8ûŸ¯ûÅ1
 E
-java:S1604/"(Make this anonymous inner class a lambda(²¼âú8ûŸ¯ûÅ1
+java:S1604>"(Make this anonymous inner class a lambda(²¼âú8ûŸ¯ûÅ1
+E
+java:S1604U"(Make this anonymous inner class a lambda(µı¢ß8Î¦ƒ˜Æ1
 |
-java:S1450"ZRemove the "panelBotton" field and declare it as a local variable in the relevant methods.(º°Øöıÿÿÿÿ8† ¯ûÅ1
+java:S1450"ZRemove the "panelBotton" field and declare it as a local variable in the relevant methods.(º°Øöıÿÿÿÿ8† ¯ûÅ1
+€
+java:S1450"cRemove the "panelBottonTornaHome" field and declare it as a local variable in the relevant methods.(´í‡Ô8ÁÍ‡˜Æ1
 ~
-java:S1450"\Remove the "panelPassword" field and declare it as a local variable in the relevant methods.(•ŸóÎüÿÿÿÿ8† ¯ûÅ1
+java:S1450"\Remove the "panelPassword" field and declare it as a local variable in the relevant methods.(•ŸóÎüÿÿÿÿ8† ¯ûÅ1
 ~
-java:S1450"\Remove the "panelUsername" field and declare it as a local variable in the relevant methods.(ßÖÎüÿÿÿÿ8† ¯ûÅ1
+java:S1450"\Remove the "panelUsername" field and declare it as a local variable in the relevant methods.(ßÖÎüÿÿÿÿ8† ¯ûÅ1
 H
-java:S3010"+Remove this assignment of "frameChiamante".(³òËã8ˆ ¯ûÅ1
+java:S3010""+Remove this assignment of "frameChiamante".(³òËã8ˆ ¯ûÅ1
 D
-java:S3010""Remove this assignment of "frame".(ı‡‰›úÿÿÿÿ8ˆ ¯ûÅ1
+java:S3010$""Remove this assignment of "frame".(ı‡‰›úÿÿÿÿ8ˆ ¯ûÅ1
 R
-java:S2209"5Change this instance-reference to a static reference.(³òËã8‰ ¯ûÅ1
-f
-java:S3252 "IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(¢¡´8‰ ¯ûÅ1
+java:S2209""5Change this instance-reference to a static reference.(³òËã8‰ ¯ûÅ1
+l
+java:S3252&"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(¹ºİÛ8£º—Æ1
 £
-java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8Š ¯ûÅ1
+java:S11865"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8Š ¯ûÅ1
 £
-java:S1186+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8‹ ¯ûÅ1
+java:S1186:"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8‹ ¯ûÅ1
+e
+java:S1854I"CRemove this useless assignment to local variable "finestraOpzioni".(…÷™øøÿÿÿÿ8¯º—Æ1
+V
+java:S1481I"4Remove this unused "finestraOpzioni" local variable.(…÷™øøÿÿÿÿ8¸º—Æ1
 {
-java:S1171G"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8 ¯ûÅ1
-o	java:S100U"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8 ¯ûÅ1
-o	java:S100w"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8’ ¯ûÅ1
+java:S1171_"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8 ¯ûÅ1
+o	java:S100m"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8 ¯ûÅ1
+p	java:S100¡"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8’ ¯ûÅ1
 T
-java:S1068"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ8’ ¯ûÅ1
+java:S1068"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ8’ ¯ûÅ1

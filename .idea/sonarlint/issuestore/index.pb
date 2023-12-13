@@ -107,3 +107,7 @@ K
 src/main/java/gui/Home.java,c\9\c96b8b9f35c6af4262c3577342f8635989569e00
 b
 2src/main/java/model/usernameNotFoundException.java,0\e\0ea6ff3a592ab3fa4cf33abf9cf59886cf00e718
+V
+&src/main/java/gui/FinestraOpzioni.java,b\7\b796938db8e207bb31a9ee268eaff027885e49c9
+V
+&src/main/java/gui/FInestraOpzioni.form,2\a\2a2d88d44f3db66d81d3ca513e24d409a905cb17

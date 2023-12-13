@@ -11,6 +11,7 @@ public class Controller {
     private Utente utente;
     private ArrayList<Autore> listaAutori = new ArrayList<Autore>();
     private ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
+    private ArrayList<Pagina> listaPagina = new ArrayList<Pagina>();
 
     public void setAutore(String username, String password) throws invalidLoginException, usernameGiaEsistenteException {
         if (username.isBlank() || password.isBlank())
@@ -48,6 +49,15 @@ public class Controller {
 
     public void setPagina(String titolo, Date dataEOraCreazione, Autore autore) {
         pagina = new Pagina(titolo, dataEOraCreazione, autore);
+        listaPagina.add(pagina);
+    }
+
+    public boolean esisteAlmenoUnaPagina(){
+        if (listaPagina.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public String login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
