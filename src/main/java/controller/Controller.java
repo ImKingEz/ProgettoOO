@@ -8,46 +8,56 @@ import java.util.Calendar;
 public class Controller {
     private Autore autore;
     private Pagina pagina;
+    private Testo testo;
     private Utente utente;
+    private Frase frase;
     private ArrayList<Autore> listaAutori = new ArrayList<Autore>();
     private ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
     private ArrayList<Pagina> listaPagina = new ArrayList<Pagina>();
 
-    public void setAutore(String username, String password) throws invalidLoginException, usernameGiaEsistenteException {
+    public void setAutore(String username, String password) throws invalidLoginException, GiaEsistenteException {
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
 
         for (Utente u : listaUtenti) {
             if (username.equals(u.getUsername()))
-                throw new usernameGiaEsistenteException();
+                throw new GiaEsistenteException();
         }
         for (Autore a : listaAutori) {
             if (username.equals(a.getUsername()))
-                throw new usernameGiaEsistenteException();
+                throw new GiaEsistenteException();
         }
 
         autore = new Autore(username, password);
         listaAutori.add(autore);
     }
 
-    public void setUtente(String username, String password) throws invalidLoginException, usernameGiaEsistenteException {
+    public void setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException {
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
 
         for (Utente u : listaUtenti) {
             if (username.equals(u.getUsername()))
-                throw new usernameGiaEsistenteException();
+                throw new GiaEsistenteException();
         }
         for (Autore a : listaAutori) {
             if (username.equals(a.getUsername()))
-                throw new usernameGiaEsistenteException();
+                throw new GiaEsistenteException();
         }
 
         utente = new Utente(username, password);
         listaUtenti.add(utente);
     }
 
-    public void setPagina(String titolo, Date dataEOraCreazione, Autore autore) {
+    public void setPagina(String titolo, Date dataEOraCreazione, Autore autore)  throws GiaEsistenteException, NotABlankException{
+        if(titolo.isBlank())
+            throw new NotABlankException();
+
+        for (Pagina p: listaPagina) {
+            if(titolo.equals(p.getTitolo()))
+                throw new GiaEsistenteException();
+        }
+
         pagina = new Pagina(titolo, dataEOraCreazione, autore);
         listaPagina.add(pagina);
     }
@@ -126,5 +136,51 @@ public class Controller {
             }
         }
         return null;
+    }
+
+    public void setTesto(Date dataEOraUltimaModifica, Pagina paginaAppartenenza) {
+        testo = new Testo(dataEOraUltimaModifica, paginaAppartenenza);
+    }
+    public Pagina getPagina(String titolo) throws Exception{
+        for (Pagina p: listaPagina) {
+            if(titolo.equals(p.getTitolo())) {
+                return p;
+            }
+        }
+        throw new Exception();
+    }
+
+    public void aggiungiFraseInTesto(Testo testoDellaPagina, String testoInserito) throws NotABlankException {
+        if(testoInserito.isBlank()){
+            throw new NotABlankException();
+        }
+
+        int indiceFrase=1;
+        for(Frase f: testoDellaPagina.getFrasi()) {
+            indiceFrase++;
+        }
+        Frase nuovaFrase = new Frase(testoInserito, indiceFrase, testoDellaPagina);
+    }
+    public void aggiungiFraseInTesto(Testo testoDellaPagina, String testoInserito, Pagina paginaLinkata) throws NotABlankException {
+        if(testoInserito.isBlank()){
+            throw new NotABlankException();
+        }
+        this.frase.setTesto(testoInserito);
+
+        int indiceFrase=1;
+        for(Frase f: testoDellaPagina.getFrasi()) {
+            indiceFrase++;
+        }
+        this.frase.setIndice(indiceFrase);
+
+        this.frase.setPaginaLinkata(paginaLinkata);
+    }
+
+    public String getTestoTotale(Testo testo) {
+        String appoggio = "";
+        for(Frase f: testo.getFrasi()) {
+            appoggio += f.getTesto() + " ";
+        }
+        return appoggio;
     }
 }

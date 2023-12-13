@@ -1,8 +1,7 @@
 package gui;
 
 import controller.Controller;
-import model.Autore;
-import model.Utente;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +22,14 @@ public class FinestraOpzioni {
     private JPanel panelValutaModifica;
     private JButton annullaButton;
     private JPanel panelAnnulla;
+    private JPanel panelInserisciFrase;
+    private JButton inserisciFraseButton;
     private static JFrame frame;
     private Controller controller;
     private static JFrame frameChiamante;
     private Utente u;
     private String identita;
+    private Pagina paginaDiAppartenenza;
 
     public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u, String identita) {
         this.u = u;
@@ -44,24 +46,37 @@ public class FinestraOpzioni {
         if (identita.equals("UTENTE")) {
             creaUnaPaginaButton.setEnabled(false);
             valutaUnaModificaButton.setEnabled(false);
+            inserisciFraseButton.setEnabled(false);
         }
 
         if (!(controller.esisteAlmenoUnaPagina())) {
             cercaUnaPaginaButton.setEnabled(false);
             proponiUnaModificaButton.setEnabled(false);
             valutaUnaModificaButton.setEnabled(false);
+            inserisciFraseButton.setEnabled(false);
         }
         creaUnaPaginaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina");
-                Date now = controller.getCurrentDateTime();
-                controller.setPagina(titolo, now, (Autore) u);
-                // crea in controller set testo
-                JOptionPane.showMessageDialog(frame, "Ciao " + u.getUsername() + " hai creato una pagina");
-                cercaUnaPaginaButton.setEnabled(true);
-                proponiUnaModificaButton.setEnabled(true);
-                valutaUnaModificaButton.setEnabled(true);
+                try {
+                    String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina");
+                    Date now = controller.getCurrentDateTime();
+                    controller.setPagina(titolo, now, (Autore) u);
+                    paginaDiAppartenenza = controller.getPagina(titolo);
+                    controller.setTesto(now, paginaDiAppartenenza);
+                    JOptionPane.showMessageDialog(frame, "Ciao " + u.getUsername() + " hai creato una pagina");
+                    cercaUnaPaginaButton.setEnabled(true);
+                    proponiUnaModificaButton.setEnabled(true);
+                    valutaUnaModificaButton.setEnabled(true);
+                    inserisciFraseButton.setEnabled(true);
+                } catch (GiaEsistenteException tge) {
+                    JOptionPane.showMessageDialog(frame, "Titolo già esistente.");
+                } catch (NotABlankException ex) {
+                    JOptionPane.showMessageDialog(frame, "Non puoi lasciare il campo vuoto.");
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(frame, "Errore.");
+                }
+
             }
         });
         cercaUnaPaginaButton.addActionListener(new ActionListener() {
@@ -88,6 +103,18 @@ public class FinestraOpzioni {
                 frameChiamante.setVisible(true);
                 frame.setVisible(false);
                 frame.dispose();
+            }
+        });
+        inserisciFraseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina in cui vuoi inserire la frase: ");
+                try {
+                    paginaDiAppartenenza = controller.getPagina(titolo);
+                    InserisciFrase inserisciFrase = new InserisciFrase(frame, controller, u, paginaDiAppartenenza);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frame,"Nessuna pagina trovata");
+                }
             }
         });
     }

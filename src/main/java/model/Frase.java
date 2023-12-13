@@ -40,4 +40,11 @@ public class Frase {
         this.paginaLinkata = paginaLinkata;
         paginaLinkata.getFrasiCheLinkano().add(this);
     }
+    public void setTesto(String testo) {
+        this.testo = testo;
+    }
+
+    public void setIndice(int indice) {
+        this.indice = indice;
+    }
 }

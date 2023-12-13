@@ -2,7 +2,7 @@ package gui;
 
 import controller.Controller;
 import model.invalidLoginException;
-import model.usernameGiaEsistenteException;
+import model.GiaEsistenteException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +73,7 @@ public class FinestraInserisciAutore {
                     frame.dispose();
                 } catch (invalidLoginException il) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
-                } catch (usernameGiaEsistenteException ex) {
+                } catch (GiaEsistenteException ex) {
                     JOptionPane.showMessageDialog(frame, "L'username inserito è già esistente");
                 }
             }
