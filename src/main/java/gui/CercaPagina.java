@@ -1,9 +1,7 @@
 package gui;
 
 import controller.Controller;
-import model.NotABlankException;
 import model.Pagina;
-import model.Utente;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,33 +9,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class InserisciFrase {
-    private JPanel panelInserisciFrase;
-    private JPanel panelTitolo;
-    private JPanel panelTesto;
+public class CercaPagina {
+    private JPanel panelPaginaCercata;
     private JPanel panelTitoloETesto;
-    private JPanel panelFrase;
-    private JPanel panelTestoFrase;
-    private JButton inserisciButton;
-    private JTextField textFieldFrase;
-    private JPanel panelInserisci;
+    private JPanel panelTitolo;
     private JLabel labelTitolo;
+    private JPanel panelTesto;
     private JLabel labelTesto;
-    private JButton tornaIndietroButton;
     private JPanel panelTornaIndietro;
+    private JButton tornaIndietroButton;
+    private JPanel panelCercaPagina;
     private static JFrame frame;
     private static JFrame frameChiamante;
     private Controller controller;
-    private Utente u;
     private Pagina pagina;
-    public InserisciFrase(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) {
+
+    public CercaPagina(JFrame frameChiamante, Controller controller, Pagina pagina) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
-        this.u = u;
-        this.pagina = pagina;
-
-        frame = new JFrame("Modellazione pagina");
-        frame.setContentPane(panelInserisciFrase);
+        this.pagina=pagina;
+        frame = new JFrame("Pagina Cercata");
+        frame.setContentPane(panelPaginaCercata);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Evita la chiusura automatica
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -55,18 +47,6 @@ public class InserisciFrase {
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
         String testoTotale = "<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>";
         labelTesto.setText(testoTotale);
-        inserisciButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    controller.aggiungiFraseInTesto(pagina.getTesto(), textFieldFrase.getText());
-                    labelTesto.setText("<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>");
-                    textFieldFrase.setText("");
-                } catch (NotABlankException nabe) {
-                    JOptionPane.showMessageDialog(frame,"Non puoi inserire un testo vuoto.");
-                }
-            }
-        });
         tornaIndietroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

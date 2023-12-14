@@ -30,6 +30,7 @@ public class FinestraOpzioni {
     private Utente u;
     private String identita;
     private Pagina paginaDiAppartenenza;
+    private Pagina paginaCercata;
 
     public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u, String identita) {
         this.u = u;
@@ -82,7 +83,13 @@ public class FinestraOpzioni {
         cercaUnaPaginaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String titolo2 = JOptionPane.showInputDialog("Inserisci il titolo della pagina che vuoi cercare");
+                try {
+                    paginaCercata = controller.getPagina(titolo2);
+                    CercaPagina cercaPagina = new CercaPagina(frame, controller,paginaCercata);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frame,"Nessuna pagina trovata");
+                }
             }
         });
         proponiUnaModificaButton.addActionListener(new ActionListener() {
