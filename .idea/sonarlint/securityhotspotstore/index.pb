@@ -23,3 +23,13 @@ U
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+Q
+!src/main/java/dao/ListinoDAO.java,b\8\b87fab937eb6759382d4f54f9861808fef2a39bf
+_
+/src/main/java/database/ConnessioneDatabase.java,c\c\cc6637f4448f72f749fd185cb4312475e161ad72
+Z
+*src/main/java/postgresDAO/PostgresDAO.java,e\3\e38e44f5086ddaacfa28eef919e69ce901852161
+a
+1src/main/java/postgresDAO/ListinoPostgresDAO.java,5\9\59b03015a260c543ca5c0d505ce3bf5e21dbd80e
+Q
+!src/main/java/credenzialiDataBase,9\e\9e067d678e49760c18316e9969d0202b2a1bf369

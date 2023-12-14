@@ -1,0 +1,4 @@
+db.nome=postgres
+db.password=alfredo
+db.url=jdbc:postgresql://localhost:5432/PROGETTO
+db.driver=org.postgresql.Driver
