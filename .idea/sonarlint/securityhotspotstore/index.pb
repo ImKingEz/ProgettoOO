@@ -49,3 +49,7 @@ Y
 )src/main/java/gui/ProponiUnaModifica.form,9\3\9335dbdcc6b40b30696614c6231ab34f711d4c24
 Y
 )src/main/java/gui/ProponiUnaModifica.java,b\c\bce6bd873905baed074f7d42c6d84574ed283616
+N
+src/main/java/model/Testo.java,3\1\311da40e464d41fdd1c7c8211d4ead5c5ed2a59f
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
