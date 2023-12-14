@@ -180,6 +180,9 @@ public class Controller {
         String appoggio = "";
         for(Frase f: testo.getFrasi()) {
             appoggio += f.getTesto() + " ";
+            if(frase.getPaginaLinkata() != null) {
+                appoggio += appoggio + "(Link: " + frase.getPaginaLinkata().getTitolo() + ") ";
+            }
         }
         return appoggio;
     }

@@ -1,6 +1,36 @@
 
 V
 &src/main/java/gui/FinestraOpzioni.java,b\7\b796938db8e207bb31a9ee268eaff027885e49c9
+^
+.src/main/java/gui/finestraInserisciUtente.form,8\6\8663cfe9b336d3eead66406fafc7f3e6eae4a037
+O
+src/main/java/model/Pagina.java,d\f\df038dde960dfef12e728994b45412e694a15365
+L
+src/main/java/gui/Login.java,8\c\8cab6d758af37d24c67100cf7718257b02fab720
+K
+src/main/java/gui/Home.java,c\9\c96b8b9f35c6af4262c3577342f8635989569e00
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+^
+.src/main/java/gui/FinestraInserisciAutore.java,7\4\744c31abe33f3fa212b85e7d2680122372614d44
+X
+(src/main/java/controller/Controller.java,0\5\05fd466bff28423ca702e1a116df355b44712db1
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+U
+%src/main/java/gui/InserisciFrase.java,2\a\2ad8b72746789f0cf3b75ffa39f0d7c4c4ca4123
+U
+%src/main/java/gui/InserisciFrase.form,b\5\b591f2b9b7f680b2a44a54541b002ff5ca13cd37
+^
+.src/main/java/gui/FinestraInserisciUtente.java,e\c\ecfe24b2edd9c8c3dd9c23556ed85bce31309537
+V
+&src/main/java/gui/FInestraOpzioni.form,2\a\2a2d88d44f3db66d81d3ca513e24d409a905cb17
+[
++src/main/java/model/NotABlankException.java,e\3\e363e45eaa8aa27f8b36113dab276d6b1f19a7bd
+N
+src/main/java/model/Frase.java,b\4\b40a53434d28f6858e7689d419c19b46cad994cc
+^
+.src/main/java/model/GiaEsistenteException.java,6\3\6351c5415bf7766b1b919e932decdcbcccc875f6
 L
 src/main/java/gui/Login.java,8\c\8cab6d758af37d24c67100cf7718257b02fab720
 K

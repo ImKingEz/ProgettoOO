@@ -124,6 +124,18 @@ public class FinestraOpzioni {
                 }
             }
         });
+        proponiUnaModificaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina in cui vuoi inserire la frase: ");
+                try {
+                    paginaDiAppartenenza = controller.getPagina(titolo);
+                    ProponiUnaModifica proponiUnaModifica = new ProponiUnaModifica(frame, controller, u, paginaDiAppartenenza);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frame,"Nessuna pagina trovata");
+                }
+            }
+        });
     }
 
     {
