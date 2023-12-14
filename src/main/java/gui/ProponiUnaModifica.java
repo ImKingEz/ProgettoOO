@@ -5,6 +5,8 @@ import model.Pagina;
 import model.Utente;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -21,6 +23,9 @@ public class ProponiUnaModifica {
     private JTextField textFieldTestoProposto;
     private JLabel labelInserisciTesto;
     private JLabel labelInserisciIndice;
+    private JButton proponiLaModificaButton;
+    private JLabel labelListaFrasi;
+    private JButton annullaButton;
 
     public ProponiUnaModifica(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) {
         this.frameChiamante = frameChiamante;
@@ -43,5 +48,19 @@ public class ProponiUnaModifica {
         frameChiamante.setVisible(false);
         frame.setVisible(true);
         frame.setSize(600, 600);
+
+        labelListaFrasi.setHorizontalAlignment(SwingConstants.LEFT);
+        labelListaFrasi.setVerticalAlignment(SwingConstants.TOP);
+
+        String testofrasi = controller.getFrasiConIndici(pagina.getTesto());
+        labelListaFrasi.setText(testofrasi);
+        annullaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameChiamante.setVisible(true);
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
     }
 }

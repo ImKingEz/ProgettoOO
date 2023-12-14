@@ -150,7 +150,7 @@ public class Controller {
         throw new Exception();
     }
 
-    public void aggiungiFraseInTesto(Testo testoDellaPagina, String testoInserito) throws NotABlankException {
+    public void aggiungiFraseInTesto(Testo testoDellaPagina, String testoInserito, Frase frase) throws NotABlankException {
         if(testoInserito.isBlank()){
             throw new NotABlankException();
         }
@@ -180,10 +180,30 @@ public class Controller {
         String appoggio = "";
         for(Frase f: testo.getFrasi()) {
             appoggio += f.getTesto() + " ";
-            if(frase.getPaginaLinkata() != null) {
+            if(f.getPaginaLinkata() != null) {
                 appoggio += appoggio + "(Link: " + frase.getPaginaLinkata().getTitolo() + ") ";
             }
         }
         return appoggio;
+    }
+    public String getFrasiConIndici(Testo testo) {
+        ArrayList<Frase> listaFrasi = new ArrayList<Frase>();
+        String ret = "<html> ";
+
+        listaFrasi = testo.getFrasi();
+        for(Frase f: listaFrasi) {
+            ret += f.getIndice() + ") " + f.getTesto();
+            if(f.getPaginaLinkata() != null) {
+                ret += "(Link: " + f.getPaginaLinkata().getTitolo() + ")";
+            }
+            ret += " <br> ";
+        }
+        ret += " </html>";
+
+        return ret;
+    }
+
+    public int calcolaIndice(Testo testo) {
+        return testo.getFrasi().size() + 1;
     }
 }

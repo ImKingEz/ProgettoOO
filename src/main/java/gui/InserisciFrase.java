@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import model.Frase;
 import model.NotABlankException;
 import model.Pagina;
 import model.Utente;
@@ -52,7 +53,10 @@ public class InserisciFrase {
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
-        frame.setSize(600,600);
+        frame.setSize(650,400);
+
+        labelTesto.setHorizontalAlignment(SwingConstants.LEFT);
+        labelTesto.setVerticalAlignment(SwingConstants.TOP);
 
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
         String testoTotale = "<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>";
@@ -61,12 +65,14 @@ public class InserisciFrase {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if(textFieldLink.getText() == "") {
-                        controller.aggiungiFraseInTesto(pagina.getTesto(), textFieldFrase.getText());
+                    if(textFieldFrase.getText().isBlank()) {
+                        throw new NotABlankException();
+                    }
+                    else if(textFieldLink.getText().isBlank()) {
+                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina.getTesto()), pagina.getTesto());
                     }
                     else {
-                        Pagina paginaAppoggio = controller.getPagina(textFieldLink.getText());
-                        controller.aggiungiFraseInTesto(pagina.getTesto(), textFieldFrase.getText(), paginaAppoggio);
+                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina.getTesto()), pagina.getTesto(), pagina);
                     }
                     labelTesto.setText("<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>");
                     textFieldFrase.setText("");

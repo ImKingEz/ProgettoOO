@@ -15,6 +15,14 @@ public class Frase {
         this.testoDiAppartenenza = testoDiAppartenenza;
         testoDiAppartenenza.getFrasi().add(this);
     }
+    public Frase(String testo, int indice, Testo testoDiAppartenenza, Pagina paginaLinkata) {
+        this.testo = testo;
+        this.indice = indice;
+        this.paginaLinkata = paginaLinkata;
+
+        this.testoDiAppartenenza = testoDiAppartenenza;
+        testoDiAppartenenza.getFrasi().add(this);
+    }
 
     public String getTesto() {
         return testo;

@@ -42,7 +42,7 @@ public class CercaPagina {
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
-        frame.setSize(600,600);
+        frame.setSize(650,400);
 
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
         String testoTotale = "<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>";

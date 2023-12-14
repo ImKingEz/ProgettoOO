@@ -10,8 +10,8 @@
       <grid id="902d0" binding="panelListaFrasi" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties>
-          <minimumSize width="150" height="200"/>
-          <preferredSize width="150" height="200"/>
+          <minimumSize width="200" height="250"/>
+          <preferredSize width="200" height="250"/>
         </properties>
         <border type="none"/>
         <children>
@@ -21,13 +21,22 @@
               <text value="Frasi del testo"/>
             </properties>
           </component>
+          <component id="915d9" class="javax.swing.JLabel" binding="labelListaFrasi">
+            <constraints/>
+            <properties>
+              <maximumSize width="180" height="200"/>
+              <minimumSize width="180" height="200"/>
+              <preferredSize width="180" height="200"/>
+              <text value="Label"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="ef5a9" binding="panelInserisciIndice" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties>
-          <minimumSize width="200" height="200"/>
-          <preferredSize width="200" height="200"/>
+          <minimumSize width="200" height="250"/>
+          <preferredSize width="200" height="250"/>
         </properties>
         <border type="none"/>
         <children>
@@ -53,6 +62,18 @@
             <constraints/>
             <properties>
               <preferredSize width="190" height="60"/>
+            </properties>
+          </component>
+          <component id="8955c" class="javax.swing.JButton" binding="proponiLaModificaButton">
+            <constraints/>
+            <properties>
+              <text value="Proponi la modifica"/>
+            </properties>
+          </component>
+          <component id="4ffe6" class="javax.swing.JButton" binding="annullaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Annulla"/>
             </properties>
           </component>
         </children>
