@@ -14,6 +14,7 @@ import java.sql.SQLException;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -130,6 +131,126 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
     }
 
+    public Pagina getPagina(String titolo) {
+        PreparedStatement selectPagina = null;
+        Pagina p = null;
+        ResultSet rs = null;
+
+        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
+        Date dataCreazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
+        Time oraCreazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
+
+        try {
+            String query = "SELECT titolo, usernameautore  FROM pagina WHERE titolo = ?";
+            selectPagina = connection.prepareStatement(query);
+            selectPagina.setString(1, titolo);
+            rs = selectPagina.executeQuery();
+            if(rs.next()) {
+                p = new Pagina(rs.getString("titolo"), currentDate, getUtente(rs.getString("usernameautore")));
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della pagina: " + e.getMessage());
+        } finally {
+            try {
+                if (selectPagina != null) {
+                    selectPagina.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+        return p;
+    }
+
+    public int getIdPagina(String titolo){
+        PreparedStatement selectPagina = null;
+        Pagina p = null;
+        ResultSet rs = null;
+
+        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
+        Date dataCreazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
+        Time oraCreazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
+
+        try {
+            String query = "SELECT idpagina FROM pagina WHERE titolo = ?";
+            selectPagina = connection.prepareStatement(query);
+            selectPagina.setString(1, titolo);
+            rs = selectPagina.executeQuery();
+            if(rs.next()) {
+                return rs.getInt("idpagina");
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della pagina: " + e.getMessage());
+        } finally {
+            try {
+                if (selectPagina != null) {
+                    selectPagina.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+        return -1;
+    }
+
+    public void setFrase(String testo, Pagina pagina) throws NotABlankException {
+        PreparedStatement insertFrase = null;
+        try {
+            String query = "INSERT INTO frase(testo, indice, idpagina) VALUES(?, ?, ?)";
+            insertFrase = connection.prepareStatement(query);
+            insertFrase.setString(1, testo);
+            insertFrase.setInt(2, controller.calcolaIndice(pagina));
+            insertFrase.setInt(3, getIdPagina(pagina.getTitolo()));
+            insertFrase.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'inserimento della frase: " + e.getMessage());
+        }
+        finally {
+            try {
+                if (insertFrase != null) {
+                    insertFrase.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+    }
+
+    public ArrayList<Frase> getFrasi(Pagina pagina) {
+        PreparedStatement selectFrase = null;
+        ArrayList<Frase> frasi = new ArrayList<Frase>();
+        ResultSet rs = null;
+        String titolopagina = pagina.getTitolo();
+        try {
+            String query = "SELECT testo, indice FROM frase f, pagina p WHERE titolopagina = p.titolo AND p.idpagina = f.idpagina order by indice asc";
+            selectFrase = connection.prepareStatement(query);
+            rs = selectFrase.executeQuery();
+            while (rs.next()) {
+                frasi.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della frase: " + e.getMessage());
+        } finally {
+            try {
+                if (selectFrase != null) {
+                    selectFrase.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+        return frasi;
+    }
+
 
     public int numeroPagineCreateDaUnUtente(String username){
         PreparedStatement selectPagina = null;
@@ -216,7 +337,5 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
         return false;
     }
-
-    //public Pagina getPagina(String titolo);
 
 }
