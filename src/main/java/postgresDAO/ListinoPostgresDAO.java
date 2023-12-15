@@ -228,7 +228,8 @@ public class ListinoPostgresDAO implements ListinoDAO {
         ResultSet rs = null;
         String titolopagina = pagina.getTitolo();
         try {
-            String query = "SELECT testo, indice FROM frase f, pagina p WHERE titolopagina = p.titolo AND p.idpagina = f.idpagina order by indice asc";
+            String query = "SELECT testo, indice FROM frase f, pagina p WHERE ? = p.titolo AND p.idpagina = f.idpagina order by indice asc";
+            selectFrase.setString(1, titolopagina);
             selectFrase = connection.prepareStatement(query);
             rs = selectFrase.executeQuery();
             while (rs.next()) {
@@ -282,7 +283,39 @@ public class ListinoPostgresDAO implements ListinoDAO {
             }
         }
     }
-    //public Modifica getModifica()
+    public Modifica getModifica(Frase frase) { //prendo la modifica più recente
+        PreparedStatement selectPagina = null;
+        Pagina p = null;
+        ResultSet rs = null;
+
+        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
+        Date dataCreazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
+        Time oraCreazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
+
+        try {
+            String query = "SELECT testo FROM modifica WHERE titolo = ?";
+            selectPagina = connection.prepareStatement(query);
+            selectPagina.setString(1, frase.getTesto());
+            rs = selectPagina.executeQuery();
+            if(rs.next()) {
+                //return rs.getInt("idpagina");
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della pagina: " + e.getMessage());
+        } finally {
+            try {
+                if (selectPagina != null) {
+                    selectPagina.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+        return null;
+    }
 
 
     public int numeroPagineCreateDaUnUtente(String username){
