@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Calendar;
 
 public class Controller {
-    private Autore autore;
     private Pagina pagina;
     private Utente utente;
     private Frase frase;
