@@ -1,10 +1,9 @@
 package gui;
 
 import controller.Controller;
-import model.LunghezzaPasswordException;
-import model.invalidLoginException;
-import model.GiaEsistenteException;
-import postgresDAO.ListinoPostgresDAO;
+import controller.LunghezzaPasswordException;
+import controller.invalidLoginException;
+import controller.GiaEsistenteException;
 
 import javax.swing.*;
 import java.awt.*;

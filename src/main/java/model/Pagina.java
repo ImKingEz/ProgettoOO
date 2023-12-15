@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Pagina {
+    private Utente autore;
     private String titolo;
     private Date dataEOraCreazione;
     private Date dataEOraUltimaModifica;
-    private Autore autore;
     private ArrayList<Utente> utentiVisionatori = new ArrayList<Utente>();
     private ArrayList<Frase> frasiCheLinkano = new ArrayList<Frase>();
     private ArrayList<Frase> listaFrasi = new ArrayList<Frase>();
-    public Pagina(String titolo, Date dataEOraCreazione, Autore autore) {
+    public Pagina(String titolo, Date dataEOraCreazione, Utente autore) {
         this.titolo = titolo;
         this.dataEOraCreazione = dataEOraCreazione;
 
@@ -31,7 +31,7 @@ public class Pagina {
         return utentiVisionatori;
     }
 
-    public Autore getAutore() {
+    public Utente getAutore() {
         return autore;
     }
 

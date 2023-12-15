@@ -1,7 +1,6 @@
 package controller;
 import dao.ListinoDAO;
 import model.*;
-import postgresDAO.ListinoPostgresDAO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +11,6 @@ public class Controller {
     private Pagina pagina;
     private Utente utente;
     private Frase frase;
-    private ArrayList<Autore> listaAutori = new ArrayList<Autore>();
     private ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
     private ArrayList<Pagina> listaPagina = new ArrayList<Pagina>();
     private ListinoDAO listinoPostgresDAO;
@@ -20,23 +18,6 @@ public class Controller {
     }
     public Controller(ListinoDAO listinoPostgresDAO) {
         this.listinoPostgresDAO = listinoPostgresDAO;
-    }
-
-    public void setAutore(String username, String password) throws invalidLoginException, GiaEsistenteException {
-        if (username.isBlank() || password.isBlank())
-            throw new invalidLoginException();
-
-        for (Utente u : listaUtenti) {
-            if (username.equals(u.getUsername()))
-                throw new GiaEsistenteException();
-        }
-        for (Autore a : listaAutori) {
-            if (username.equals(a.getUsername()))
-                throw new GiaEsistenteException();
-        }
-
-        autore = new Autore(username, password);
-        listaAutori.add(autore);
     }
 
     public Utente setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException, LunghezzaPasswordException{
@@ -57,7 +38,7 @@ public class Controller {
 
     }
 
-    public Pagina setPagina(String titolo, Date dataEOraCreazione, Autore autore) throws GiaEsistenteException, NotABlankException {
+    public Pagina setPagina(String titolo, Date dataEOraCreazione, Utente autore) throws GiaEsistenteException, NotABlankException {
         if(titolo.isBlank())
             throw new NotABlankException();
 
@@ -79,6 +60,9 @@ public class Controller {
             return false;
         }
     }
+    public Utente getUtente(String username) {
+        return listinoPostgresDAO.getUtente(username);
+    }
 
     public String login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
 
@@ -93,7 +77,7 @@ public class Controller {
             throw new passwordNotFoundException();
         }
 
-        if(listinoPostgresDAO.numeroPagineCreateDaUnUtente(utente) > 0) {
+        if(listinoPostgresDAO.numeroPagineCreateDaUnUtente(utente.getUsername()) > 0) {
             return "autore";
         }else{
             return "utente";
@@ -107,11 +91,6 @@ public class Controller {
             return false;
         }
     }
-
-    public ArrayList<Autore> getListaAutori() {
-        return listaAutori;
-    }
-
     public ArrayList<Utente> getListaUtenti() {
         return listaUtenti;
     }
@@ -187,5 +166,8 @@ public class Controller {
     }
     public void setSchema(){
         listinoPostgresDAO.setSchema();
+    }
+    public int numeroPagineCreateDaUnUtente(String username){
+        return listinoPostgresDAO.numeroPagineCreateDaUnUtente(username);
     }
 }

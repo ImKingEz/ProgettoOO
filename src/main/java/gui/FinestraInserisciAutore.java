@@ -1,8 +1,8 @@
 package gui;
 
 import controller.Controller;
-import model.invalidLoginException;
-import model.GiaEsistenteException;
+import controller.invalidLoginException;
+import controller.GiaEsistenteException;
 
 import javax.swing.*;
 import java.awt.*;

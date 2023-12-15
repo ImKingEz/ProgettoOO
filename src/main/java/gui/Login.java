@@ -1,10 +1,10 @@
 package gui;
 
 import controller.Controller;
-import model.Utente;
-import model.invalidLoginException;
-import model.passwordNotFoundException;
-import model.usernameNotFoundException;
+import controller.invalidLoginException;
+import controller.passwordNotFoundException;
+import controller.usernameNotFoundException;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +28,6 @@ public class Login {
     private static JFrame frameChiamante;
     private String usernameInserito;
     private String passwordInserita;
-    private Utente u;
 
     public Login(JFrame frameChiamante, Controller controller) {
         this.frameChiamante = frameChiamante;
@@ -69,6 +68,7 @@ public class Login {
                 try {
                     returnLogin = controller.login(usernameInserito, passwordInserita);
                     JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " sei un " + returnLogin);
+                    Utente u = controller.getUtente(usernameInserito);
                     FinestraOpzioni finestraOpzioni = new FinestraOpzioni(frame, controller, u, returnLogin);
                     frame.setVisible(false);
                     frame.dispose();

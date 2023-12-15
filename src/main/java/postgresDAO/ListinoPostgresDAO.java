@@ -1,6 +1,8 @@
 package postgresDAO;
 
 import controller.Controller;
+import controller.GiaEsistenteException;
+import controller.NotABlankException;
 import dao.ListinoDAO;
 import database.ConnessioneDatabase;
 import model.*;
@@ -9,6 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Calendar;
+
 
 public class ListinoPostgresDAO implements ListinoDAO {
 
@@ -78,7 +85,6 @@ public class ListinoPostgresDAO implements ListinoDAO {
             if(rs.next()) {
                 u = new Utente(rs.getString("username"), rs.getString("password"));
             }
-
         } catch (SQLException e) {
             System.out.println("Errore durante l'estrazione dell'utente: " + e.getMessage());
         } finally {
@@ -96,18 +102,23 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return u;
     }
 
-    public void setPagina(String titolo, Autore autore) throws Exception {
+    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException {
         PreparedStatement insertPagina = null;
+
+        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
+        Date dataCreazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
+        Time oraCreazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
+
         try {
-            String query = "INSERT INTO pagina (titolo, datacreazione, oracreazione, usernameautore) VALUES (?, SYSDATE, SYSTIME, ?)";
+            String query = "INSERT INTO pagina(titolo, datacreazione, oracreazione, usernameautore) VALUES(?, ?, ?, ?)";
             insertPagina = connection.prepareStatement(query);
             insertPagina.setString(1, titolo);
-            insertPagina.setString(2, autore.getUsername());
+            insertPagina.setDate(2, dataCreazione);
+            insertPagina.setTime(3, oraCreazione);
+            insertPagina.setString(4, autore.getUsername());
             insertPagina.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Errore durante l'inserimento della pagina: " + e.getMessage());
-            throw new Exception();
-
         } finally {
             try {
                 if (insertPagina != null) {
@@ -120,19 +131,18 @@ public class ListinoPostgresDAO implements ListinoDAO {
     }
 
 
-    public int numeroPagineCreateDaUnUtente(Utente utente){
+    public int numeroPagineCreateDaUnUtente(String username){
         PreparedStatement selectPagina = null;
         int numeroPagine=0;
         ResultSet rs = null;
         try {
             String query = "SELECT COUNT(*) FROM pagina WHERE usernameautore = ? ";
             selectPagina = connection.prepareStatement(query);
-            selectPagina.setString(1, utente.getUsername());
+            selectPagina.setString(1, username);
             rs = selectPagina.executeQuery();
-            /*while (rs.next()) {
+            while (rs.next()) {
                 numeroPagine = rs.getInt("count");
-            }*/
-            numeroPagine = rs.getInt("count");
+            }
 
         } catch (SQLException e) {
             System.out.println("Errore durante l'estrazione del numero di pagine create da un autore: " + e.getMessage());

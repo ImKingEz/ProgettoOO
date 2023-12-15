@@ -5,9 +5,9 @@ import java.util.Date;
 public class Valutazione {
     private Boolean accettazione;
     private Date dataEOraValutazione;
-    private Autore autore;
     private Modifica modificaFrase;
-    public Valutazione(Boolean accettazione, Date dataEOraValutazione, Autore autore, Modifica modificaFrase) {
+    private Utente autore;
+    public Valutazione(Boolean accettazione, Date dataEOraValutazione, Utente autore, Modifica modificaFrase) {
         this.accettazione = accettazione;
         this.dataEOraValutazione = dataEOraValutazione;
 
@@ -26,7 +26,7 @@ public class Valutazione {
         return dataEOraValutazione;
     }
 
-    public Autore getAutore() {
+    public Utente getAutore() {
         return autore;
     }
 

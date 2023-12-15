@@ -1,15 +1,15 @@
 package gui;
 
 import controller.Controller;
+import controller.GiaEsistenteException;
+import controller.NotABlankException;
 import model.*;
-import org.postgresql.ssl.LazyKeyManager;
 import postgresDAO.ListinoPostgresDAO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 
 public class FinestraOpzioni {
@@ -64,7 +64,7 @@ public class FinestraOpzioni {
             public void actionPerformed(ActionEvent e) {
                 try {
                     String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina");
-                    listinoPostgresDAO.setPagina(titolo, (Autore) u);
+                    listinoPostgresDAO.setPagina(titolo, u);
                     JOptionPane.showMessageDialog(frame, "Ciao " + u.getUsername() + " hai creato una pagina");
 
                     cercaUnaPaginaButton.setEnabled(true);
@@ -75,9 +75,10 @@ public class FinestraOpzioni {
                     JOptionPane.showMessageDialog(frame, "Titolo già esistente.");
                 } catch (NotABlankException ex) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare il campo vuoto.");
-                } catch (Exception e1) {
-                    JOptionPane.showMessageDialog(frame, "Errore.");
                 }
+//                catch (Exception e1) {
+//                    JOptionPane.showMessageDialog(frame, "Errore.");
+//                }
 
             }
         });

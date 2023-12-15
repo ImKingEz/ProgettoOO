@@ -2,7 +2,7 @@ package gui;
 
 import controller.Controller;
 import model.Frase;
-import model.NotABlankException;
+import controller.NotABlankException;
 import model.Pagina;
 import model.Utente;
 
