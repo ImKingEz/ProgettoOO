@@ -32,32 +32,30 @@ public class FinestraOpzioni {
     private Utente u;
     private Pagina paginaDiAppartenenza;
     private Pagina paginaCercata;
-    private String identita;
     private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
 
-    public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u, String identita) {
+    public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u) {
         this.u = u;
         this.frameChiamante = frameChiamante;
         this.controller = controller;
-        this.identita = identita;
 
         frame = new JFrame("Area Opzioni");
         frame.setContentPane(panelOpzioni);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
         valutaUnaModificaButton.setEnabled(false);
         inserisciFraseButton.setEnabled(false);
 
-        if (identita.equals("utente")) {
-            valutaUnaModificaButton.setEnabled(false);
-            inserisciFraseButton.setEnabled(false);
-        }
-
         if (!(controller.esisteAlmenoUnaPagina())) {
             cercaUnaPaginaButton.setEnabled(false);
             proponiUnaModificaButton.setEnabled(false);
+            inserisciFraseButton.setEnabled(false);
+        }else{
+            cercaUnaPaginaButton.setEnabled(true);
+            proponiUnaModificaButton.setEnabled(true);
+            inserisciFraseButton.setEnabled(true);
         }
         creaUnaPaginaButton.addActionListener(new ActionListener() {
             @Override
@@ -65,7 +63,7 @@ public class FinestraOpzioni {
                 try {
                     String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina");
                     listinoPostgresDAO.setPagina(titolo, u);
-                    JOptionPane.showMessageDialog(frame, "Ciao " + u.getUsername() + " hai creato una pagina");
+                    JOptionPane.showMessageDialog(frame, "Complimenti " + u.getUsername() + " hai creato una pagina");
 
                     cercaUnaPaginaButton.setEnabled(true);
                     proponiUnaModificaButton.setEnabled(true);

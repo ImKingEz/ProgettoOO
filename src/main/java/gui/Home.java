@@ -1,6 +1,7 @@
 package gui;
 
-import controller.Controller;
+import controller.*;
+import model.Utente;
 import postgresDAO.ListinoPostgresDAO;
 
 import javax.swing.*;
@@ -11,14 +12,19 @@ import java.awt.event.ComponentAdapter;
 
 public class Home {
     private JPanel panelHome;
-    private JButton inserisciUtenteButton;
+    private JButton registrazioneUtenteButton;
     private JButton inserisciAutoreButton;
     private JButton loginButton;
     private JPanel panelRegistrazioneUtente;
-    private JPanel panelRegistrazioneAutore;
     private JPanel panelLogin;
+    private JPanel panelUsername;
+    private JPanel panelPassword;
+    private JTextField usernameTextField;
+    private JPasswordField passwordField;
     private static JFrame frame;
     private Controller controller = new Controller(new ListinoPostgresDAO());
+    private String usernameInserito;
+    private String passwordInserita;
 
     public Home() {
         controller.setSchema();
@@ -27,23 +33,65 @@ public class Home {
         } else {
             loginButton.setEnabled(false);
         }
-        inserisciUtenteButton.addActionListener(new ActionListener() {
+
+        usernameTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FinestraInserisciUtente inserisciUtente = new FinestraInserisciUtente(frame, controller);
-                loginButton.setEnabled(true);
+
             }
         });
-        inserisciAutoreButton.addActionListener(new ActionListener() {
+        passwordField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginButton.setEnabled(true);
+
+            }
+        });
+        registrazioneUtenteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usernameInserito = usernameTextField.getText();
+                char[] passwordChars = passwordField.getPassword();  // per ottenere la password
+                passwordInserita = new String(passwordChars);
+                try {
+                    controller.setUtente(usernameInserito, passwordInserita);
+                    JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " benvenuto nel nostro sistema");
+                } catch (invalidLoginException il) {
+                    JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                } catch (GiaEsistenteException ex) {
+                    JOptionPane.showMessageDialog(frame, "L'username inserito è già esistente");
+                } catch (LunghezzaPasswordException ex) {
+                    JOptionPane.showMessageDialog(frame, "La password deve essere lunga almeno 6 caratteri");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frame, "Errore generico");
+                }
+                if(controller.almenoUnAutoreOUnUtente()) {
+                    loginButton.setEnabled(true);
+                } else {
+                    loginButton.setEnabled(false);
+                }
             }
         });
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Login login = new Login(frame, controller);
+                usernameInserito = usernameTextField.getText();
+                char[] passwordChars = passwordField.getPassword();  // per ottenere la password
+                passwordInserita = new String(passwordChars);
+                String returnLogin = null;
+                try {
+                    controller.login(usernameInserito, passwordInserita);
+                    JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito);
+                    Utente u = controller.getUtente(usernameInserito);
+                    FinestraOpzioni finestraOpzioni = new FinestraOpzioni(frame, controller, u);
+                    frame.setVisible(false);
+                    frame.dispose();
+                } catch (invalidLoginException il) {
+                    JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                } catch (usernameNotFoundException unf) {
+                    JOptionPane.showMessageDialog(frame, "Username non esistente.");
+                } catch (passwordNotFoundException pnf) {
+                    JOptionPane.showMessageDialog(frame, "Password errata.");
+                }
             }
         });
         panelHome.addComponentListener(new ComponentAdapter() {
@@ -80,17 +128,13 @@ public class Home {
         panelRegistrazioneUtente = new JPanel();
         panelRegistrazioneUtente.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelHome.add(panelRegistrazioneUtente);
-        inserisciUtenteButton = new JButton();
-        inserisciUtenteButton.setMinimumSize(new Dimension(128, 30));
-        inserisciUtenteButton.setPreferredSize(new Dimension(128, 30));
-        inserisciUtenteButton.setText("Inserisci Utente");
-        panelRegistrazioneUtente.add(inserisciUtenteButton);
-        panelRegistrazioneAutore = new JPanel();
-        panelRegistrazioneAutore.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelHome.add(panelRegistrazioneAutore);
+        registrazioneUtenteButton = new JButton();
+        registrazioneUtenteButton.setMinimumSize(new Dimension(128, 30));
+        registrazioneUtenteButton.setPreferredSize(new Dimension(128, 30));
+        registrazioneUtenteButton.setText("Inserisci Utente");
+        panelRegistrazioneUtente.add(registrazioneUtenteButton);
         inserisciAutoreButton = new JButton();
         inserisciAutoreButton.setText("Inserisci Autore");
-        panelRegistrazioneAutore.add(inserisciAutoreButton);
         panelLogin = new JPanel();
         panelLogin.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelHome.add(panelLogin);
