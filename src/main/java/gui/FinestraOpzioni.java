@@ -57,6 +57,7 @@ public class FinestraOpzioni {
             proponiUnaModificaButton.setEnabled(true);
             inserisciFraseButton.setEnabled(true);
         }
+
         creaUnaPaginaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,8 +118,13 @@ public class FinestraOpzioni {
             public void actionPerformed(ActionEvent e) {
                 String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina in cui vuoi inserire la frase: ");
                 try {
+                    if(!(controller.getPagina(titolo).getAutore().getUsername().equals(u.getUsername()))){
+                        throw new IllegalAccessException();
+                    }
                     paginaDiAppartenenza = controller.getPagina(titolo);
-                    InserisciFrase inserisciFrase = new InserisciFrase(frame, controller, u, paginaDiAppartenenza);
+                    InserisciFrase inserisciFrase = new InserisciFrase(frame, controller, paginaDiAppartenenza);
+                } catch (IllegalAccessException iae) {
+                    JOptionPane.showMessageDialog(frame,"Non sei l'autore di questa pagina");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(frame,"Nessuna pagina trovata");
                 }
