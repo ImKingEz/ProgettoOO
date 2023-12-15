@@ -10,13 +10,17 @@ import java.util.Calendar;
 public class Controller {
     private Autore autore;
     private Pagina pagina;
-    private Testo testo;
     private Utente utente;
     private Frase frase;
     private ArrayList<Autore> listaAutori = new ArrayList<Autore>();
     private ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
     private ArrayList<Pagina> listaPagina = new ArrayList<Pagina>();
-    ListinoDAO listinoPostgresDAO = new ListinoPostgresDAO();
+    private ListinoDAO listinoPostgresDAO;
+    public Controller() {
+    }
+    public Controller(ListinoDAO listinoPostgresDAO) {
+        this.listinoPostgresDAO = listinoPostgresDAO;
+    }
 
     public void setAutore(String username, String password) throws invalidLoginException, GiaEsistenteException {
         if (username.isBlank() || password.isBlank())
@@ -35,58 +39,73 @@ public class Controller {
         listaAutori.add(autore);
     }
 
-    public Utente setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException {
+    public Utente setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException, LunghezzaPasswordException{
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
+        else if (password.length() < 6)
+            throw new LunghezzaPasswordException();
 
         utente = new Utente(username, password);
 
-        listinoPostgresDAO.setUtente(username,password);
+        try {
+            listinoPostgresDAO.setUtente(username, password);
+        } catch (Exception e) {
+            throw new GiaEsistenteException();
+        }
 
         return utente;
 
     }
 
-    public void setPagina(String titolo, Date dataEOraCreazione, Autore autore)  throws GiaEsistenteException, NotABlankException{
+    public Pagina setPagina(String titolo, Date dataEOraCreazione, Autore autore) throws GiaEsistenteException, NotABlankException {
         if(titolo.isBlank())
             throw new NotABlankException();
 
-        for (Pagina p: listaPagina) {
-            if(titolo.equals(p.getTitolo()))
-                throw new GiaEsistenteException();
+        try {
+            listinoPostgresDAO.setPagina(titolo, autore);
+        } catch (Exception e) {
+            throw new GiaEsistenteException();
         }
 
         pagina = new Pagina(titolo, dataEOraCreazione, autore);
-        listaPagina.add(pagina);
+
+        return pagina;
     }
 
-    public boolean esisteAlmenoUnaPagina(){
-        if (listaPagina.isEmpty()){
-            return false;
-        }else{
+    public boolean esisteAlmenoUnaPagina() {
+        if (listinoPostgresDAO.checkEsistenzaPagine()){
             return true;
+        } else {
+            return false;
         }
     }
 
-    public void login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
+    public String login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
 
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
 
-        utente=listinoPostgresDAO.getUtente(username);
+        utente = listinoPostgresDAO.getUtente(username);
 
         if(utente==null){
             throw new usernameNotFoundException();
         }else if(!(utente.getPassword().equals(password))){
             throw new passwordNotFoundException();
         }
+
+        if(listinoPostgresDAO.numeroPagineCreateDaUnUtente(utente) > 0) {
+            return "autore";
+        }else{
+            return "utente";
+        }
     }
 
     public boolean almenoUnAutoreOUnUtente() {
-        if (getListaAutori().isEmpty() && getListaUtenti().isEmpty())
-            return false;
-        else
+        if(listinoPostgresDAO.checkEsistenzaUtenti()) {
             return true;
+        }else{
+            return false;
+        }
     }
 
     public ArrayList<Autore> getListaAutori() {
@@ -101,26 +120,6 @@ public class Controller {
         Calendar calendar = Calendar.getInstance();
         return calendar.getTime();
     }
-    public Utente controllaIdentita(String username, String password) {
-        if (username.equals("UTENTE")) {  //CAMBIARE
-            for (Utente u : listaUtenti) {
-                if (username.equals(u.getUsername()) && password.equals(u.getPassword())) {
-                    return u;
-                }
-            }
-        }else {
-            for (Autore a : listaAutori) {
-                if (username.equals(a.getUsername()) && password.equals(a.getPassword())) {
-                    return (model.Autore) a;
-                }
-            }
-        }
-        return null;
-    }
-
-    public void setTesto(Date dataEOraUltimaModifica, Pagina paginaAppartenenza) {
-        testo = new Testo(dataEOraUltimaModifica, paginaAppartenenza);
-    }
     public Pagina getPagina(String titolo) throws Exception{
         for (Pagina p: listaPagina) {
             if(titolo.equals(p.getTitolo())) {
@@ -130,25 +129,25 @@ public class Controller {
         throw new Exception();
     }
 
-    public void aggiungiFraseInTesto(Testo testoDellaPagina, String testoInserito, Frase frase) throws NotABlankException {
+    public void aggiungiFraseInPagina(Pagina pagina, String testoInserito, Frase frase) throws NotABlankException {
         if(testoInserito.isBlank()){
             throw new NotABlankException();
         }
 
         int indiceFrase=1;
-        for(Frase f: testoDellaPagina.getFrasi()) {
+        for(Frase f: pagina.getFrasi()) {
             indiceFrase++;
         }
-        Frase nuovaFrase = new Frase(testoInserito, indiceFrase, testoDellaPagina);
+        Frase nuovaFrase = new Frase(testoInserito, indiceFrase, pagina);
     }
-    public void aggiungiFraseInTesto(Testo testoDellaPagina, String testoInserito, Pagina paginaLinkata) throws NotABlankException {
+    public void aggiungiFraseInPagina(Pagina pagina, String testoInserito, Pagina paginaLinkata) throws NotABlankException {
         if(testoInserito.isBlank()){
             throw new NotABlankException();
         }
         this.frase.setTesto(testoInserito);
 
         int indiceFrase=1;
-        for(Frase f: testoDellaPagina.getFrasi()) {
+        for(Frase f: pagina.getFrasi()) {
             indiceFrase++;
         }
         this.frase.setIndice(indiceFrase);
@@ -156,9 +155,9 @@ public class Controller {
         this.frase.setPaginaLinkata(paginaLinkata);
     }
 
-    public String getTestoTotale(Testo testo) {
+    public String getTestoTotale(Pagina pagina) {
         String appoggio = "";
-        for(Frase f: testo.getFrasi()) {
+        for(Frase f: pagina.getFrasi()) {
             appoggio += f.getTesto() + " ";
             if(f.getPaginaLinkata() != null) {
                 appoggio += appoggio + "(Link: " + frase.getPaginaLinkata().getTitolo() + ") ";
@@ -166,11 +165,11 @@ public class Controller {
         }
         return appoggio;
     }
-    public String getFrasiConIndici(Testo testo) {
+    public String getFrasiConIndici(Pagina pagina) {
         ArrayList<Frase> listaFrasi = new ArrayList<Frase>();
         String ret = "<html> ";
 
-        listaFrasi = testo.getFrasi();
+        listaFrasi = pagina.getFrasi();
         for(Frase f: listaFrasi) {
             ret += f.getIndice() + ") " + f.getTesto();
             if(f.getPaginaLinkata() != null) {
@@ -183,7 +182,10 @@ public class Controller {
         return ret;
     }
 
-    public int calcolaIndice(Testo testo) {
-        return testo.getFrasi().size() + 1;
+    public int calcolaIndice(Pagina pagina) {
+        return pagina.getFrasi().size() + 1;
+    }
+    public void setSchema(){
+        listinoPostgresDAO.setSchema();
     }
 }

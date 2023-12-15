@@ -57,3 +57,5 @@ U
 %src/main/java/credenzialiDataBase.txt,b\d\bd207556f4dc059d4bd9a2f7234ca225a85568e4
 ^
 .src/main/java/database/credenzialiDatabase.txt,9\5\9547896e6c9dd92169944817bfc25dc36b10d638
+c
+3src/main/java/model/LunghezzaPasswordException.java,3\5\35ae94118bb681cffa2c3f21a724805fae65edff

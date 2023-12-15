@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import model.LunghezzaPasswordException;
 import model.invalidLoginException;
 import model.GiaEsistenteException;
 import postgresDAO.ListinoPostgresDAO;
@@ -73,6 +74,10 @@ public class FinestraInserisciUtente {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                 } catch (GiaEsistenteException ex) {
                     JOptionPane.showMessageDialog(frame, "L'username inserito è già esistente");
+                } catch (LunghezzaPasswordException ex) {
+                    JOptionPane.showMessageDialog(frame, "La password deve essere lunga almeno 6 caratteri");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frame, "Errore generico");
                 }
             }
         });

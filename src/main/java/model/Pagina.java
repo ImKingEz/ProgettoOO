@@ -6,10 +6,11 @@ import java.util.Date;
 public class Pagina {
     private String titolo;
     private Date dataEOraCreazione;
+    private Date dataEOraUltimaModifica;
     private Autore autore;
     private ArrayList<Utente> utentiVisionatori = new ArrayList<Utente>();
     private ArrayList<Frase> frasiCheLinkano = new ArrayList<Frase>();
-    private Testo testo;
+    private ArrayList<Frase> listaFrasi = new ArrayList<Frase>();
     public Pagina(String titolo, Date dataEOraCreazione, Autore autore) {
         this.titolo = titolo;
         this.dataEOraCreazione = dataEOraCreazione;
@@ -42,12 +43,7 @@ public class Pagina {
         this.frasiCheLinkano = frasiCheLinkano;
     }
 
-    public Testo getTesto() {
-        return testo;
-    }
-
-    public void setTesto(Testo testo) {
-        this.testo = testo;
-        testo.setPaginaDiAppartenenza(this);
+    public ArrayList<Frase> getFrasi() {
+        return listaFrasi;
     }
 }

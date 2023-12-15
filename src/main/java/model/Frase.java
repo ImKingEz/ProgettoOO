@@ -7,21 +7,21 @@ public class Frase {
     private int indice;
     private ArrayList<Modifica> modifiche = new ArrayList<Modifica>();
     private Pagina paginaLinkata;
-    private Testo testoDiAppartenenza;
-    public Frase(String testo, int indice, Testo testoDiAppartenenza) {
+    private Pagina paginaDiAppartenenza;
+    public Frase(String testo, int indice, Pagina paginaDiAppartenenza) {
         this.testo = testo;
         this.indice = indice;
 
-        this.testoDiAppartenenza = testoDiAppartenenza;
-        testoDiAppartenenza.getFrasi().add(this);
+        this.paginaDiAppartenenza = paginaDiAppartenenza;
+        paginaDiAppartenenza.getFrasi().add(this);
     }
-    public Frase(String testo, int indice, Testo testoDiAppartenenza, Pagina paginaLinkata) {
+    public Frase(String testo, int indice, Pagina paginaDiAppartenenza, Pagina paginaLinkata) {
         this.testo = testo;
         this.indice = indice;
         this.paginaLinkata = paginaLinkata;
 
-        this.testoDiAppartenenza = testoDiAppartenenza;
-        testoDiAppartenenza.getFrasi().add(this);
+        this.paginaDiAppartenenza = paginaDiAppartenenza;
+        paginaDiAppartenenza.getFrasi().add(this);
     }
 
     public String getTesto() {
@@ -34,10 +34,6 @@ public class Frase {
 
     public ArrayList<Modifica> getModifiche() {
         return modifiche;
-    }
-
-    public Testo getTestoDiAppartenenza() {
-        return testoDiAppartenenza;
     }
 
     public Pagina getPaginaLinkata() {

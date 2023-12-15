@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import postgresDAO.ListinoPostgresDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +18,15 @@ public class Home {
     private JPanel panelRegistrazioneAutore;
     private JPanel panelLogin;
     private static JFrame frame;
-    private Controller controller = new Controller();
+    private Controller controller = new Controller(new ListinoPostgresDAO());
 
     public Home() {
-        loginButton.setEnabled(false);
+        controller.setSchema();
+        if(controller.almenoUnAutoreOUnUtente()) {
+            loginButton.setEnabled(true);
+        } else {
+            loginButton.setEnabled(false);
+        }
         inserisciUtenteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

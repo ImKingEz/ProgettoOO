@@ -2,6 +2,8 @@ package gui;
 
 import controller.Controller;
 import model.*;
+import org.postgresql.ssl.LazyKeyManager;
+import postgresDAO.ListinoPostgresDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,20 +32,25 @@ public class FinestraOpzioni {
     private Utente u;
     private Pagina paginaDiAppartenenza;
     private Pagina paginaCercata;
+    private String identita;
+    private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
 
-    public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u) {
+    public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u, String identita) {
         this.u = u;
         this.frameChiamante = frameChiamante;
         this.controller = controller;
+        this.identita = identita;
+
         frame = new JFrame("Area Opzioni");
         frame.setContentPane(panelOpzioni);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
+        valutaUnaModificaButton.setEnabled(false);
+        inserisciFraseButton.setEnabled(false);
 
-        if (paginaCercata == null) {  //CAMBIARE
-            creaUnaPaginaButton.setEnabled(false);
+        if (identita.equals("utente")) {
             valutaUnaModificaButton.setEnabled(false);
             inserisciFraseButton.setEnabled(false);
         }
@@ -51,19 +58,15 @@ public class FinestraOpzioni {
         if (!(controller.esisteAlmenoUnaPagina())) {
             cercaUnaPaginaButton.setEnabled(false);
             proponiUnaModificaButton.setEnabled(false);
-            valutaUnaModificaButton.setEnabled(false);
-            inserisciFraseButton.setEnabled(false);
         }
         creaUnaPaginaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina");
-                    Date now = controller.getCurrentDateTime();
-                    controller.setPagina(titolo, now, (Autore) u);
-                    paginaDiAppartenenza = controller.getPagina(titolo);
-                    controller.setTesto(now, paginaDiAppartenenza);
+                    listinoPostgresDAO.setPagina(titolo, (Autore) u);
                     JOptionPane.showMessageDialog(frame, "Ciao " + u.getUsername() + " hai creato una pagina");
+
                     cercaUnaPaginaButton.setEnabled(true);
                     proponiUnaModificaButton.setEnabled(true);
                     valutaUnaModificaButton.setEnabled(true);

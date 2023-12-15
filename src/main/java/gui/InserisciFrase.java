@@ -59,7 +59,7 @@ public class InserisciFrase {
         labelTesto.setVerticalAlignment(SwingConstants.TOP);
 
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
-        String testoTotale = "<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>";
+        String testoTotale = "<html>" + controller.getTestoTotale(pagina) + "</html>";
         labelTesto.setText(testoTotale);
         inserisciButton.addActionListener(new ActionListener() {
             @Override
@@ -69,12 +69,12 @@ public class InserisciFrase {
                         throw new NotABlankException();
                     }
                     else if(textFieldLink.getText().isBlank()) {
-                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina.getTesto()), pagina.getTesto());
+                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina), pagina);
                     }
                     else {
-                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina.getTesto()), pagina.getTesto(), pagina);
+                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina), pagina, controller.getPagina(textFieldLink.getText()));
                     }
-                    labelTesto.setText("<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>");
+                    labelTesto.setText("<html>" + controller.getTestoTotale(pagina) + "</html>");
                     textFieldFrase.setText("");
                     textFieldLink.setText("");
                 } catch (NotABlankException nabe) {

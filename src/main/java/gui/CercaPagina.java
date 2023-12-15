@@ -45,7 +45,7 @@ public class CercaPagina {
         frame.setSize(650,400);
 
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
-        String testoTotale = "<html>" + controller.getTestoTotale(pagina.getTesto()) + "</html>";
+        String testoTotale = "<html>" + controller.getTestoTotale(pagina) + "</html>";
         labelTesto.setText(testoTotale);
         tornaIndietroButton.addActionListener(new ActionListener() {
             @Override
