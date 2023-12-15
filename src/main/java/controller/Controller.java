@@ -98,14 +98,6 @@ public class Controller {
         Calendar calendar = Calendar.getInstance();
         return calendar.getTime();
     }
-    public Pagina getPagina(String titolo) throws Exception{
-        for (Pagina p: listaPagina) {
-            if(titolo.equals(p.getTitolo())) {
-                return p;
-            }
-        }
-        throw new Exception();
-    }
 
     public void aggiungiFraseInPagina(Pagina pagina, String testoInserito, Frase frase) throws NotABlankException {
         if(testoInserito.isBlank()){
@@ -169,4 +161,17 @@ public class Controller {
     public int numeroPagineCreateDaUnUtente(String username){
         return listinoPostgresDAO.numeroPagineCreateDaUnUtente(username);
     }
+    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException {
+        listinoPostgresDAO.setPagina(titolo, autore);
+    }
+    public Pagina getPagina(String titolo){
+        return listinoPostgresDAO.getPagina(titolo);
+    }
+    public void setFrase(String testo, Pagina pagina) throws NotABlankException {
+        listinoPostgresDAO.setFrase(testo, pagina);
+    }
+    public ArrayList<Frase> getFrasi(Pagina pagina){
+        return listinoPostgresDAO.getFrasi(pagina);
+    }
+
 }
