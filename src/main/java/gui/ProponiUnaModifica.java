@@ -1,8 +1,11 @@
 package gui;
 
 import controller.Controller;
+import controller.NotFoundException;
+import model.Frase;
 import model.Pagina;
 import model.Utente;
+import postgresDAO.ListinoPostgresDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -71,8 +74,12 @@ public class ProponiUnaModifica {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                 } else {
                     try {
-                        controller.setFrase(indice, testoProposto, u, pagina);
-                        JOptionPane.showMessageDialog(frame, "Frase inserita correttamente");
+                        for(Frase f: controller.getFrasi(pagina)) {
+                            if (f.getIndice() == Integer.parseInt(indice)) {
+                                controller.setModifica(testoProposto, u.getUsername(), f, pagina);
+                            }
+                        }
+                        JOptionPane.showMessageDialog(frame, "Modifica proposta correttamente, attendi la valutazione da parte dell'utente");
                         frameChiamante.setVisible(true);
                         frame.setVisible(false);
                         frame.dispose();

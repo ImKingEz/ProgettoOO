@@ -72,7 +72,7 @@ public class InserisciFrase {
                         listinoPostgresDAO.setFrase(textFieldFrase.getText(),pagina);
                     }
                     else {
-                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina), pagina, controller.getPagina(textFieldLink.getText()));
+                        controller.setFrase(textFieldFrase.getText(), pagina);
                     }
                     labelTesto.setText("<html>" + controller.getTestoTotale(pagina) + "</html>");
                     textFieldFrase.setText("");

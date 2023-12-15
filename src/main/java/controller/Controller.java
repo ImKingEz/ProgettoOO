@@ -1,6 +1,7 @@
 package controller;
 import dao.ListinoDAO;
 import model.*;
+import postgresDAO.ListinoPostgresDAO;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -127,7 +128,7 @@ public class Controller {
     }
 
     public int calcolaIndice(Pagina pagina) {
-        return pagina.getFrasi().size() + 1;
+        return listinoPostgresDAO.getFrasi(pagina).size() + 1;
     }
     public void setSchema(){
         listinoPostgresDAO.setSchema();
@@ -138,7 +139,7 @@ public class Controller {
     public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException {
         listinoPostgresDAO.setPagina(titolo, autore);
     }
-    public Pagina getPagina(String titolo){
+    public Pagina getPagina(String titolo) throws NotFoundException{
         return listinoPostgresDAO.getPagina(titolo);
     }
     public void setFrase(String testo, Pagina pagina) throws NotABlankException {
@@ -161,5 +162,12 @@ public class Controller {
         ret += " </html>";
 
         return ret;
+    }
+
+    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) {
+        listinoPostgresDAO.setModifica(testo, usernamemodificatore, frase, pagina);
+    }
+    public Modifica getModifica(Frase frase) throws NotFoundException {
+        return listinoPostgresDAO.getModifica(frase);
     }
 }

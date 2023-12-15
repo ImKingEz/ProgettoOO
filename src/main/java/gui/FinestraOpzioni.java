@@ -3,6 +3,7 @@ package gui;
 import controller.Controller;
 import controller.GiaEsistenteException;
 import controller.NotABlankException;
+import controller.NotFoundException;
 import model.*;
 import postgresDAO.ListinoPostgresDAO;
 
@@ -10,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class FinestraOpzioni {
@@ -42,6 +45,14 @@ public class FinestraOpzioni {
         frame = new JFrame("Area Opzioni");
         frame.setContentPane(panelOpzioni);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Logica quando la finestra di inserimento autore sta chiudendo
+                frameChiamante.setVisible(true);
+                frame.dispose();
+            }
+        });
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
@@ -74,10 +85,9 @@ public class FinestraOpzioni {
                     JOptionPane.showMessageDialog(frame, "Titolo già esistente.");
                 } catch (NotABlankException ex) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare il campo vuoto.");
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(frame, "Errore.");
                 }
-//                catch (Exception e1) {
-//                    JOptionPane.showMessageDialog(frame, "Errore.");
-//                }
 
             }
         });
@@ -88,8 +98,10 @@ public class FinestraOpzioni {
                 try {
                     paginaCercata = controller.getPagina(titolo2);
                     CercaPagina cercaPagina = new CercaPagina(frame, controller,paginaCercata);
+                } catch (NotFoundException nfe) {
+                    JOptionPane.showMessageDialog(frame, "Pagina non trovata.");
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(frame,"Nessuna pagina trovata");
+                    JOptionPane.showMessageDialog(frame, "Errore.");
                 }
             }
         });

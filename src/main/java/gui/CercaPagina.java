@@ -44,6 +44,9 @@ public class CercaPagina {
         frame.setVisible(true);
         frame.setSize(650,400);
 
+        labelTesto.setHorizontalAlignment(SwingConstants.LEFT);
+        labelTesto.setVerticalAlignment(SwingConstants.TOP);
+
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
         String testoTotale = "<html>" + controller.getTestoTotale(pagina) + "</html>";
         labelTesto.setText(testoTotale);
