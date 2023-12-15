@@ -37,7 +37,6 @@ public class Home {
         inserisciAutoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FinestraInserisciAutore finestraInserisciAutore = new FinestraInserisciAutore(frame, controller);
                 loginButton.setEnabled(true);
             }
         });

@@ -59,3 +59,21 @@ U
 .src/main/java/database/credenzialiDatabase.txt,9\5\9547896e6c9dd92169944817bfc25dc36b10d638
 c
 3src/main/java/model/LunghezzaPasswordException.java,3\5\35ae94118bb681cffa2c3f21a724805fae65edff
+O
+src/main/java/model/Autore.java,0\a\0aa2c624ed8b399e0a68b71533d2924895017301
+T
+$src/main/java/model/Valutazione.java,1\b\1b17dce82777092d3e7617df1ff6f459d01dff9c
+O
+src/main/java/model/Utente.java,e\6\e625ada5fbe79f958690d743b38a47f9b6f7eeb3
+c
+3src/main/java/controller/invalidLoginException.java,3\e\3e1093dcf2886f7da75b5513166da8315b9dedb9
+g
+7src/main/java/controller/passwordNotFoundException.java,6\6\66eba0c697301297d42eaf854cc3b2f469ad7624
+`
+0src/main/java/controller/NotABlankException.java,0\3\032f6ccae34591f8dab101639bf81fa137f41a43
+g
+7src/main/java/controller/usernameNotFoundException.java,3\e\3e0f46ad5c0acf1af0bcd4534e5e8b27d2e90ebb
+c
+3src/main/java/controller/GiaEsistenteException.java,0\2\02600766f27fdec08563df1d7dfe87b84b0adb36
+h
+8src/main/java/controller/LunghezzaPasswordException.java,2\4\246f3a2babde724da8f9d3e056af74f92be976e3
