@@ -5,6 +5,7 @@ import model.Frase;
 import controller.NotABlankException;
 import model.Pagina;
 import model.Utente;
+import postgresDAO.ListinoPostgresDAO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,12 +32,11 @@ public class InserisciFrase {
     private static JFrame frame;
     private static JFrame frameChiamante;
     private Controller controller;
-    private Utente u;
     private Pagina pagina;
-    public InserisciFrase(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) {
+    private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
+    public InserisciFrase(JFrame frameChiamante, Controller controller, Pagina pagina) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
-        this.u = u;
         this.pagina = pagina;
 
         frame = new JFrame("Modellazione pagina");
@@ -69,7 +69,7 @@ public class InserisciFrase {
                         throw new NotABlankException();
                     }
                     else if(textFieldLink.getText().isBlank()) {
-                        Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina), pagina);
+                        listinoPostgresDAO.setFrase(textFieldFrase.getText(),pagina);
                     }
                     else {
                         Frase frase = new Frase(textFieldFrase.getText(), controller.calcolaIndice(pagina), pagina, controller.getPagina(textFieldLink.getText()));
