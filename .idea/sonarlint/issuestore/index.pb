@@ -53,3 +53,7 @@ N
 src/main/java/model/Testo.java,3\1\311da40e464d41fdd1c7c8211d4ead5c5ed2a59f
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+U
+%src/main/java/credenzialiDataBase.txt,b\d\bd207556f4dc059d4bd9a2f7234ca225a85568e4
+^
+.src/main/java/database/credenzialiDatabase.txt,9\5\9547896e6c9dd92169944817bfc25dc36b10d638

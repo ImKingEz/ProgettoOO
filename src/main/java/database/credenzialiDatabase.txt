@@ -1,4 +1,4 @@
 db.nome=postgres
 db.password=alfredo
-db.url=jdbc:postgresql://localhost:5432/PROGETTO
+db.url=jdbc:postgresql://localhost:5432/ProgettoOO
 db.driver=org.postgresql.Driver

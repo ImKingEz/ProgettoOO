@@ -65,12 +65,11 @@ public class Login {
                 usernameInserito = usernameTextField.getText();
                 char[] passwordChars = passwordField.getPassword();  // per ottenere la password
                 passwordInserita = new String(passwordChars);
-                String returnLogin = "";
                 try {
-                    returnLogin = controller.login(usernameInserito, passwordInserita);
-                    JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " sei un " + returnLogin);
-                    u = controller.controllaIdentita(usernameInserito, passwordInserita, returnLogin);
-                    FinestraOpzioni finestraOpzioni = new FinestraOpzioni(frame, controller, u, returnLogin);
+                    controller.login(usernameInserito, passwordInserita);
+                    JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito);
+                    u = controller.controllaIdentita(usernameInserito, passwordInserita);
+                    FinestraOpzioni finestraOpzioni = new FinestraOpzioni(frame, controller, u);
                     frame.setVisible(false);
                     frame.dispose();
                 } catch (invalidLoginException il) {

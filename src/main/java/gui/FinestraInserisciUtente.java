@@ -3,6 +3,7 @@ package gui;
 import controller.Controller;
 import model.invalidLoginException;
 import model.GiaEsistenteException;
+import postgresDAO.ListinoPostgresDAO;
 
 import javax.swing.*;
 import java.awt.*;

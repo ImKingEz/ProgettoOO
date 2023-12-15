@@ -28,13 +28,11 @@ public class FinestraOpzioni {
     private Controller controller;
     private static JFrame frameChiamante;
     private Utente u;
-    private String identita;
     private Pagina paginaDiAppartenenza;
     private Pagina paginaCercata;
 
-    public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u, String identita) {
+    public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u) {
         this.u = u;
-        this.identita = identita;
         this.frameChiamante = frameChiamante;
         this.controller = controller;
         frame = new JFrame("Area Opzioni");
@@ -44,7 +42,7 @@ public class FinestraOpzioni {
         frameChiamante.setVisible(false);
         frame.setVisible(true);
 
-        if (identita.equals("UTENTE")) {
+        if (paginaCercata == null) {  //CAMBIARE
             creaUnaPaginaButton.setEnabled(false);
             valutaUnaModificaButton.setEnabled(false);
             inserisciFraseButton.setEnabled(false);

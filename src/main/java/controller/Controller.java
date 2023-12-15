@@ -1,5 +1,7 @@
 package controller;
+import dao.ListinoDAO;
 import model.*;
+import postgresDAO.ListinoPostgresDAO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +16,7 @@ public class Controller {
     private ArrayList<Autore> listaAutori = new ArrayList<Autore>();
     private ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
     private ArrayList<Pagina> listaPagina = new ArrayList<Pagina>();
+    ListinoDAO listinoPostgresDAO = new ListinoPostgresDAO();
 
     public void setAutore(String username, String password) throws invalidLoginException, GiaEsistenteException {
         if (username.isBlank() || password.isBlank())
@@ -32,21 +35,16 @@ public class Controller {
         listaAutori.add(autore);
     }
 
-    public void setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException {
+    public Utente setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException {
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
 
-        for (Utente u : listaUtenti) {
-            if (username.equals(u.getUsername()))
-                throw new GiaEsistenteException();
-        }
-        for (Autore a : listaAutori) {
-            if (username.equals(a.getUsername()))
-                throw new GiaEsistenteException();
-        }
-
         utente = new Utente(username, password);
-        listaUtenti.add(utente);
+
+        listinoPostgresDAO.setUtente(username,password);
+
+        return utente;
+
     }
 
     public void setPagina(String titolo, Date dataEOraCreazione, Autore autore)  throws GiaEsistenteException, NotABlankException{
@@ -70,35 +68,18 @@ public class Controller {
         }
     }
 
-    public String login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
-        boolean usernameTrovato = false;
-        boolean passwordTrovata = false;
+    public void login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
 
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
 
-        for (Autore a : listaAutori) {
-            if (a.getUsername().equals(username)) {
-                usernameTrovato = true;
-                if (a.getPassword().equals(password)) {
-                    passwordTrovata = true;
-                    return "AUTORE";
-                }
-            }
-        }
-        for (Utente u : listaUtenti) {
-            if (u.getUsername().equals(username)) {
-                usernameTrovato = true;
-                if (u.getPassword().equals(password)) {
-                    passwordTrovata = true;
-                    return "UTENTE";
-                }
-            }
-        }
-        if (!usernameTrovato)
+        utente=listinoPostgresDAO.getUtente(username);
+
+        if(utente==null){
             throw new usernameNotFoundException();
-        else
+        }else if(!(utente.getPassword().equals(password))){
             throw new passwordNotFoundException();
+        }
     }
 
     public boolean almenoUnAutoreOUnUtente() {
@@ -120,15 +101,14 @@ public class Controller {
         Calendar calendar = Calendar.getInstance();
         return calendar.getTime();
     }
-
-    public Utente controllaIdentita(String username, String password, String identita) {
-        if (identita.equals("UTENTE")) {
+    public Utente controllaIdentita(String username, String password) {
+        if (username.equals("UTENTE")) {  //CAMBIARE
             for (Utente u : listaUtenti) {
                 if (username.equals(u.getUsername()) && password.equals(u.getPassword())) {
                     return u;
                 }
             }
-        } else {
+        }else {
             for (Autore a : listaAutori) {
                 if (username.equals(a.getUsername()) && password.equals(a.getPassword())) {
                     return (model.Autore) a;

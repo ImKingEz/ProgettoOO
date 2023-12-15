@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class ConnessioneDatabase {
     private static ConnessioneDatabase instance;
-    public Connection connection = null;
+    private Connection connection = null;
     private String nome;
     private String password;
     private String url;
@@ -22,7 +22,7 @@ public class ConnessioneDatabase {
 
         try {
             // Carica il file di configurazione
-            input = new FileInputStream("credenzialiDataBase");
+            input = new FileInputStream("src/main/java/database/credenzialiDatabase.txt");
             prop.load(input);
 
             // Ottieni i valori dalle proprietà
