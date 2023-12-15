@@ -63,7 +63,7 @@ public class Controller {
         return listinoPostgresDAO.getUtente(username);
     }
 
-    public String login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
+    public void login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
 
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
@@ -74,12 +74,6 @@ public class Controller {
             throw new usernameNotFoundException();
         }else if(!(utente.getPassword().equals(password))){
             throw new passwordNotFoundException();
-        }
-
-        if(listinoPostgresDAO.numeroPagineCreateDaUnUtente(utente.getUsername()) > 0) {
-            return "autore";
-        }else{
-            return "utente";
         }
     }
 

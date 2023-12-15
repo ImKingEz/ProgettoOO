@@ -9,30 +9,43 @@
     </properties>
     <border type="none"/>
     <children>
+      <grid id="f31f7" binding="panelUsername" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="50f20" class="javax.swing.JTextField" binding="usernameTextField">
+            <constraints/>
+            <properties>
+              <preferredSize width="128" height="30"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="d1374" binding="panelPassword" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="3767a" class="javax.swing.JPasswordField" binding="passwordField">
+            <constraints/>
+            <properties>
+              <preferredSize width="128" height="30"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
       <grid id="a2578" binding="panelRegistrazioneUtente" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="b843f" class="javax.swing.JButton" binding="inserisciUtenteButton" default-binding="true">
+          <component id="b843f" class="javax.swing.JButton" binding="registrazioneUtenteButton">
             <constraints/>
             <properties>
               <minimumSize width="128" height="30"/>
               <preferredSize width="128" height="30"/>
-              <text value="Inserisci Utente"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="754e2" binding="panelRegistrazioneAutore" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="7630c" class="javax.swing.JButton" binding="inserisciAutoreButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <text value="Inserisci Autore"/>
+              <text value="Registrati"/>
             </properties>
           </component>
         </children>
@@ -45,6 +58,7 @@
           <component id="516ce" class="javax.swing.JButton" binding="loginButton" default-binding="true">
             <constraints/>
             <properties>
+              <preferredSize width="128" height="30"/>
               <text value="Login"/>
             </properties>
           </component>

@@ -11,8 +11,6 @@ K
 src/main/java/gui/Home.java,c\9\c96b8b9f35c6af4262c3577342f8635989569e00
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
-^
-.src/main/java/gui/FinestraInserisciAutore.java,7\4\744c31abe33f3fa212b85e7d2680122372614d44
 X
 (src/main/java/controller/Controller.java,0\5\05fd466bff28423ca702e1a116df355b44712db1
 S
@@ -25,12 +23,8 @@ U
 .src/main/java/gui/FinestraInserisciUtente.java,e\c\ecfe24b2edd9c8c3dd9c23556ed85bce31309537
 V
 &src/main/java/gui/FInestraOpzioni.form,2\a\2a2d88d44f3db66d81d3ca513e24d409a905cb17
-[
-+src/main/java/model/NotABlankException.java,e\3\e363e45eaa8aa27f8b36113dab276d6b1f19a7bd
 N
 src/main/java/model/Frase.java,b\4\b40a53434d28f6858e7689d419c19b46cad994cc
-^
-.src/main/java/model/GiaEsistenteException.java,6\3\6351c5415bf7766b1b919e932decdcbcccc875f6
 L
 src/main/java/gui/login.form,9\9\991a3e2d7ef71468d3e24721576eaa7ccb0ab41a
 R
@@ -43,24 +37,14 @@ _
 /src/main/java/database/ConnessioneDatabase.java,c\c\cc6637f4448f72f749fd185cb4312475e161ad72
 a
 1src/main/java/postgresDAO/ListinoPostgresDAO.java,5\9\59b03015a260c543ca5c0d505ce3bf5e21dbd80e
-Q
-!src/main/java/credenzialiDataBase,9\e\9e067d678e49760c18316e9969d0202b2a1bf369
 Y
 )src/main/java/gui/ProponiUnaModifica.form,9\3\9335dbdcc6b40b30696614c6231ab34f711d4c24
 Y
 )src/main/java/gui/ProponiUnaModifica.java,b\c\bce6bd873905baed074f7d42c6d84574ed283616
-N
-src/main/java/model/Testo.java,3\1\311da40e464d41fdd1c7c8211d4ead5c5ed2a59f
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-U
-%src/main/java/credenzialiDataBase.txt,b\d\bd207556f4dc059d4bd9a2f7234ca225a85568e4
 ^
 .src/main/java/database/credenzialiDatabase.txt,9\5\9547896e6c9dd92169944817bfc25dc36b10d638
-c
-3src/main/java/model/LunghezzaPasswordException.java,3\5\35ae94118bb681cffa2c3f21a724805fae65edff
-O
-src/main/java/model/Autore.java,0\a\0aa2c624ed8b399e0a68b71533d2924895017301
 T
 $src/main/java/model/Valutazione.java,1\b\1b17dce82777092d3e7617df1ff6f459d01dff9c
 O
@@ -77,3 +61,5 @@ c
 3src/main/java/controller/GiaEsistenteException.java,0\2\02600766f27fdec08563df1d7dfe87b84b0adb36
 h
 8src/main/java/controller/LunghezzaPasswordException.java,2\4\246f3a2babde724da8f9d3e056af74f92be976e3
+K
+src/main/java/gui/home.form,6\1\6149a51877d3cccfe9c636585da319a79833cf81
