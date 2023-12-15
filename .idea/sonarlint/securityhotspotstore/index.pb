@@ -63,3 +63,5 @@ h
 8src/main/java/controller/LunghezzaPasswordException.java,2\4\246f3a2babde724da8f9d3e056af74f92be976e3
 K
 src/main/java/gui/home.form,6\1\6149a51877d3cccfe9c636585da319a79833cf81
+Q
+!src/main/java/model/Modifica.java,1\1\11a68bb01d118f61f180ec89e8269a03c7cc32f1

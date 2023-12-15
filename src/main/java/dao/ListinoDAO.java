@@ -18,6 +18,8 @@ public interface ListinoDAO {
     public void setFrase(String testo, Pagina pagina) throws NotABlankException;
     public ArrayList<Frase> getFrasi(Pagina pagina);
 
+    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina);
+
     public void setSchema();
     public boolean checkEsistenzaUtenti();
     public boolean checkEsistenzaPagine();

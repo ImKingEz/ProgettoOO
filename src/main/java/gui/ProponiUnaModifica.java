@@ -62,5 +62,25 @@ public class ProponiUnaModifica {
                 frame.dispose();
             }
         });
+        proponiLaModificaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String indice = textFieldInserisciIndice.getText();
+                String testoProposto = textFieldTestoProposto.getText();
+                if (indice.isBlank() || testoProposto.isBlank()) {
+                    JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                } else {
+                    try {
+                        controller.setFrase(indice, testoProposto, u, pagina);
+                        JOptionPane.showMessageDialog(frame, "Frase inserita correttamente");
+                        frameChiamante.setVisible(true);
+                        frame.setVisible(false);
+                        frame.dispose();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
+                    }
+                }
+            }
+        });
     }
 }

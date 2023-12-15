@@ -2,6 +2,7 @@ package controller;
 import dao.ListinoDAO;
 import model.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
@@ -10,8 +11,6 @@ public class Controller {
     private Pagina pagina;
     private Utente utente;
     private Frase frase;
-    private ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
-    private ArrayList<Pagina> listaPagina = new ArrayList<Pagina>();
     private ListinoDAO listinoPostgresDAO;
     public Controller() {
     }
@@ -84,9 +83,6 @@ public class Controller {
             return false;
         }
     }
-    public ArrayList<Utente> getListaUtenti() {
-        return listaUtenti;
-    }
 
     public static Date getCurrentDateTime() {
         Calendar calendar = Calendar.getInstance();
@@ -121,29 +117,13 @@ public class Controller {
 
     public String getTestoTotale(Pagina pagina) {
         String appoggio = "";
-        for(Frase f: pagina.getFrasi()) {
+        for(Frase f: listinoPostgresDAO.getFrasi(pagina)) {
             appoggio += f.getTesto() + " ";
             if(f.getPaginaLinkata() != null) {
                 appoggio += appoggio + "(Link: " + frase.getPaginaLinkata().getTitolo() + ") ";
             }
         }
         return appoggio;
-    }
-    public String getFrasiConIndici(Pagina pagina) {
-        ArrayList<Frase> listaFrasi = new ArrayList<Frase>();
-        String ret = "<html> ";
-
-        listaFrasi = pagina.getFrasi();
-        for(Frase f: listaFrasi) {
-            ret += f.getIndice() + ") " + f.getTesto();
-            if(f.getPaginaLinkata() != null) {
-                ret += "(Link: " + f.getPaginaLinkata().getTitolo() + ")";
-            }
-            ret += " <br> ";
-        }
-        ret += " </html>";
-
-        return ret;
     }
 
     public int calcolaIndice(Pagina pagina) {
@@ -168,4 +148,18 @@ public class Controller {
         return listinoPostgresDAO.getFrasi(pagina);
     }
 
+    public String getFrasiConIndici(Pagina pagina) {
+        String ret = "<html> ";
+
+        for(Frase f: listinoPostgresDAO.getFrasi(pagina)) {
+            ret += f.getIndice() + ") " + f.getTesto();
+            if(f.getPaginaLinkata() != null) {
+                ret += "(Link: " + f.getPaginaLinkata().getTitolo() + ")";
+            }
+            ret += " <br> ";
+        }
+        ret += " </html>";
+
+        return ret;
+    }
 }

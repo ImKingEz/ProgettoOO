@@ -251,6 +251,39 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return frasi;
     }
 
+    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) {
+        PreparedStatement insertModifica = null;
+
+        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
+        Date dataModifica = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
+        Time oraModifica = new Time(currentDate.getTime()); // Ottieni l'ora attuale
+
+        try {
+            String query = "INSERT INTO modifica(testo, datamodificaproposta, oramodificaproposta, username, testofrase, indice, idpaginafrase) VALUES(?, ?, ?. ?, ?, ?, ?)";
+            insertModifica = connection.prepareStatement(query);
+            insertModifica.setString(1, testo);
+            insertModifica.setDate(2, dataModifica);
+            insertModifica.setTime(3, oraModifica);
+            insertModifica.setString(4, usernamemodificatore);
+            insertModifica.setString(5, frase.getTesto());
+            insertModifica.setInt(6, frase.getIndice());
+            insertModifica.setInt(7, getIdPagina(pagina.getTitolo()));
+            insertModifica.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'inserimento della modifica: " + e.getMessage());
+        }
+        finally {
+            try {
+                if (insertModifica != null) {
+                    insertModifica.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+    }
+    //public Modifica getModifica()
+
 
     public int numeroPagineCreateDaUnUtente(String username){
         PreparedStatement selectPagina = null;
