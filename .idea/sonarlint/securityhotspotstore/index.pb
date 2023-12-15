@@ -67,3 +67,5 @@ Q
 !src/main/java/model/Modifica.java,1\1\11a68bb01d118f61f180ec89e8269a03c7cc32f1
 _
 /src/main/java/controller/NotFoundException.java,3\1\316f3b14195845f49f6a0cf984dfccef1611f8f4
+m
+=src/main/java/controller/AccettazioneAutomaticaException.java,b\7\b70eeed2cf6d308416019707a371679010e51b84

@@ -1,9 +1,6 @@
 package postgresDAO;
 
-import controller.Controller;
-import controller.GiaEsistenteException;
-import controller.NotABlankException;
-import controller.NotFoundException;
+import controller.*;
 import dao.ListinoDAO;
 import database.ConnessioneDatabase;
 import model.*;
@@ -253,7 +250,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return frasi;
     }
 
-    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) {
+    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) throws AccettazioneAutomaticaException {
         PreparedStatement insertModifica = null;
 
         java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
@@ -282,6 +279,9 @@ public class ListinoPostgresDAO implements ListinoDAO {
             } catch (SQLException e) {
                 System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
             }
+        }
+        if(usernamemodificatore.equals(pagina.getAutore().getUsername())) {
+            throw new AccettazioneAutomaticaException();
         }
     }
     public Modifica getModifica(Frase frase) throws NotFoundException { //prendo la modifica più recente

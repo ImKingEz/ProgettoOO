@@ -1,5 +1,6 @@
 package gui;
 
+import controller.AccettazioneAutomaticaException;
 import controller.Controller;
 import controller.NotFoundException;
 import model.Frase;
@@ -83,7 +84,13 @@ public class ProponiUnaModifica {
                         frameChiamante.setVisible(true);
                         frame.setVisible(false);
                         frame.dispose();
-                    } catch (Exception ex) {
+                    } catch (AccettazioneAutomaticaException aae) {
+                        JOptionPane.showMessageDialog(frame, "Modifica accettata automaticamente.");
+                        frameChiamante.setVisible(true);
+                        frame.setVisible(false);
+                        frame.dispose();
+                        }
+                    catch (Exception ex) {
                         JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                     }
                 }

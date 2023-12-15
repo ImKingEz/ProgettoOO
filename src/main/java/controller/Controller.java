@@ -164,7 +164,7 @@ public class Controller {
         return ret;
     }
 
-    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) {
+    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) throws AccettazioneAutomaticaException {
         listinoPostgresDAO.setModifica(testo, usernamemodificatore, frase, pagina);
     }
     public Modifica getModifica(Frase frase) throws NotFoundException {

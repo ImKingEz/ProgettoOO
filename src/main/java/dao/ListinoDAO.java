@@ -1,5 +1,6 @@
 package dao;
 
+import controller.AccettazioneAutomaticaException;
 import controller.GiaEsistenteException;
 import controller.NotABlankException;
 import controller.NotFoundException;
@@ -19,7 +20,7 @@ public interface ListinoDAO {
     public void setFrase(String testo, Pagina pagina) throws NotABlankException;
     public ArrayList<Frase> getFrasi(Pagina pagina);
 
-    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina);
+    public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) throws AccettazioneAutomaticaException;
     public Modifica getModifica(Frase frase) throws NotFoundException;
 
     public void setSchema();
