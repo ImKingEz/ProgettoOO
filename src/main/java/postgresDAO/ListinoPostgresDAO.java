@@ -163,7 +163,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
-    public int getIdPagina(String titolo){
+    public int getIdPagina(String titolo) throws NotFoundException {
         PreparedStatement selectPagina = null;
         Pagina p = null;
         ResultSet rs = null;
@@ -194,10 +194,10 @@ public class ListinoPostgresDAO implements ListinoDAO {
                 System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
             }
         }
-        return -1;
+        throw new NotFoundException();
     }
 
-    public void setFrase(String testo, Pagina pagina) throws NotABlankException {
+    public void setFrase(String testo, Pagina pagina) throws NotABlankException, NotFoundException {
         PreparedStatement insertFrase = null;
         try {
             String query = "INSERT INTO frase(testo, indice, idpagina) VALUES(?, ?, ?)";
@@ -206,6 +206,8 @@ public class ListinoPostgresDAO implements ListinoDAO {
             insertFrase.setInt(2, controller.calcolaIndice(pagina));
             insertFrase.setInt(3, getIdPagina(pagina.getTitolo()));
             insertFrase.executeUpdate();
+        } catch (NotFoundException ex) {
+            System.out.println("Errore durante l'estrazione dell'id della pagina: " + ex.getMessage());
         } catch (SQLException e) {
             System.out.println("Errore durante l'inserimento della frase: " + e.getMessage());
         }
@@ -270,8 +272,9 @@ public class ListinoPostgresDAO implements ListinoDAO {
             insertModifica.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Errore durante l'inserimento della modifica: " + e.getMessage());
-        }
-        finally {
+        } catch (NotFoundException e) {
+            System.out.println("Errore durante l'estrazione dell'id della pagina: " + e.getMessage());
+        } finally {
             try {
                 if (insertModifica != null) {
                     insertModifica.close();
@@ -284,14 +287,19 @@ public class ListinoPostgresDAO implements ListinoDAO {
             throw new AccettazioneAutomaticaException();
         }
     }
-    public Modifica getModifica(Frase frase) throws NotFoundException { //prendo la modifica più recente
+    public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException { //prendo la modifica più recente
         PreparedStatement selectModifica = null;
         Pagina p = null;
         ResultSet rs = null;
 
+        if(!(ordine.equals("asc") || ordine.equals("desc"))) {
+            throw new IllegalArgumentException();
+        }
+
         try {
-            String query = "SELECT m.testo, m.username, m.datamodificaproposta, m.oramodificaproposta  FROM modifica m, frase f WHERE m.idpaginafrase = f.idpagina and m.testofrase = f.testo and m.indice = f.indice order by datamodificaproposta asc, oramodificaproposta asc";
+            String query = "SELECT m.testo, m.username, m.datamodificaproposta, m.oramodificaproposta  FROM modifica m, frase f WHERE m.idpaginafrase = f.idpagina and m.testofrase = f.testo and m.indice = f.indice order by datamodificaproposta asc, oramodificaproposta ?";
             selectModifica = connection.prepareStatement(query);
+            selectModifica.setString(1, ordine);
             rs = selectModifica.executeQuery();
             if(rs.next()) { //prendo solo la prima tupla, ossia quella con la data minore
                 long dateTimestamp = rs.getDate("datamodificaproposta").getTime();
@@ -320,6 +328,115 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
+    public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina) throws NotFoundException {
+        PreparedStatement selectModifica = null;
+        ResultSet rs = null;
+
+        try {
+            String query = "SELECT m.idmodifica FROM modifica m, frase f WHERE m.testo = ? and m.username = ? and m.idpaginafrase = ? and m.testofrase = ? and m.indice = ?";
+            selectModifica = connection.prepareStatement(query);
+            selectModifica.setString(1, modifica.getTesto());
+            selectModifica.setString(2, modifica.getUtenteModificatore().getUsername());
+            selectModifica.setInt(3, getIdPagina(pagina.getTitolo()));
+            selectModifica.setString(4, frase.getTesto());
+            selectModifica.setInt(5, frase.getIndice());
+            rs = selectModifica.executeQuery();
+            if(rs.next()) {
+                return rs.getInt("idmodifica");
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della modifica: " + e.getMessage());
+        } finally {
+            try {
+                if (selectModifica != null) {
+                    selectModifica.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+
+        }
+        throw new NotFoundException();
+    }
+
+    public void setValutazione(boolean accettazione, Modifica modifica, Utente autore) {
+        PreparedStatement insertValutazione = null;
+
+        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
+        Date dataValutazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
+        Time oraValutazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
+
+        try {
+            String query = "INSERT INTO valutazione(accettazione, datavalutazione, oravalutazione, username, idmodifica) VALUES(?, ?, ?, ?, ?)";
+            insertValutazione = connection.prepareStatement(query);
+            insertValutazione.setBoolean(1, accettazione);
+            insertValutazione.setDate(2, dataValutazione);
+            insertValutazione.setTime(3, oraValutazione);
+            insertValutazione.setString(4, autore.getUsername());
+            insertValutazione.setInt(5, getIdModifica(modifica, modifica.getFraseRiferita(), modifica.getFraseRiferita().getPaginaDiAppartenenza()));
+            insertValutazione.executeUpdate();
+        } catch (NotFoundException e) {
+            System.out.println("Errore durante l'estrazione dell'id della modifica: " + e.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Errore durante l'inserimento della valutazione: " + ex.getMessage());
+        }
+        finally {
+            try {
+                if (insertValutazione != null) {
+                    insertValutazione.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+    }
+
+    public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException {
+        PreparedStatement selectValutazione = null;
+        ResultSet rs = null;
+
+        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
+        Date dataValutazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
+        Time oraValutazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
+
+        try {
+            String query = "SELECT accettazione, datavalutazione, oravalutazione FROM valutazione WHERE usernameautore = ? and idmodifica = ?";
+            selectValutazione = connection.prepareStatement(query);
+            selectValutazione.setString(1, autore.getUsername());
+            selectValutazione.setInt(2, getIdModifica(modifica, modifica.getFraseRiferita(), modifica.getFraseRiferita().getPaginaDiAppartenenza()));
+            rs = selectValutazione.executeQuery();
+            if(rs.next()) {
+                long dateTimestamp = rs.getDate("datamodificaproposta").getTime();
+                long timeTimestamp = rs.getTime("oramodificaproposta").getTime();
+                // Sommo i due timestamp
+                long combinedTimestamp = dateTimestamp + timeTimestamp;
+                // Creo un oggetto java.util.Date utilizzando il timestamp combinato
+                java.util.Date utilDate = new java.util.Date(combinedTimestamp);
+
+                return new Valutazione(rs.getBoolean("accettazione"), utilDate, autore, modifica);
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della valutazione: " + e.getMessage());
+        } catch (NotFoundException e) {
+            System.out.println("Errore durante l'estrazione dell'id della modifica: " + e.getMessage());
+        } finally {
+            try {
+                if (selectValutazione != null) {
+                    selectValutazione.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+
+            }
+        }
+        throw new NotFoundException();
+    }
 
     public int numeroPagineCreateDaUnUtente(String username){
         PreparedStatement selectPagina = null;

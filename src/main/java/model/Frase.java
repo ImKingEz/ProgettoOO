@@ -32,6 +32,10 @@ public class Frase {
         return indice;
     }
 
+    public Pagina getPaginaDiAppartenenza() {
+        return paginaDiAppartenenza;
+    }
+
     public ArrayList<Modifica> getModifiche() {
         return modifiche;
     }

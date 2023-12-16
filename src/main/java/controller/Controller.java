@@ -142,7 +142,7 @@ public class Controller {
     public Pagina getPagina(String titolo) throws NotFoundException{
         return listinoPostgresDAO.getPagina(titolo);
     }
-    public void setFrase(String testo, Pagina pagina) throws NotABlankException {
+    public void setFrase(String testo, Pagina pagina) throws NotABlankException, NotFoundException {
         listinoPostgresDAO.setFrase(testo, pagina);
     }
     public ArrayList<Frase> getFrasi(Pagina pagina){
@@ -167,7 +167,16 @@ public class Controller {
     public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) throws AccettazioneAutomaticaException {
         listinoPostgresDAO.setModifica(testo, usernamemodificatore, frase, pagina);
     }
-    public Modifica getModifica(Frase frase) throws NotFoundException {
-        return listinoPostgresDAO.getModifica(frase);
+    public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException{
+        return listinoPostgresDAO.getModifica(frase, ordine);
+    }
+    public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina) throws NotFoundException{
+        return listinoPostgresDAO.getIdModifica(modifica, frase, pagina);
+    }
+    public void setValutazione(boolean accettazione, Modifica modifica, Utente autore){
+        listinoPostgresDAO.setValutazione(accettazione, modifica, autore);
+    }
+    public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException{
+        return listinoPostgresDAO.getValutazione(autore, modifica);
     }
 }

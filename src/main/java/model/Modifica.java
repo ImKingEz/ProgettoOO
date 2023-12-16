@@ -39,4 +39,8 @@ public class Modifica {
     public Utente getUtenteModificatore() {
         return utenteModificatore;
     }
+
+    public Frase getFraseRiferita() {
+        return fraseRiferita;
+    }
 }
