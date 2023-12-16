@@ -8,7 +8,10 @@ public class Modifica {
     private Valutazione valutazione;
     private Utente utenteModificatore;
     private Frase fraseRiferita;
-    public Modifica(String testo, Date dataEOraModificaProposta, Utente utenteModificatore, Frase fraseRiferita) {
+    private int idmodifica;
+    public Modifica(int idModifica, String testo, Date dataEOraModificaProposta, Utente utenteModificatore, Frase fraseRiferita) {
+        this.idmodifica = idModifica;
+
         this.testo = testo;
         this.dataEOraModificaProposta = dataEOraModificaProposta;
 
@@ -17,6 +20,12 @@ public class Modifica {
 
         this.fraseRiferita = fraseRiferita;
         fraseRiferita.getModifiche().add(this);
+    }
+    public int getIdModifica() {
+        return idmodifica;
+    }
+    public void setIdmodifica() {
+        this.idmodifica = idmodifica;
     }
 
     public String getTesto() {

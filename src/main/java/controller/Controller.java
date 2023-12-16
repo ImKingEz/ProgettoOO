@@ -154,6 +154,10 @@ public class Controller {
     public void setFrase(String testo, Pagina pagina) throws NotABlankException, NotFoundException {
         listinoPostgresDAO.setFrase(testo, pagina);
     }
+    public void setFrase(String testo, Pagina pagina, Pagina paginaLinkata) throws NotABlankException, NotFoundException {
+        listinoPostgresDAO.setFrase(testo, pagina, paginaLinkata);
+    }
+
     public ArrayList<Frase> getFrasi(Pagina pagina){
         return listinoPostgresDAO.getFrasi(pagina);
     }
@@ -198,8 +202,8 @@ public class Controller {
     public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException{
         return listinoPostgresDAO.getModifica(frase, ordine);
     }
-    public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina) throws NotFoundException{
-        return listinoPostgresDAO.getIdModifica(modifica, frase, pagina);
+    public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina, String usernamemodificatore) throws NotFoundException{
+        return listinoPostgresDAO.getIdModifica(modifica, frase, pagina, usernamemodificatore);
     }
     public void setValutazione(boolean accettazione, Modifica modifica, Utente autore){
         listinoPostgresDAO.setValutazione(accettazione, modifica, autore);

@@ -15,11 +15,13 @@ public interface ListinoDAO {
     public int getIdPagina(String titolo) throws NotFoundException;
 
     public void setFrase(String testo, Pagina pagina) throws NotABlankException, NotFoundException;
+    void setFrase(String testo, Pagina pagina, Pagina paginaLinkata) throws NotABlankException, NotFoundException;;
     public ArrayList<Frase> getFrasi(Pagina pagina);
+    public Frase getFrase(String testo, Pagina pagina) throws NotFoundException;
 
     public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) throws AccettazioneAutomaticaException;
     public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException;
-    public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina) throws NotFoundException;
+    public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina, String usernamemodificatore) throws NotFoundException;
     public int getNumeroModifichePerAutore(Utente autore);
 
     public void setValutazione(boolean accettazione, Modifica modifica, Utente autore);

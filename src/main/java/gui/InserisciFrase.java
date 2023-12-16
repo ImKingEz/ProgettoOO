@@ -69,10 +69,10 @@ public class InserisciFrase {
                         throw new NotABlankException();
                     }
                     else if(textFieldLink.getText().isBlank()) {
-                        listinoPostgresDAO.setFrase(textFieldFrase.getText(),pagina);
+                        controller.setFrase(textFieldFrase.getText(),pagina);
                     }
                     else {
-                        controller.setFrase(textFieldFrase.getText(), pagina);
+                        controller.setFrase(textFieldFrase.getText(), pagina, controller.getPagina(textFieldLink.getText()));
                     }
                     labelTesto.setText("<html>" + controller.getTestoTotale(pagina) + "</html>");
                     textFieldFrase.setText("");

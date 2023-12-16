@@ -70,6 +70,10 @@ public class FinestraOpzioni {
             notificheButton.setEnabled(true);
         }
 
+        if(controller.getNumeroModifichePerAutore(u) > 0) {
+            JOptionPane.showMessageDialog(null, "Hai " + controller.getNumeroModifichePerAutore(u) + " notifiche");
+        }
+
         creaUnaPaginaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -163,7 +167,7 @@ public class FinestraOpzioni {
                 String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina di cui vuoi visionare lo storico: ");
                 try {
                     paginaStorico = controller.getPagina(titolo);
-                    if(u != paginaStorico.getAutore()){
+                    if(!(u.getUsername().equals(paginaStorico.getAutore().getUsername()))){
                         throw new InvalidLoginException();
                     }
                     Storico storico = new Storico(frame, controller, paginaStorico);
