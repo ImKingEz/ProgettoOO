@@ -1,9 +1,6 @@
 package gui;
 
-import controller.Controller;
-import controller.GiaEsistenteException;
-import controller.NotABlankException;
-import controller.NotFoundException;
+import controller.*;
 import model.*;
 import postgresDAO.ListinoPostgresDAO;
 
@@ -29,11 +26,14 @@ public class FinestraOpzioni {
     private JPanel panelAnnulla;
     private JPanel panelInserisciFrase;
     private JButton inserisciFraseButton;
+    private JButton storicoButton;
+    private JPanel panelStorico;
     private static JFrame frame;
     private Controller controller;
     private static JFrame frameChiamante;
     private Utente u;
     private Pagina paginaDiAppartenenza;
+    private Pagina paginaStorico;
     private Pagina paginaCercata;
     private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
 
@@ -154,6 +154,18 @@ public class FinestraOpzioni {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FinestraNotifiche finestraNotifiche = new FinestraNotifiche(frame, controller, u);
+            }
+        });
+        storicoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina di cui vuoi visionare lo storico: ");
+                try {
+                    paginaStorico = controller.getPagina(titolo);
+                    Storico storico = new Storico(frame, controller, paginaStorico);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frame,"Nessuna pagina trovata");
+                }
             }
         });
     }

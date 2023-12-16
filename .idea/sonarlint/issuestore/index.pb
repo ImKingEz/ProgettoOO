@@ -65,3 +65,9 @@ X
 (src/main/java/gui/FinestraNotifiche.java,6\3\63f79f6bda00fe720052315e1bb5b43f37dfa707
 X
 (src/main/java/gui/FinestraNotifiche.form,6\9\69961e524673b40896670e374cd3cd02b277c8f4
+f
+6src/main/java/controller/LunghezzaMinimaException.java,8\8\881f7f9f8d1fafd961f909b339a8c294bf736e44
+N
+src/main/java/gui/Storico.java,8\9\8964015e839ead85eb8e902ee1c492685d61e9b7
+N
+src/main/java/gui/storico.form,6\6\66e711ca725c8aec3c1fc1c58b28d317eb9be756
