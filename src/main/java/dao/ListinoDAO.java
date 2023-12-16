@@ -32,4 +32,6 @@ public interface ListinoDAO {
     public boolean checkEsistenzaUtenti();
     public boolean checkEsistenzaPagine();
     public int numeroPagineCreateDaUnUtente(String username);
+
+    Modifica getModificaPropostaMenoRecente(Utente autore);
 }

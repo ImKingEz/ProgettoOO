@@ -636,17 +636,33 @@ public class ListinoPostgresDAO implements ListinoDAO {
         PreparedStatement selectModifica = null;
         ResultSet rs = null;
         int numeroModifiche = 0;
+        ArrayList<Pagina> pagineDellAutore = new ArrayList<Pagina>();
+        ArrayList<Frase> frasiPagina = new ArrayList<Frase>();
+        ArrayList<Modifica> modificheFrase = new ArrayList<Modifica>();
         try {
-            String query = "SELECT COUNT(*) FROM modifica WHERE username = ?";
+            String query = "SELECT p.titolo FROM utente u, pagina p WHERE u.username = p.usernameautore and u.username = ? ";
             selectModifica = connection.prepareStatement(query);
             selectModifica.setString(1, autore.getUsername());
             rs = selectModifica.executeQuery();
             while (rs.next()) {
-                numeroModifiche = rs.getInt("count");
+                pagineDellAutore.add(getPagina(rs.getString("titolo")));
+            }
+            for(Pagina p: pagineDellAutore) {
+                frasiPagina = p.getFrasi();
+                for(Frase f: frasiPagina) {
+                    modificheFrase = f.getModifiche();
+                    for(Modifica m: modificheFrase) {
+                        if(m.getValutazione() == null) { //Se non è ancora stata valutata dovrà uscire tra le notifiche
+                            numeroModifiche++;
+                        }
+                    }
+                }
             }
 
         } catch (SQLException e) {
             System.out.println("Errore durante l'estrazione del numero di modifiche per autore: " + e.getMessage());
+        } catch (NotFoundException e) {
+            System.out.println("Errore durante l'estrazione della pagina: " + e.getMessage());
         } finally {
             try {
                 if (selectModifica != null) {
@@ -661,5 +677,65 @@ public class ListinoPostgresDAO implements ListinoDAO {
             }
         }
         return numeroModifiche;
+    }
+
+    public Modifica getModificaPropostaMenoRecente(Utente autore){
+        PreparedStatement selectModifica = null;
+        ResultSet rs = null;
+        int numeroModifiche = 0;
+        ArrayList<Pagina> pagineDellAutore = new ArrayList<Pagina>();
+        ArrayList<Frase> frasiPagina = new ArrayList<Frase>();
+        ArrayList<Modifica> modificheFrase = new ArrayList<Modifica>();
+        java.util.Date dataMinModifica = null;
+        Modifica modificaMenoRecente = null;
+        try {
+            String query = "SELECT p.titolo FROM utente u, pagina p WHERE u.username = p.usernameautore and u.username = ? ";
+            selectModifica = connection.prepareStatement(query);
+            selectModifica.setString(1, autore.getUsername());
+            rs = selectModifica.executeQuery();
+            if (rs.next()) { //Salvo una data minima per poi confrontarla con le altre dopo
+                long dateTimestamp = rs.getDate("datamodificaproposta").getTime();
+                long timeTimestamp = rs.getTime("oramodificaproposta").getTime();
+                long sumTimeStamp = dateTimestamp + timeTimestamp;
+                dataMinModifica = new java.util.Date(sumTimeStamp);
+                pagineDellAutore.add(getPagina(rs.getString("titolo")));
+            }
+
+            while (rs.next()) {
+                pagineDellAutore.add(getPagina(rs.getString("titolo")));
+            }
+            for(Pagina p: pagineDellAutore) {
+                frasiPagina = p.getFrasi();
+                for(Frase f: frasiPagina) {
+                    modificheFrase = f.getModifiche();
+                    for(Modifica m: modificheFrase) {
+                        if(dataMinModifica == null) {
+                            return null;
+                        }
+                        if(m.getValutazione() == null && m.getDataEOraModificaProposta().after(dataMinModifica)) {
+                            modificaMenoRecente = m;
+                        }
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione del numero di modifiche per autore: " + e.getMessage());
+        } catch (NotFoundException e) {
+            System.out.println("Errore durante l'estrazione della pagina: " + e.getMessage());
+        } finally {
+            try {
+                if (selectModifica != null) {
+                    selectModifica.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+
+            }
+        }
+        return modificaMenoRecente;
     }
 }

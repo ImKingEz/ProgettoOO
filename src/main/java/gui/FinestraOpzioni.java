@@ -67,6 +67,7 @@ public class FinestraOpzioni {
             cercaUnaPaginaButton.setEnabled(true);
             proponiUnaModificaButton.setEnabled(true);
             inserisciFraseButton.setEnabled(true);
+            notificheButton.setEnabled(true);
         }
 
         creaUnaPaginaButton.addActionListener(new ActionListener() {
@@ -162,7 +163,12 @@ public class FinestraOpzioni {
                 String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina di cui vuoi visionare lo storico: ");
                 try {
                     paginaStorico = controller.getPagina(titolo);
+                    if(u != paginaStorico.getAutore()){
+                        throw new InvalidLoginException();
+                    }
                     Storico storico = new Storico(frame, controller, paginaStorico);
+                } catch (InvalidLoginException ile) {
+                    JOptionPane.showMessageDialog(frame,"Non sei l'autore di questa pagina");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(frame,"Nessuna pagina trovata");
                 }

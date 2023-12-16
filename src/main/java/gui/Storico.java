@@ -46,7 +46,7 @@ public class Storico {
         frame.setSize(650,400);
 
         labelTesto.setHorizontalAlignment(SwingConstants.LEFT);
-        labelTesto.setVerticalAlignment(SwingConstants.CENTER);
+        labelTesto.setVerticalAlignment(SwingConstants.TOP);
 
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
         String testoTotale = "<html>" + controller.getFrasiConIndici(pagina) + "</html>";

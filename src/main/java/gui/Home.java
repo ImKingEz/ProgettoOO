@@ -55,7 +55,7 @@ public class Home {
                 try {
                     controller.setUtente(usernameInserito, passwordInserita);
                     JOptionPane.showMessageDialog(frame, "Ciao " + usernameInserito + " benvenuto nel nostro sistema");
-                } catch (invalidLoginException il) {
+                } catch (InvalidLoginException il) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                 } catch (GiaEsistenteException ex) {
                     JOptionPane.showMessageDialog(frame, "L'username inserito è già esistente");
@@ -85,11 +85,11 @@ public class Home {
                     FinestraOpzioni finestraOpzioni = new FinestraOpzioni(frame, controller, u);
                     frame.setVisible(false);
                     frame.dispose();
-                } catch (invalidLoginException il) {
+                } catch (InvalidLoginException il) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
-                } catch (usernameNotFoundException unf) {
+                } catch (UsernameNotFoundException unf) {
                     JOptionPane.showMessageDialog(frame, "Username non esistente.");
-                } catch (passwordNotFoundException pnf) {
+                } catch (PasswordNotFoundException pnf) {
                     JOptionPane.showMessageDialog(frame, "Password errata.");
                 }
             }

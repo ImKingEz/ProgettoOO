@@ -72,19 +72,6 @@
           </component>
         </children>
       </grid>
-      <grid id="4639e" binding="panelAnnulla" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="18eb7" class="javax.swing.JButton" binding="annullaButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <text value="Torna All'Area Login"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
       <grid id="5854f" binding="panelStorico" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties/>
@@ -94,6 +81,19 @@
             <constraints/>
             <properties>
               <text value="Storico"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="4639e" binding="panelAnnulla" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="18eb7" class="javax.swing.JButton" binding="annullaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Torna All'Area Login"/>
             </properties>
           </component>
         </children>

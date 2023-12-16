@@ -17,9 +17,9 @@ public class Controller {
         this.listinoPostgresDAO = listinoPostgresDAO;
     }
 
-    public Utente setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException, LunghezzaMinimaException {
+    public Utente setUtente(String username, String password) throws InvalidLoginException, GiaEsistenteException, LunghezzaMinimaException {
         if (username.isBlank() || password.isBlank())
-            throw new invalidLoginException();
+            throw new InvalidLoginException();
         else if (password.length() < 6)
             throw new LunghezzaMinimaException();
 
@@ -61,17 +61,17 @@ public class Controller {
         return listinoPostgresDAO.getUtente(username);
     }
 
-    public void login(String username, String password) throws invalidLoginException, usernameNotFoundException, passwordNotFoundException {
+    public void login(String username, String password) throws InvalidLoginException, UsernameNotFoundException, PasswordNotFoundException {
 
         if (username.isBlank() || password.isBlank())
-            throw new invalidLoginException();
+            throw new InvalidLoginException();
 
         utente = listinoPostgresDAO.getUtente(username);
 
         if(utente==null){
-            throw new usernameNotFoundException();
+            throw new UsernameNotFoundException();
         }else if(!(utente.getPassword().equals(password))){
-            throw new passwordNotFoundException();
+            throw new PasswordNotFoundException();
         }
     }
 
@@ -208,8 +208,7 @@ public class Controller {
         return listinoPostgresDAO.getNumeroModifichePerAutore(autore);
     }
 
-    public Modifica getModificaPropostaMenoRecente(Utente autore) {
-        Modifica modificaMenoRecente = null;
-        return modificaMenoRecente;
+    public Modifica getModificaPropostaMenoRecente(Utente autore){
+        return listinoPostgresDAO.getModificaPropostaMenoRecente(autore);
     }
 }

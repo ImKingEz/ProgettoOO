@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import controller.NotFoundException;
 import model.Modifica;
 import model.Pagina;
 import model.Utente;
@@ -56,7 +57,7 @@ public class FinestraNotifiche {
 
         labelNumNotifiche.setText(String.valueOf(controller.getNumeroModifichePerAutore(autore)));
 
-        if (controller.getNumeroModifichePerAutore(autore) == 0) { //TODO prendere numero modifiche
+        if (controller.getNumeroModifichePerAutore(autore) == 0) {
             labelPagina.setVisible(false);
             labelTitoloPagina.setVisible(false);
             labelTitoloModifica.setVisible(false);
@@ -81,7 +82,7 @@ public class FinestraNotifiche {
             buttonApprova.setVisible(true);
             buttonRifiuta.setVisible(true);
 
-            modifica = controller.getModificaPropostaMenoRecente(autore); //TOOD prendere modifica proposta più recente senza valutazione
+            modifica = controller.getModificaPropostaMenoRecente(autore);
             labelTitoloPagina.setText(modifica.getFraseRiferita().getPaginaDiAppartenenza().getTitolo());
             labelFraseTesto.setText(modifica.getFraseRiferita().getTesto());
             labelIndiceFrase.setText(String.valueOf(modifica.getFraseRiferita().getIndice()));
@@ -93,7 +94,7 @@ public class FinestraNotifiche {
                 controller.setValutazione(true, modifica, autore);
                 JOptionPane.showMessageDialog(frame, "Modifica approvata correttamente");
                 labelNumNotifiche.setText(String.valueOf(controller.getNumeroModifichePerAutore(autore)));
-                if (controller.getNumeroModifichePerAutore(autore) == 0) { //TODO prendere numero modifiche
+                if (controller.getNumeroModifichePerAutore(autore) == 0) {
                     labelPagina.setVisible(false);
                     labelTitoloPagina.setVisible(false);
                     labelTitoloModifica.setVisible(false);
@@ -118,7 +119,7 @@ public class FinestraNotifiche {
                     buttonApprova.setVisible(true);
                     buttonRifiuta.setVisible(true);
 
-                    modifica = controller.getModificaPropostaMenoRecente(autore); //TOOD prendere modifica proposta più recente senza valutazione
+                    modifica = controller.getModificaPropostaMenoRecente(autore);
                     labelTitoloPagina.setText(modifica.getFraseRiferita().getPaginaDiAppartenenza().getTitolo());
                     labelFraseTesto.setText(modifica.getFraseRiferita().getTesto());
                     labelIndiceFrase.setText(String.valueOf(modifica.getFraseRiferita().getIndice()));
@@ -132,7 +133,7 @@ public class FinestraNotifiche {
                 controller.setValutazione(false, modifica, autore);
                 JOptionPane.showMessageDialog(frame, "Modifica rifiutata correttamente");
                 labelNumNotifiche.setText(String.valueOf(controller.getNumeroModifichePerAutore(autore)));
-                if (controller.getNumeroModifichePerAutore(autore) == 0) { //TODO prendere numero modifiche
+                if (controller.getNumeroModifichePerAutore(autore) == 0) {
                     labelTitoloModifica.setVisible(false);
                     labelFraseDaModificare.setVisible(false);
                     labelFraseTesto.setVisible(false);
