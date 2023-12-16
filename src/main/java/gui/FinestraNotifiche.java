@@ -81,7 +81,7 @@ public class FinestraNotifiche {
             buttonApprova.setVisible(true);
             buttonRifiuta.setVisible(true);
 
-            modifica = controller.getModificaPropostaRecente(); //TOOD prendere modifica proposta più recente senza valutazione
+            modifica = controller.getModificaPropostaMenoRecente(autore); //TOOD prendere modifica proposta più recente senza valutazione
             labelTitoloPagina.setText(modifica.getFraseRiferita().getPaginaDiAppartenenza().getTitolo());
             labelFraseTesto.setText(modifica.getFraseRiferita().getTesto());
             labelIndiceFrase.setText(String.valueOf(modifica.getFraseRiferita().getIndice()));
@@ -118,7 +118,7 @@ public class FinestraNotifiche {
                     buttonApprova.setVisible(true);
                     buttonRifiuta.setVisible(true);
 
-                    modifica = controller.getModificaPropostaRecente(); //TOOD prendere modifica proposta più recente senza valutazione
+                    modifica = controller.getModificaPropostaMenoRecente(autore); //TOOD prendere modifica proposta più recente senza valutazione
                     labelTitoloPagina.setText(modifica.getFraseRiferita().getPaginaDiAppartenenza().getTitolo());
                     labelFraseTesto.setText(modifica.getFraseRiferita().getTesto());
                     labelIndiceFrase.setText(String.valueOf(modifica.getFraseRiferita().getIndice()));
@@ -153,7 +153,7 @@ public class FinestraNotifiche {
                     buttonApprova.setVisible(true);
                     buttonRifiuta.setVisible(true);
 
-                    modifica = controller.getModificaPropostaRecente(); //TOOD prendere modifica proposta più recente senza valutazione
+                    modifica = controller.getModificaPropostaMenoRecente(autore); //TOOD prendere modifica proposta più recente senza valutazione
                     labelFraseTesto.setText(modifica.getFraseRiferita().getTesto());
                     labelIndiceFrase.setText(String.valueOf(modifica.getFraseRiferita().getIndice()));
                     labelTestoProposto.setText(modifica.getTesto());

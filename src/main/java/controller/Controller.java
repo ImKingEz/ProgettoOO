@@ -203,4 +203,14 @@ public class Controller {
     public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException{
         return listinoPostgresDAO.getValutazione(autore, modifica);
     }
+
+    public int getNumeroModifichePerAutore(Utente autore) {
+        int numeroModifiche = 0;
+        return numeroModifiche;
+    }
+
+    public Modifica getModificaPropostaMenoRecente(Utente autore) {
+        Modifica modificaMenoRecente = null;
+        return modificaMenoRecente;
+    }
 }
