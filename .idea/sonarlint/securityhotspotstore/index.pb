@@ -61,3 +61,7 @@ _
 /src/main/java/controller/NotFoundException.java,3\1\316f3b14195845f49f6a0cf984dfccef1611f8f4
 m
 =src/main/java/controller/AccettazioneAutomaticaException.java,b\7\b70eeed2cf6d308416019707a371679010e51b84
+X
+(src/main/java/gui/FinestraNotifiche.java,6\3\63f79f6bda00fe720052315e1bb5b43f37dfa707
+X
+(src/main/java/gui/FinestraNotifiche.form,6\9\69961e524673b40896670e374cd3cd02b277c8f4

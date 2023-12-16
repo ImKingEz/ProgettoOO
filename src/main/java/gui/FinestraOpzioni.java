@@ -20,11 +20,11 @@ public class FinestraOpzioni {
     private JButton creaUnaPaginaButton;
     private JButton cercaUnaPaginaButton;
     private JButton proponiUnaModificaButton;
-    private JButton valutaUnaModificaButton;
+    private JButton notificheButton;
     private JPanel panelCreaPagina;
     private JPanel panelCercaPagina;
     private JPanel panelProponiModifica;
-    private JPanel panelValutaModifica;
+    private JPanel panelNotifiche;
     private JButton annullaButton;
     private JPanel panelAnnulla;
     private JPanel panelInserisciFrase;
@@ -56,7 +56,7 @@ public class FinestraOpzioni {
         frame.pack();
         frameChiamante.setVisible(false);
         frame.setVisible(true);
-        valutaUnaModificaButton.setEnabled(false);
+        notificheButton.setEnabled(false);
         inserisciFraseButton.setEnabled(false);
 
         if (!(controller.esisteAlmenoUnaPagina())) {
@@ -74,17 +74,19 @@ public class FinestraOpzioni {
             public void actionPerformed(ActionEvent e) {
                 try {
                     String titolo = JOptionPane.showInputDialog("Inserisci il titolo della pagina");
-                    listinoPostgresDAO.setPagina(titolo, u);
+                    controller.setPagina(titolo, u);
                     JOptionPane.showMessageDialog(frame, "Complimenti " + u.getUsername() + " hai creato una pagina");
 
                     cercaUnaPaginaButton.setEnabled(true);
                     proponiUnaModificaButton.setEnabled(true);
-                    valutaUnaModificaButton.setEnabled(true);
+                    notificheButton.setEnabled(true);
                     inserisciFraseButton.setEnabled(true);
                 } catch (GiaEsistenteException tge) {
                     JOptionPane.showMessageDialog(frame, "Titolo già esistente.");
                 } catch (NotABlankException ex) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare il campo vuoto.");
+                } catch (LunghezzaMinimaException lme) {
+                    JOptionPane.showMessageDialog(frame, "Il titolo deve essere lungo almeno 3 caratteri.");
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(frame, "Errore.");
                 }
@@ -106,12 +108,6 @@ public class FinestraOpzioni {
             }
         });
         proponiUnaModificaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        valutaUnaModificaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -154,6 +150,12 @@ public class FinestraOpzioni {
                 }
             }
         });
+        notificheButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FinestraNotifiche finestraNotifiche = new FinestraNotifiche(frame, controller, u);
+            }
+        });
     }
 
     {
@@ -191,12 +193,12 @@ public class FinestraOpzioni {
         proponiUnaModificaButton = new JButton();
         proponiUnaModificaButton.setText("Proponi Una Modifica");
         panelProponiModifica.add(proponiUnaModificaButton);
-        panelValutaModifica = new JPanel();
-        panelValutaModifica.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelOpzioni.add(panelValutaModifica);
-        valutaUnaModificaButton = new JButton();
-        valutaUnaModificaButton.setText("Valuta Una Modifica");
-        panelValutaModifica.add(valutaUnaModificaButton);
+        panelNotifiche = new JPanel();
+        panelNotifiche.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelOpzioni.add(panelNotifiche);
+        notificheButton = new JButton();
+        notificheButton.setText("Valuta Una Modifica");
+        panelNotifiche.add(notificheButton);
         panelAnnulla = new JPanel();
         panelAnnulla.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelOpzioni.add(panelAnnulla);
