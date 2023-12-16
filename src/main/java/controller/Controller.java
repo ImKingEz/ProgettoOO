@@ -158,6 +158,10 @@ public class Controller {
         return listinoPostgresDAO.getFrasi(pagina);
     }
 
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
+        return listinoPostgresDAO.getFrasiAggiornate(pagina);
+    }
+
     public String getFrasiConIndici(Pagina pagina) {
         String ret = "<html> ";
 

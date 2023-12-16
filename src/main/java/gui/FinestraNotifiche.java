@@ -154,7 +154,7 @@ public class FinestraNotifiche {
                     buttonApprova.setVisible(true);
                     buttonRifiuta.setVisible(true);
 
-                    modifica = controller.getModificaPropostaMenoRecente(autore); //TOOD prendere modifica proposta più recente senza valutazione
+                    modifica = controller.getModificaPropostaMenoRecente(autore);
                     labelFraseTesto.setText(modifica.getFraseRiferita().getTesto());
                     labelIndiceFrase.setText(String.valueOf(modifica.getFraseRiferita().getIndice()));
                     labelTestoProposto.setText(modifica.getTesto());

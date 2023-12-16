@@ -75,7 +75,7 @@ public class ProponiUnaModifica {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                 } else {
                     try {
-                        for(Frase f: controller.getFrasi(pagina)) {
+                        for(Frase f: controller.getFrasiAggiornate(pagina)) {
                             if (f.getIndice() == Integer.parseInt(indice)) {
                                 controller.setModifica(testoProposto, u.getUsername(), f, pagina);
                             }

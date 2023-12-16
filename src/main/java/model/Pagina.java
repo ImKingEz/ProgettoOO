@@ -46,4 +46,9 @@ public class Pagina {
     public ArrayList<Frase> getFrasi() {
         return listaFrasi;
     }
+
+    public void setFrasi(ArrayList<Frase> listaFrasi) {
+        this.listaFrasi = listaFrasi;
+
+    }
 }
