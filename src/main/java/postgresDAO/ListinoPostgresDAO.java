@@ -101,13 +101,18 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return u;
     }
 
-    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException {
+    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException , LunghezzaMinimaException {
         PreparedStatement insertPagina = null;
 
         java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
         Date dataCreazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
         Time oraCreazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
-
+        if (titolo.isBlank()){
+            throw new NotABlankException();
+        }
+        if (titolo.length() < 3){
+            throw new LunghezzaMinimaException();
+        }
         try {
             String query = "INSERT INTO pagina(titolo, datacreazione, oracreazione, usernameautore) VALUES(?, ?, ?, ?)";
             insertPagina = connection.prepareStatement(query);
@@ -524,4 +529,106 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return false;
     }
 
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
+        int contatore=0;
+        int controlloStampa=0;
+        int controlloIndici=0;
+        PreparedStatement selectFrase = null;
+        ArrayList<Frase> frasitotali = new ArrayList<Frase>();
+        ArrayList<Integer> indiciVisitati = new ArrayList<Integer>();
+        ArrayList<Frase> frasiAggiornate = new ArrayList<Frase>();
+        ResultSet rs = null;
+        String titolopagina = pagina.getTitolo();
+        try {
+            String query = "SELECT f.testo,f.indice,f.idpagina\n" +
+                            "FROM frase f\n" +
+                            "WHERE f.idpagina = ?\n" +
+                            "ORDER BY f.indice asc;";
+            selectFrase = connection.prepareStatement(query);
+            selectFrase.setInt(1, getIdPagina(titolopagina));
+            rs = selectFrase.executeQuery();
+            while (rs.next()) {
+                frasitotali.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
+            }
+            for(Frase f: frasitotali){
+                contatore=0;
+                controlloStampa=0;
+                controlloIndici=0;
+                for(int n: indiciVisitati){
+                    if(f.getIndice()==n){
+                        controlloIndici=1;
+                    }
+                }
+                if(controlloIndici==0){  //se non è già stato visitato faccio la query, altrimenti passo alla prossima frase
+                    for(Frase f2: frasitotali){
+                        if(f.getIndice()==f2.getIndice()){
+                            contatore=contatore+1;
+                        }
+                    }
+                    if(contatore == 2){
+                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
+                                "FROM frase f, modifica m, valutazione v\n" +
+                                "WHERE f.idpagina = ? and f.indice= ?\n" +
+                                "and f.testo=m.testoFrase\n" +
+                                "and f.indice=m.indice and f.idpagina=m.idpaginafrase and\n" +
+                                "m.idmodifica=v.idmodifica;";
+                        selectFrase = connection.prepareStatement(query2);
+                        selectFrase.setInt(1, getIdPagina(titolopagina));
+                        selectFrase.setInt(2, f.getIndice());
+                        rs = selectFrase.executeQuery();
+                        while (rs.next()) {
+                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
+                        }
+                        controlloStampa=1;
+                    } else if(contatore>2){
+                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
+                                "FROM valutazione v, modifica m\n" +
+                                "WHERE m.idmodifica=v.idmodifica and v.accettazione = true and\n" +
+                                "v.datavalutazione in (select max(v1.datavalutazione)\n" +
+                                "from valutazione v1\n" +
+                                "where m.idpaginafrase = ? and\n" +
+                                "m.indice= ? and\n" +
+                                "v1.accettazione = true and v.oravalutazione in\n" +
+                                "(select max(v2.oravalutazione)\n" +
+                                "from valutazione v2\n" +
+                                "where m.idpaginafrase = ? and\n" +
+                                "m.indice = ? and\n" +
+                                "v2.datavalutazione=v.datavalutazione and\n" +
+                                "v2.accettazione = true));";
+                        selectFrase = connection.prepareStatement(query2);
+                        selectFrase.setInt(1, getIdPagina(titolopagina));
+                        selectFrase.setInt(2, f.getIndice());
+                        selectFrase.setInt(3, getIdPagina(titolopagina));
+                        selectFrase.setInt(4, f.getIndice());
+                        rs = selectFrase.executeQuery();
+                        while (rs.next()) {
+                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
+                        }
+                        controlloStampa=1;
+                    }
+                    if(controlloStampa==0){
+                        frasiAggiornate.add(f);
+                    }
+                    indiciVisitati.add(f.getIndice());
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della frase: " + e.getMessage());
+        } catch (NotFoundException ex) {
+            System.out.println("Errore durante l'estrazione del id pagina: " + ex.getMessage());
+        } finally {
+            try {
+                if (selectFrase != null) {
+                    selectFrase.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+
+            }
+        }
+        return frasiAggiornate;
+    }
 }

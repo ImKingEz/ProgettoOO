@@ -48,7 +48,7 @@ public class CercaPagina {
         labelTesto.setVerticalAlignment(SwingConstants.TOP);
 
         labelTitolo.setText("Titolo: " + pagina.getTitolo());
-        String testoTotale = "<html>" + controller.getTestoTotale(pagina) + "</html>";
+        String testoTotale = "<html>" + controller.getTestoTotaleAggiornato(pagina) + "</html>";
         labelTesto.setText(testoTotale);
         tornaIndietroButton.addActionListener(new ActionListener() {
             @Override

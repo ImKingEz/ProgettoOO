@@ -61,3 +61,5 @@ _
 /src/main/java/controller/NotFoundException.java,3\1\316f3b14195845f49f6a0cf984dfccef1611f8f4
 m
 =src/main/java/controller/AccettazioneAutomaticaException.java,b\7\b70eeed2cf6d308416019707a371679010e51b84
+f
+6src/main/java/controller/LunghezzaMinimaException.java,8\8\881f7f9f8d1fafd961f909b339a8c294bf736e44
