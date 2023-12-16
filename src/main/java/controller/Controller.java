@@ -1,9 +1,7 @@
 package controller;
 import dao.ListinoDAO;
 import model.*;
-import postgresDAO.ListinoPostgresDAO;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
@@ -19,11 +17,11 @@ public class Controller {
         this.listinoPostgresDAO = listinoPostgresDAO;
     }
 
-    public Utente setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException, LunghezzaPasswordException{
+    public Utente setUtente(String username, String password) throws invalidLoginException, GiaEsistenteException, LunghezzaMinimaException {
         if (username.isBlank() || password.isBlank())
             throw new invalidLoginException();
         else if (password.length() < 6)
-            throw new LunghezzaPasswordException();
+            throw new LunghezzaMinimaException();
 
         utente = new Utente(username, password);
 
@@ -127,6 +125,17 @@ public class Controller {
         return appoggio;
     }
 
+    public String getTestoTotaleAggiornato(Pagina pagina) {
+        String appoggio = "";
+        for(Frase f: listinoPostgresDAO.getFrasiAggiornate(pagina)) {
+            appoggio += f.getTesto() + " ";
+            if(f.getPaginaLinkata() != null) {
+                appoggio += appoggio + "(Link: " + frase.getPaginaLinkata().getTitolo() + ") ";
+            }
+        }
+        return appoggio;
+    }
+
     public int calcolaIndice(Pagina pagina) {
         return listinoPostgresDAO.getFrasi(pagina).size() + 1;
     }
@@ -136,7 +145,7 @@ public class Controller {
     public int numeroPagineCreateDaUnUtente(String username){
         return listinoPostgresDAO.numeroPagineCreateDaUnUtente(username);
     }
-    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException {
+    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException, LunghezzaMinimaException {
         listinoPostgresDAO.setPagina(titolo, autore);
     }
     public Pagina getPagina(String titolo) throws NotFoundException{
@@ -153,6 +162,21 @@ public class Controller {
         String ret = "<html> ";
 
         for(Frase f: listinoPostgresDAO.getFrasi(pagina)) {
+            ret += f.getIndice() + ") " + f.getTesto();
+            if(f.getPaginaLinkata() != null) {
+                ret += "(Link: " + f.getPaginaLinkata().getTitolo() + ")";
+            }
+            ret += " <br> ";
+        }
+        ret += " </html>";
+
+        return ret;
+    }
+
+    public String getFrasiConIndiciAggiornato(Pagina pagina) {
+        String ret = "<html> ";
+
+        for(Frase f: listinoPostgresDAO.getFrasiAggiornate(pagina)) {
             ret += f.getIndice() + ") " + f.getTesto();
             if(f.getPaginaLinkata() != null) {
                 ret += "(Link: " + f.getPaginaLinkata().getTitolo() + ")";

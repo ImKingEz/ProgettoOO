@@ -35,7 +35,6 @@ public class Modifica {
         this.valutazione = valutazione;
         valutazione.setModificaFrase(this);
     }
-
     public Utente getUtenteModificatore() {
         return utenteModificatore;
     }

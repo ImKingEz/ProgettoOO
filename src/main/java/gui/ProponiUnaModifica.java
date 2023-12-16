@@ -56,7 +56,7 @@ public class ProponiUnaModifica {
         labelListaFrasi.setHorizontalAlignment(SwingConstants.LEFT);
         labelListaFrasi.setVerticalAlignment(SwingConstants.TOP);
 
-        String testofrasi = controller.getFrasiConIndici(pagina);
+        String testofrasi = controller.getFrasiConIndiciAggiornato(pagina);
         labelListaFrasi.setText(testofrasi);
         annullaButton.addActionListener(new ActionListener() {
             @Override

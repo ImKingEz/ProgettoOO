@@ -1,9 +1,6 @@
 package dao;
 
-import controller.AccettazioneAutomaticaException;
-import controller.GiaEsistenteException;
-import controller.NotABlankException;
-import controller.NotFoundException;
+import controller.*;
 import model.*;
 
 import java.util.ArrayList;
@@ -13,7 +10,7 @@ public interface ListinoDAO {
     public void setUtente(String username, String password) throws Exception;
     public Utente getUtente(String username);
 
-    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException;
+    public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException , LunghezzaMinimaException;
     public Pagina getPagina(String titolo) throws NotFoundException;
     public int getIdPagina(String titolo) throws NotFoundException;
 
@@ -26,7 +23,7 @@ public interface ListinoDAO {
 
     public void setValutazione(boolean accettazione, Modifica modifica, Utente autore);
     public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException;
-
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina);
     public void setSchema();
     public boolean checkEsistenzaUtenti();
     public boolean checkEsistenzaPagine();
