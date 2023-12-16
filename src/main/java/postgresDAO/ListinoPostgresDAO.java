@@ -631,4 +631,35 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
         return frasiAggiornate;
     }
+
+    public int getNumeroModifichePerAutore(Utente autore) {
+        PreparedStatement selectModifica = null;
+        ResultSet rs = null;
+        int numeroModifiche = 0;
+        try {
+            String query = "SELECT COUNT(*) FROM modifica WHERE username = ?";
+            selectModifica = connection.prepareStatement(query);
+            selectModifica.setString(1, autore.getUsername());
+            rs = selectModifica.executeQuery();
+            while (rs.next()) {
+                numeroModifiche = rs.getInt("count");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione del numero di modifiche per autore: " + e.getMessage());
+        } finally {
+            try {
+                if (selectModifica != null) {
+                    selectModifica.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+
+            }
+        }
+        return numeroModifiche;
+    }
 }

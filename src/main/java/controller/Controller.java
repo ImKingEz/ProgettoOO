@@ -205,8 +205,7 @@ public class Controller {
     }
 
     public int getNumeroModifichePerAutore(Utente autore) {
-        int numeroModifiche = 0;
-        return numeroModifiche;
+        return listinoPostgresDAO.getNumeroModifichePerAutore(autore);
     }
 
     public Modifica getModificaPropostaMenoRecente(Utente autore) {

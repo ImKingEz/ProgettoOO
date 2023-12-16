@@ -20,10 +20,14 @@ public interface ListinoDAO {
     public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) throws AccettazioneAutomaticaException;
     public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException;
     public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina) throws NotFoundException;
+    public int getNumeroModifichePerAutore(Utente autore);
 
     public void setValutazione(boolean accettazione, Modifica modifica, Utente autore);
     public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException;
+
     public ArrayList<Frase> getFrasiAggiornate(Pagina pagina);
+
+
     public void setSchema();
     public boolean checkEsistenzaUtenti();
     public boolean checkEsistenzaPagine();
