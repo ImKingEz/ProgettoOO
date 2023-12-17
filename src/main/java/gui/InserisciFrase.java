@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import controller.NotFoundException;
 import model.Frase;
 import controller.NotABlankException;
 import model.Pagina;
@@ -43,7 +44,7 @@ public class InserisciFrase {
      * @param controller     the controller
      * @param pagina         the pagina
      */
-    public InserisciFrase(JFrame frameChiamante, Controller controller, Pagina pagina) {
+    public InserisciFrase(JFrame frameChiamante, Controller controller, Pagina pagina) throws NotFoundException {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
         this.pagina = pagina;

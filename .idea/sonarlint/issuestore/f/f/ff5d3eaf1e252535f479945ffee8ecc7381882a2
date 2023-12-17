@@ -1,25 +1,25 @@
 
 >
-java:S1604?"(Make this anonymous inner class a lambda(ÏÚ¶¨
+java:S1604@"(Make this anonymous inner class a lambda(ÏÚ¶¨
 A
-java:S3010&"+Remove this assignment of "frameChiamante".(³òËã
+java:S3010'"+Remove this assignment of "frameChiamante".(³òËã
 =
-java:S3010)""Remove this assignment of "frame".(ë›ã³ùÿÿÿÿ
+java:S3010*""Remove this assignment of "frame".(ë›ã³ùÿÿÿÿ
 K
-java:S2209&"5Change this instance-reference to a static reference.(³òËã
+java:S2209'"5Change this instance-reference to a static reference.(³òËã
 e
-java:S3252+"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(¹ºİÛ
-P
-java:S1068"5Remove this unused "panelTitoloETesto" private field.(›º®½ùÿÿÿÿ
-D
-java:S1068"/Remove this unused "panelTitolo" private field.(»¦úU
-D
-java:S1068".Remove this unused "panelTesto" private field.(ç„ì
+java:S3252,"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(¹ºİÛ
+W
+java:S1068"5Remove this unused "panelTitoloETesto" private field.(›º®½ùÿÿÿÿ8«ŠÛ¼Ç1
+K
+java:S1068"/Remove this unused "panelTitolo" private field.(»¦úU8«ŠÛ¼Ç1
+K
+java:S1068".Remove this unused "panelTesto" private field.(ç„ì8«ŠÛ¼Ç1
+S
+java:S1068"6Remove this unused "panelTornaIndietro" private field.(äß«Ï8«ŠÛ¼Ç1
+Q
+java:S1068"4Remove this unused "panelCercaPagina" private field.(ŞÎ»€8«ŠÛ¼Ç1
+T
+java:S1068"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ8«ŠÛ¼Ç1
 L
-java:S1068"6Remove this unused "panelTornaIndietro" private field.(äß«Ï
-J
-java:S1068"4Remove this unused "panelCercaPagina" private field.(ŞÎ»€
-M
-java:S1068"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ
-E
-java:S1068"*Remove this unused "pagina" private field.(°„È•ùÿÿÿÿ
+java:S1068"*Remove this unused "pagina" private field.(°„È•ùÿÿÿÿ8«ŠÛ¼Ç1

@@ -1,168 +1,176 @@
 
-a	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8±»«ŸÇ1
+a	java:S112>"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8Ç€¾Ç1
 w
-java:S2293×"YReplace the type specification in this constructor call with the diamond operator ("<>").(°¢Èı8³»«ŸÇ1
+java:S2293×"YReplace the type specification in this constructor call with the diamond operator ("<>").(°¢Èı8Ç€¾Ç1
 w
-java:S2293¿"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñ¢ºó8³»«ŸÇ1
+java:S2293¿"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñ¢ºó8Ç€¾Ç1
+w
+java:S2293—"YReplace the type specification in this constructor call with the diamond operator ("<>").(—”æö8Ç€¾Ç1
 |
-java:S2293ä"YReplace the type specification in this constructor call with the diamond operator ("<>").(•šÍúÿÿÿÿ8³»«ŸÇ1
+java:S2293˜"YReplace the type specification in this constructor call with the diamond operator ("<>").(áß°ûúÿÿÿÿ8Ç€¾Ç1
 |
-java:S2293å"YReplace the type specification in this constructor call with the diamond operator ("<>").(”ßÄûÿÿÿÿ8ªö†¸Ç1
+java:S2293™"YReplace the type specification in this constructor call with the diamond operator ("<>").(”ßÄûÿÿÿÿ8Ç€¾Ç1
 |
-java:S2293æ"YReplace the type specification in this constructor call with the diamond operator ("<>").(áß°ûúÿÿÿÿ8¬ö†¸Ç1
+java:S2293š"YReplace the type specification in this constructor call with the diamond operator ("<>").(æ™Ş€ùÿÿÿÿ8Ç€¾Ç1
 w
-java:S2293¶"YReplace the type specification in this constructor call with the diamond operator ("<>").(…§©©8³»«ŸÇ1
+java:S2293É"YReplace the type specification in this constructor call with the diamond operator ("<>").(…§©©8Ç€¾Ç1
 |
-java:S2293·"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñ“Ìºûÿÿÿÿ8¯ö†¸Ç1
+java:S2293Ê"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñ“Ìºûÿÿÿÿ8Ç€¾Ç1
 w
-java:S2293¸"YReplace the type specification in this constructor call with the diamond operator ("<>").(áÉŒø8³»«ŸÇ1
+java:S2293Ë"YReplace the type specification in this constructor call with the diamond operator ("<>").(áÉŒø8Ç€¾Ç1
 w
-java:S2293¹"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ü´»Æ8³»«ŸÇ1
+java:S2293Ì"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ü´»Æ8Ç€¾Ç1
 w
-java:S2293•"YReplace the type specification in this constructor call with the diamond operator ("<>").(…§©©8³»«ŸÇ1
+java:S2293¨"YReplace the type specification in this constructor call with the diamond operator ("<>").(…§©©8‘Ç€¾Ç1
 |
-java:S2293–"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñ“Ìºûÿÿÿÿ8±ö†¸Ç1
+java:S2293©"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñ“Ìºûÿÿÿÿ8‘Ç€¾Ç1
 w
-java:S2293—"YReplace the type specification in this constructor call with the diamond operator ("<>").(áÉŒø8³»«ŸÇ1
+java:S2293ª"YReplace the type specification in this constructor call with the diamond operator ("<>").(áÉŒø8‘Ç€¾Ç1
 w
-java:S2293˜"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ü´»Æ8³ö†¸Ç1
+java:S2293«"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ü´»Æ8‘Ç€¾Ç1
 
-java:S1192/"nDefine a constant instead of duplicating this literal "Errore durante la chiusura dello statement: " 22 times.(ëïûÙûÿÿÿÿ8´»«ŸÇ1
+java:S1192/"nDefine a constant instead of duplicating this literal "Errore durante la chiusura dello statement: " 21 times.(ëïûÙûÿÿÿÿ8‘Ç€¾Ç1
 i
-java:S1192À"KDefine a constant instead of duplicating this literal "idmodifica" 5 times.(‘Ú—•8¸ö†¸Ç1
+java:S1192À"KDefine a constant instead of duplicating this literal "idmodifica" 5 times.(‘Ú—•8‘Ç€¾Ç1
 d
-java:S1192À"FDefine a constant instead of duplicating this literal "testo" 8 times.(‘Ú—•8¹ö†¸Ç1
+java:S1192À"FDefine a constant instead of duplicating this literal "testo" 5 times.(‘Ú—•8‘Ç€¾Ç1
 w
-java:S1192º"TDefine a constant instead of duplicating this literal "oramodificaproposta" 5 times.(à™ô¾ÿÿÿÿÿ8ºö†¸Ç1
+java:S1192º"TDefine a constant instead of duplicating this literal "oramodificaproposta" 4 times.(à™ô¾ÿÿÿÿÿ8‘Ç€¾Ç1
 ‹
-java:S1192Ã"mDefine a constant instead of duplicating this literal "Errore durante l'estrazione della modifica: " 3 times.(ƒØÊ­8»ö†¸Ç1
+java:S1192Ã"mDefine a constant instead of duplicating this literal "Errore durante l'estrazione della modifica: " 3 times.(ƒØÊ­8‘Ç€¾Ç1
 ‘
-java:S1192Ù"sDefine a constant instead of duplicating this literal "Errore durante l'estrazione dell'id della pagina: " 3 times.(úØÏ©8´»«ŸÇ1
-e
-java:S1192Ë"GDefine a constant instead of duplicating this literal "indice" 5 times.(ñ´ø¦8½ö†¸Ç1
+java:S1192Ù"sDefine a constant instead of duplicating this literal "Errore durante l'estrazione dell'id della pagina: " 3 times.(úØÏ©8‘Ç€¾Ç1
 j
-java:S1192˜"GDefine a constant instead of duplicating this literal "titolo" 3 times.(ŒÀ¦úüÿÿÿÿ8´»«ŸÇ1
+java:S1192˜"GDefine a constant instead of duplicating this literal "titolo" 3 times.(ŒÀ¦úüÿÿÿÿ8‘Ç€¾Ç1
 ‰
-java:S1192"kDefine a constant instead of duplicating this literal "Errore durante l'estrazione della pagina: " 6 times.(ÇùÈ´8´»«ŸÇ1
+java:S1192"kDefine a constant instead of duplicating this literal "Errore durante l'estrazione della pagina: " 6 times.(ÇùÈ´8‘Ç€¾Ç1
 x
-java:S1192¹"UDefine a constant instead of duplicating this literal "datamodificaproposta" 5 times.(¿èíúÿÿÿÿ8¿ö†¸Ç1
+java:S1192¹"UDefine a constant instead of duplicating this literal "datamodificaproposta" 4 times.(¿èíúÿÿÿÿ8‘Ç€¾Ç1
 f
-java:S1192U"IDefine a constant instead of duplicating this literal "username" 3 times.(‡õ¶8´»«ŸÇ1
+java:S1192U"IDefine a constant instead of duplicating this literal "username" 3 times.(‡õ¶8‘Ç€¾Ç1
+M
+java:S1066¶"/Merge this if statement with the enclosing one.(ê„ÖŒ8’Ç€¾Ç1
 
-java:S1319Ó"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¹ÛÂ8Ãö†¸Ç1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İ´¶Ãşÿÿÿÿ8¸»«ŸÇ1
-m
-java:S2095Š"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ş¹‚Ô8ãï¬ŸÇ1
+java:S1319Ó"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¹ÛÂ8’Ç€¾Ç1
+F
+java:S5411µ"(Use a primitive boolean expression here.(èÕÎƒ8“Ç€¾Ç1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İ´¶Ãşÿÿÿÿ8•Ç€¾Ç1
 l
-java:S2095ë"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÜşñP8øê«ŸÇ1
+java:S2259½"NA "NullPointerException" could be thrown; "modificaMigliore" is nullable here.(¯…·È8àÅˆ¾Ç1
 m
-java:S2095œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(øâ–™8âï¬ŸÇ1
+java:S2095Ò"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(øâ–™8«Ö€¾Ç1
 m
-java:S2095§"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‡’Â±8âï¬ŸÇ1
-r
-java:S2095î"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ºàƒûÿÿÿÿ8âï¬ŸÇ1
+java:S2095¯"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(øâ–™8«Ö€¾Ç1
+l
+java:S2095ë"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÜşñP8«Ö€¾Ç1
 m
-java:S2095Ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‡’Â±8²“‡¸Ç1
+java:S2095İ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‡’Â±8«Ö€¾Ç1
 m
-java:S2095¿"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(øâ–™8³“‡¸Ç1
-m
-java:S2095£"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ş¹‚Ô8³“‡¸Ç1
-L	java:S106("+Replace this use of System.out by a logger.(Â¤ÿÿÿÿÿ8ğÉ«ŸÇ1
-L	java:S106/"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ğÉ«ŸÇ1
-F	java:S106="+Replace this use of System.out by a logger.(‡±¯8ñÉ«ŸÇ1
-L	java:S106F"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ñÉ«ŸÇ1
-F	java:S106X"+Replace this use of System.out by a logger.(…Òr8òÉ«ŸÇ1
-L	java:S106b"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8òÉ«ŸÇ1
-L	java:S106}"+Replace this use of System.out by a logger.(ìÔªúÿÿÿÿ8ôÉ«ŸÇ1
-M	java:S106„"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ôÉ«ŸÇ1
+java:S2095º"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‡’Â±8«Ö€¾Ç1
+L	java:S106("+Replace this use of System.out by a logger.(Â¤ÿÿÿÿÿ8²Ö€¾Ç1
+L	java:S106/"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8³Ö€¾Ç1
+F	java:S106="+Replace this use of System.out by a logger.(‡±¯8´Ö€¾Ç1
+L	java:S106F"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8´Ö€¾Ç1
+F	java:S106X"+Replace this use of System.out by a logger.(…Òr8µÖ€¾Ç1
+L	java:S106b"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8¶Ö€¾Ç1
+L	java:S106}"+Replace this use of System.out by a logger.(ìÔªúÿÿÿÿ8¸Ö€¾Ç1
+M	java:S106„"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8¸Ö€¾Ç1
 P
-java:S1481"2Remove this unused "dataCreazione" local variable.(áã÷Ó8õÉ«ŸÇ1
+java:S1481"2Remove this unused "dataCreazione" local variable.(áã÷Ó8¹Ö€¾Ç1
 T
-java:S1481"1Remove this unused "oraCreazione" local variable.(Ş„ğğıÿÿÿÿ8õÉ«ŸÇ1
-H	java:S106"+Replace this use of System.out by a logger.(ÇùÈ´8õÉ«ŸÇ1
-M	java:S106§"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8õÉ«ŸÇ1
+java:S1481"1Remove this unused "oraCreazione" local variable.(Ş„ğğıÿÿÿÿ8¹Ö€¾Ç1
+H	java:S106"+Replace this use of System.out by a logger.(ÇùÈ´8ºÖ€¾Ç1
+M	java:S106§"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ºÖ€¾Ç1
 D
-java:S1481¯"&Remove this unused "p" local variable.(ò¢Ö8öÉ«ŸÇ1
+java:S1481¯"&Remove this unused "p" local variable.(ò¢Ö8»Ö€¾Ç1
 P
-java:S1481³"2Remove this unused "dataCreazione" local variable.(áã÷Ó8öÉ«ŸÇ1
+java:S1481³"2Remove this unused "dataCreazione" local variable.(áã÷Ó8»Ö€¾Ç1
 T
-java:S1481´"1Remove this unused "oraCreazione" local variable.(Ş„ğğıÿÿÿÿ8öÉ«ŸÇ1
-H	java:S106¿"+Replace this use of System.out by a logger.(ÇùÈ´8÷É«ŸÇ1
-M	java:S106É"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8÷É«ŸÇ1
-H	java:S106Ù"+Replace this use of System.out by a logger.(úØÏ©8øÉ«ŸÇ1
-M	java:S106Û"+Replace this use of System.out by a logger.(ÍŞœ×ıÿÿÿÿ8øÉ«ŸÇ1
-M	java:S106ã"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8øÉ«ŸÇ1
-H	java:S106ø"+Replace this use of System.out by a logger.(úØÏ©8ñï¬ŸÇ1
-M	java:S106ú"+Replace this use of System.out by a logger.(ÍŞœ×ıÿÿÿÿ8ñï¬ŸÇ1
-M	java:S106‚"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8òï¬ŸÇ1
-G	java:S106š"+Replace this use of System.out by a logger.(ûøô<8‰ğ¬ŸÇ1
-M	java:S106œ"+Replace this use of System.out by a logger.(ºÏ´§şÿÿÿÿ8‰ğ¬ŸÇ1
-M	java:S106£"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8‰ğ¬ŸÇ1
+java:S1481´"1Remove this unused "oraCreazione" local variable.(Ş„ğğıÿÿÿÿ8»Ö€¾Ç1
+H	java:S106¿"+Replace this use of System.out by a logger.(ÇùÈ´8¼Ö€¾Ç1
+M	java:S106É"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8¼Ö€¾Ç1
+H	java:S106Ù"+Replace this use of System.out by a logger.(úØÏ©8½Ö€¾Ç1
+M	java:S106Û"+Replace this use of System.out by a logger.(ÍŞœ×ıÿÿÿÿ8¾Ö€¾Ç1
+M	java:S106ã"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8¾Ö€¾Ç1
+H	java:S106ø"+Replace this use of System.out by a logger.(úØÏ©8ÁÖ€¾Ç1
+M	java:S106ú"+Replace this use of System.out by a logger.(ÍŞœ×ıÿÿÿÿ8ÂÖ€¾Ç1
+M	java:S106‚"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÂÖ€¾Ç1
+G	java:S106š"+Replace this use of System.out by a logger.(ûøô<8ÅÖ€¾Ç1
+M	java:S106œ"+Replace this use of System.out by a logger.(ºÏ´§şÿÿÿÿ8ÆÖ€¾Ç1
+M	java:S106£"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÆÖ€¾Ç1
 D
-java:S1481¬"&Remove this unused "p" local variable.(ò¢Ö8ö“‡¸Ç1
-H	java:S106Ã"+Replace this use of System.out by a logger.(ƒØÊ­8Šğ¬ŸÇ1
-M	java:S106Í"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8‹ğ¬ŸÇ1
+java:S1481¬"&Remove this unused "p" local variable.(ò¢Ö8ÇÖ€¾Ç1
+H	java:S106Ã"+Replace this use of System.out by a logger.(ƒØÊ­8ÊÖ€¾Ç1
+M	java:S106Í"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÊÖ€¾Ç1
+“
+java:S1130Ó"uRemove the declaration of thrown exception 'controller.NotFoundException', as it cannot be thrown from method's body.(¹ÛÂ8ËÖ€¾Ç1
 D
-java:S1481Õ"&Remove this unused "p" local variable.(ò¢Ö8ü“‡¸Ç1
-H	java:S106ê"+Replace this use of System.out by a logger.(ƒØÊ­8‹ğ¬ŸÇ1
-M	java:S106ô"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ğ¬ŸÇ1
-H	java:S106Œ"+Replace this use of System.out by a logger.(ƒØÊ­8ğ¬ŸÇ1
-M	java:S106–"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ğ¬ŸÇ1
-M	java:S106¯"+Replace this use of System.out by a logger.(‰É¾œüÿÿÿÿ8”‡¸Ç1
-M	java:S106·"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8”‡¸Ç1
-W
-java:S1481Á"4Remove this unused "dataValutazione" local variable.(ûßîúÿÿÿÿ8”‡¸Ç1
-Q
-java:S1481Â"3Remove this unused "oraValutazione" local variable.(ØÏß›8”‡¸Ç1
-H	java:S106Ö"+Replace this use of System.out by a logger.(Å¿â8“”‡¸Ç1
-M	java:S106à"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8””‡¸Ç1
-M	java:S106õ"+Replace this use of System.out by a logger.(à¢Ìˆûÿÿÿÿ8–”‡¸Ç1
-M	java:S106ÿ"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8—”‡¸Ç1
-G	java:S106‘"+Replace this use of System.out by a logger.(…Òr8˜”‡¸Ç1
-M	java:S106›"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8™”‡¸Ç1
-H	java:S106­"+Replace this use of System.out by a logger.(ÇùÈ´8›”‡¸Ç1
-M	java:S106·"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8œ”‡¸Ç1
+java:S1481Õ"&Remove this unused "p" local variable.(ò¢Ö8ËÖ€¾Ç1
 P
-java:S6126Ã"2Replace this String concatenation with Text block.(¦Çæ˜8Ÿ”‡¸Ç1
-M	java:S106Î"+Replace this use of System.out by a logger.( ã†±ùÿÿÿÿ8¡”‡¸Ç1
-H	java:S106Ğ"+Replace this use of System.out by a logger.(›Êõ8¡”‡¸Ç1
-M	java:S106Ú"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8¢”‡¸Ç1
-p
-java:S3776ß"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(«Ÿ‚ 8£”‡¸Ç1
-P
-java:S6126ê"2Replace this String concatenation with Text block.(¦Çæ˜8¥”‡¸Ç1
-U
-java:S6126„"2Replace this String concatenation with Text block.(¡“…¿ùÿÿÿÿ8§”‡¸Ç1
-U
-java:S6126”"2Replace this String concatenation with Text block.(¡“…¿ùÿÿÿÿ8ª”‡¸Ç1
-M	java:S106·"+Replace this use of System.out by a logger.( ã†±ùÿÿÿÿ8®”‡¸Ç1
-H	java:S106¹"+Replace this use of System.out by a logger.(›Êõ8®”‡¸Ç1
-M	java:S106Ã"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8¯”‡¸Ç1
-Y	java:S125Ê"<This block of commented-out lines of code should be removed.(«Ÿ‚ 8´”‡¸Ç1
+java:S6126Ù"2Replace this String concatenation with Text block.(µº­8ÌÖ€¾Ç1
+H	java:S106ê"+Replace this use of System.out by a logger.(ƒØÊ­8ÍÖ€¾Ç1
+M	java:S106ô"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÎÖ€¾Ç1
+H	java:S106Œ"+Replace this use of System.out by a logger.(ƒØÊ­8ÏÖ€¾Ç1
+M	java:S106–"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÏÖ€¾Ç1
+M	java:S106¯"+Replace this use of System.out by a logger.(‰É¾œüÿÿÿÿ8ĞÖ€¾Ç1
+M	java:S106·"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÑÖ€¾Ç1
 W
-java:S1481µ"4Remove this unused "numeroModifiche" local variable.(àáËÊşÿÿÿÿ8‡ğ¬ŸÇ1
-S
-java:S1481·"0Remove this unused "frasiPagina" local variable.(Ñ“Ìºûÿÿÿÿ8‹Ê«ŸÇ1
+java:S1481Á"4Remove this unused "dataValutazione" local variable.(ûßîúÿÿÿÿ8ÑÖ€¾Ç1
 Q
-java:S1481¸"3Remove this unused "modificheFrase" local variable.(áÉŒø8‡ğ¬ŸÇ1
-U
-java:S6126Æ"2Replace this String concatenation with Text block.(•¸¹öøÿÿÿÿ8ˆğ¬ŸÇ1
-M	java:S106Ş"+Replace this use of System.out by a logger.(ÿ½Ò¡ùÿÿÿÿ8»”‡¸Ç1
-H	java:S106à"+Replace this use of System.out by a logger.(ÇùÈ´8»”‡¸Ç1
-M	java:S106ê"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8»”‡¸Ç1
-U
-java:S1135û"2Complete the task associated to this TODO comment.(‹Å†ûÿÿÿÿ8Šğ¬ŸÇ1
-H	java:S106ÿ"+Replace this use of System.out by a logger.(ÇùÈ´8Ä”‡¸Ç1
-M	java:S106"+Replace this use of System.out by a logger.(şû¡¹ùÿÿÿÿ8Å”‡¸Ç1
-M	java:S106‹"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8Æ”‡¸Ç1
-S
-java:S1481–"0Remove this unused "frasiPagina" local variable.(Ñ“Ìºûÿÿÿÿ8Ê«ŸÇ1
+java:S1481Â"3Remove this unused "oraValutazione" local variable.(ØÏß›8ÑÖ€¾Ç1
+H	java:S106Ö"+Replace this use of System.out by a logger.(Å¿â8ÒÖ€¾Ç1
+M	java:S106à"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÒÖ€¾Ç1
+M	java:S106õ"+Replace this use of System.out by a logger.(à¢Ìˆûÿÿÿÿ8ÓÖ€¾Ç1
+M	java:S106ÿ"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÓÖ€¾Ç1
+G	java:S106‘"+Replace this use of System.out by a logger.(…Òr8ÔÖ€¾Ç1
+M	java:S106›"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÔÖ€¾Ç1
+H	java:S106­"+Replace this use of System.out by a logger.(ÇùÈ´8ÕÖ€¾Ç1
+M	java:S106·"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8ÕÖ€¾Ç1
+P
+java:S6126Ã"2Replace this String concatenation with Text block.(¦Çæ˜8ÕÖ€¾Ç1
+M	java:S106Î"+Replace this use of System.out by a logger.( ã†±ùÿÿÿÿ8ÖÖ€¾Ç1
+H	java:S106Ğ"+Replace this use of System.out by a logger.(›Êõ8ÖÖ€¾Ç1
+M	java:S106Ú"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8×Ö€¾Ç1
+u
+java:S3776“"RRefactor this method to reduce its Cognitive Complexity from 35 to the 15 allowed.(Ë×ƒûÿÿÿÿ8×Ö€¾Ç1
+h
+java:S1854š"ERemove this useless assignment to local variable "modificheperFrase".(æ™Ş€ùÿÿÿÿ8×Ö€¾Ç1
+]
+java:S1854—"?Remove this useless assignment to local variable "frasiTotali".(—”æö8×Ö€¾Ç1
+f
+java:S1854¡"CRemove this useless assignment to local variable "controlloStampa".(ëñÈÜûÿÿÿÿ8×Ö€¾Ç1
+Y	java:S125á"<This block of commented-out lines of code should be removed.(«Ÿ‚ 8ÙÖ€¾Ç1
+Y	java:S125Ê"<This block of commented-out lines of code should be removed.(«Ÿ‚ 8ÙÖ€¾Ç1
+R
+java:S1481•"4Remove this unused "controlloStampa" local variable.(’ä‰Ú8ÚÖ€¾Ç1
 Q
-java:S1481—"3Remove this unused "modificheFrase" local variable.(áÉŒø8Œğ¬ŸÇ1
+java:S1481œ".Remove this unused "confronto" local variable.( şƒıÿÿÿÿ8ûÆ„¾Ç1
+H	java:S106°"+Replace this use of System.out by a logger.(§×šß8ÛÖ€¾Ç1
+E
+java:S1125µ"'Remove the unnecessary boolean literal.(èÕÎƒ8ÛÖ€¾Ç1
+M	java:S106¸"+Replace this use of System.out by a logger.(Æ¢¶ùıÿÿÿÿ8ÜÖ€¾Ç1
+W
+java:S1481È"4Remove this unused "numeroModifiche" local variable.(àáËÊşÿÿÿÿ8İÖ€¾Ç1
+S
+java:S1481Ê"0Remove this unused "frasiPagina" local variable.(Ñ“Ìºûÿÿÿÿ8İÖ€¾Ç1
+Q
+java:S1481Ë"3Remove this unused "modificheFrase" local variable.(áÉŒø8İÖ€¾Ç1
 U
-java:S6126£"2Replace this String concatenation with Text block.(•¸¹öøÿÿÿÿ8Œğ¬ŸÇ1
-M	java:S106µ"+Replace this use of System.out by a logger.(ÿ½Ò¡ùÿÿÿÿ8Ì”‡¸Ç1
-H	java:S106·"+Replace this use of System.out by a logger.(ÇùÈ´8Í”‡¸Ç1
-M	java:S106Á"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8Î”‡¸Ç1
-å
-java:S6541ß"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 105 to 64, Complexity from 15 to 14, Nesting Level from 5 to 2, Number of Variables from 19 to 6.(«Ÿ‚ 8¸•‡¸Ç1
+java:S6126Ù"2Replace this String concatenation with Text block.(•¸¹öøÿÿÿÿ8ßÖ€¾Ç1
+M	java:S106ñ"+Replace this use of System.out by a logger.(ÿ½Ò¡ùÿÿÿÿ8àÖ€¾Ç1
+H	java:S106ó"+Replace this use of System.out by a logger.(ÇùÈ´8áÖ€¾Ç1
+M	java:S106ı"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8áÖ€¾Ç1
+U
+java:S1135"2Complete the task associated to this TODO comment.(‹Å†ûÿÿÿÿ8âÖ€¾Ç1
+H	java:S106’"+Replace this use of System.out by a logger.(ÇùÈ´8âÖ€¾Ç1
+M	java:S106”"+Replace this use of System.out by a logger.(şû¡¹ùÿÿÿÿ8âÖ€¾Ç1
+M	java:S106"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8âÖ€¾Ç1
+S
+java:S1481©"0Remove this unused "frasiPagina" local variable.(Ñ“Ìºûÿÿÿÿ8âÖ€¾Ç1
+Q
+java:S1481ª"3Remove this unused "modificheFrase" local variable.(áÉŒø8ãÖ€¾Ç1
+U
+java:S6126¶"2Replace this String concatenation with Text block.(•¸¹öøÿÿÿÿ8ãÖ€¾Ç1
+M	java:S106È"+Replace this use of System.out by a logger.(ÿ½Ò¡ùÿÿÿÿ8åÖ€¾Ç1
+H	java:S106Ê"+Replace this use of System.out by a logger.(ÇùÈ´8åÖ€¾Ç1
+M	java:S106Ô"+Replace this use of System.out by a logger.(ëïûÙûÿÿÿÿ8åÖ€¾Ç1

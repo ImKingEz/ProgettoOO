@@ -34,7 +34,7 @@ public class ProponiUnaModifica {
     private JLabel labelListaFrasi;
     private JButton annullaButton;
 
-    public ProponiUnaModifica(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) {
+    public ProponiUnaModifica(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) throws NotFoundException {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
         this.u = u;

@@ -342,11 +342,11 @@ public class ListinoPostgresDAO implements ListinoDAO {
         ResultSet rs = null;
         ArrayList<Modifica> modifiche = new ArrayList<Modifica>();
         try {
-            String query = "SELECT m.datamodificaproposta, m.oramodificaproposta, m.idmodifica, m.testo, m.username  FROM modifica m, frase f WHERE m.idpaginafrase = ? and m.testofrase = ? and m.indice = ?";
+            String query = "select * \n" +
+                    "from modifica m, valutazione v\n" +
+                    "where m.idmodifica = v.idmodifica and m.indice = ? and v.accettazione = true";
             selectModifica = connection.prepareStatement(query);
-            selectModifica.setInt(1, getIdPagina(frase.getPaginaDiAppartenenza().getTitolo()));
-            selectModifica.setString(2, frase.getTesto());
-            selectModifica.setInt(3, frase.getIndice());
+            selectModifica.setInt(1, frase.getIndice());
             rs = selectModifica.executeQuery();
             while(rs.next()) {
                 long dateTimestamp = rs.getDate("datamodificaproposta").getTime();
@@ -921,6 +921,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
         ArrayList<Integer> indiciVisitati = new ArrayList<Integer>();
         ArrayList<Modifica> modificheperFrase = new ArrayList<Modifica>();
         java.util.Date dataMassima= Date.valueOf("1900-12-12");
+        int confronto = -1;
         Modifica modificaMigliore = null;
         frasiTotali= getFrasi(pagina);
         for(Frase f: frasiTotali){
@@ -944,15 +945,16 @@ public class ListinoPostgresDAO implements ListinoDAO {
                 }else if(contatore>1) {
                     modificheperFrase=getModifiche(f);
                     for(Modifica m: modificheperFrase){
-                        if(getValutazione(pagina.getAutore(),m).getAccettazione()==true){
-                            if(getValutazione(pagina.getAutore(),m).getDataEOraValutazione().before(dataMassima) || getValutazione(pagina.getAutore(),m).getDataEOraValutazione().equals(dataMassima)){
-                                dataMassima=getValutazione(pagina.getAutore(),m).getDataEOraValutazione();
+                        Valutazione val = getValutazione(pagina.getAutore(),m);
+                        if(val.getAccettazione() == true){
+                            if(dataMassima.before(val.getDataEOraValutazione()) || val.getDataEOraValutazione().equals(dataMassima)){
+                                dataMassima=val.getDataEOraValutazione();
+                                System.out.println("datamax: " + dataMassima);
                                 modificaMigliore=m;
                             }
                         }
                     }
-                    frasiAggiornate.add(modificaMigliore.getFraseRiferita());
-                    System.out.println((modificaMigliore.getFraseRiferita()).getTesto());
+                    frasiAggiornate.add(getFrase(modificaMigliore.getTesto(), pagina));
                 }
                 indiciVisitati.add(f.getIndice());
             }
