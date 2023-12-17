@@ -125,7 +125,7 @@ public class Controller {
         for(Frase f: listinoPostgresDAO.getFrasi(pagina)) {
             appoggio += f.getTesto() + " ";
             if(f.getPaginaLinkata() != null) {
-                appoggio += appoggio + "(Link: " + frase.getPaginaLinkata().getTitolo() + ") ";
+                appoggio += "(Link: " + f.getPaginaLinkata().getTitolo() + ") ";
             }
         }
         return appoggio;
@@ -143,7 +143,7 @@ public class Controller {
         for(Frase f: listinoPostgresDAO.getFrasiAggiornate(pagina)) {
             appoggio += f.getTesto() + " ";
             if(f.getPaginaLinkata() != null) {
-                appoggio += appoggio + "(Link: " + frase.getPaginaLinkata().getTitolo() + ") ";
+                appoggio += "(Link: " + f.getPaginaLinkata().getTitolo() + ") ";
             }
         }
         return appoggio;
