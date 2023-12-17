@@ -317,7 +317,7 @@ public class Controller {
      * @throws IllegalArgumentException the illegal argument exception
      */
     public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException{
-        return listinoPostgresDAO.getModifica(frase, ordine);
+        return listinoPostgresDAO.getModifica(frase);
     }
 
     /**

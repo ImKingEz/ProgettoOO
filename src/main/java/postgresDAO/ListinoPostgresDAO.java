@@ -16,11 +16,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
+/**
+ * La classe ListinoPostgresDAO implementa i metodi per la gestione dei dati relativi al database mediante l'utilizzo di postgreSQL.
+ */
 public class ListinoPostgresDAO implements ListinoDAO {
 
     private Connection connection;
     private Controller controller;
 
+    /**
+     * Inizializza un nuovo Listino postgres dao.
+     */
     public ListinoPostgresDAO() {
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
@@ -30,6 +36,9 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
     }
 
+    /**
+     * setSchema permette di settare lo schema su cui lavorare.
+     */
     public void setSchema() {
         PreparedStatement setSchema = null;
         try {
@@ -49,6 +58,12 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
     }
 
+    /**
+     * setUtente permette di inserire un utente nel database dati username e password.
+     * @param username the username
+     * @param password the password
+     * @throws Exception the exception
+     */
     public void setUtente(String username, String password) throws Exception{
         PreparedStatement insertUtente = null;
         try {
@@ -72,6 +87,11 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
     }
 
+    /**
+     * getUtente permette di estrarre un utente dal database dato un username.
+     * @param username the username
+     * @return the utente
+     */
     public Utente getUtente(String username){
         PreparedStatement selectUtente = null;
         Utente u=null;
@@ -101,6 +121,14 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return u;
     }
 
+    /**
+     * setPagina permette di inserire una pagina nel database dati titolo e autore.
+     * @param titolo the titolo
+     * @param autore the autore
+     * @throws GiaEsistenteException    the gia esistente exception
+     * @throws NotABlankException       the not a blank exception
+     * @throws LunghezzaMinimaException the lunghezza minima exception
+     */
     public void setPagina(String titolo, Utente autore) throws GiaEsistenteException, NotABlankException , LunghezzaMinimaException {
         PreparedStatement insertPagina = null;
 
@@ -123,6 +151,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
             insertPagina.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Errore durante l'inserimento della pagina: " + e.getMessage());
+            throw new GiaEsistenteException();
         } finally {
             try {
                 if (insertPagina != null) {
@@ -134,22 +163,29 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
     }
 
+    /**
+     * getPagina permette di estrarre una pagina dal database dato un titolo.
+     * @param titolo the titolo
+     * @throws NotFoundException the not found exception
+     * @return the pagina
+     */
     public Pagina getPagina(String titolo) throws NotFoundException {
         PreparedStatement selectPagina = null;
         Pagina p = null;
         ResultSet rs = null;
 
-        java.util.Date currentDate = Calendar.getInstance().getTime(); // Ottieni la data attuale
-        Date dataCreazione = new Date(currentDate.getTime()); // Converte java.util.Date a java.sql.Date
-        Time oraCreazione = new Time(currentDate.getTime()); // Ottieni l'ora attuale
-
         try {
-            String query = "SELECT titolo, usernameautore  FROM pagina WHERE titolo = ?";
+            String query = "SELECT titolo, usernameautore, datacreazione, oracreazione FROM pagina WHERE titolo = ?";
             selectPagina = connection.prepareStatement(query);
             selectPagina.setString(1, titolo);
             rs = selectPagina.executeQuery();
             if(rs.next()) {
-                p = new Pagina(rs.getString("titolo"), currentDate, getUtente(rs.getString("usernameautore")));
+                long dateTimestamp = rs.getDate("datacreazione").getTime();
+                long timeTimestamp = rs.getTime("oracreazione").getTime();
+                long combinedTimestamp = dateTimestamp + timeTimestamp;
+                java.util.Date utilDate = new java.util.Date(combinedTimestamp);
+
+                p = new Pagina(rs.getString("titolo"), utilDate, getUtente(rs.getString("usernameautore")));
                 p.setFrasi(getFrasi(p));
                 return p;
             }
@@ -170,6 +206,12 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
+    /**
+     * getIdPagina permette di estrarre l'id di una pagina dal database dato un titolo.
+     * @param titolo the titolo
+     * @throws NotFoundException the not found exception
+     * @return the id pagina
+     */
     public int getIdPagina(String titolo) throws NotFoundException {
         PreparedStatement selectPagina = null;
         Pagina p = null;
@@ -204,6 +246,13 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
+    /**
+     * La prima variante di setFrase permette di inserire una frase nel database dati testo e pagina.
+     * @param testo the testo
+     * @param pagina the pagina
+     * @throws NotABlankException the not a blank exception
+     * @throws NotFoundException the not found exception
+     */
     public void setFrase(String testo, Pagina pagina) throws NotABlankException, NotFoundException {
         PreparedStatement insertFrase = null;
         try {
@@ -228,6 +277,15 @@ public class ListinoPostgresDAO implements ListinoDAO {
             }
         }
     }
+
+    /**
+     * La seconda variante di setFrase permette di inserire una frase nel database dati testo, pagina e pagina linkata.
+     * @param testo the testo
+     * @param pagina the pagina
+     * @param paginaLinkata the pagina linkata
+     * @throws NotABlankException the not a blank exception
+     * @throws NotFoundException the not found exception
+     */
     public void setFrase(String testo, Pagina pagina, Pagina paginaLinkata) throws NotABlankException, NotFoundException {
         PreparedStatement insertFrase = null;
         try {
@@ -260,6 +318,14 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
     }
 
+    /**
+     * setModifica permette di inserire una modifica nel database dati testo, username modificatore, frase e pagina.
+     * @param testo the testo
+     * @param usernamemodificatore the usernamemodificatore
+     * @param frase the frase
+     * @param pagina the pagina
+     * @throws AccettazioneAutomaticaException the accettazione automatica exception
+     */
     public void setModifica(String testo, String usernamemodificatore, Frase frase, Pagina pagina) throws AccettazioneAutomaticaException {
         PreparedStatement insertModifica = null;
 
@@ -295,21 +361,26 @@ public class ListinoPostgresDAO implements ListinoDAO {
             throw new AccettazioneAutomaticaException();
         }
     }
-    public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException { //prendo la modifica più recente
+
+    /**
+     * getModifica permette di estrarre la modifica più recente di una frase dal database. Il metodo è stato implementato ma non usato poichè non necessario.
+     */
+    public Modifica getModifica(Frase frase) throws NotFoundException, IllegalArgumentException { //prendo la modifica più recente
         PreparedStatement selectModifica = null;
         Pagina p = null;
         ResultSet rs = null;
 
-        if(!(ordine.equals("asc") || ordine.equals("desc"))) {
-            throw new IllegalArgumentException();
-        }
-
         try {
-            String query = "SELECT m.idmodifica, m.testo, m.username, m.datamodificaproposta, m.oramodificaproposta  FROM modifica m, frase f WHERE m.idpaginafrase = f.idpagina and m.testofrase = f.testo and m.indice = f.indice order by datamodificaproposta asc, oramodificaproposta ?";
+            String query = "SELECT m.idmodifica, m.testo, m.username, m.datamodificaproposta, m.oramodificaproposta  " +
+                    "FROM modifica m, frase f " +
+                    "WHERE m.idpaginafrase = f.idpagina and m.testofrase = f.testo and m.indice = f.indice " +
+                    "and f.indice = ? and f.idpagina = ? " +
+                    "order by datamodificaproposta desc, oramodificaproposta desc";
             selectModifica = connection.prepareStatement(query);
-            selectModifica.setString(1, ordine);
+            selectModifica.setInt(1, frase.getIndice());
+            selectModifica.setInt(2, getIdPagina(frase.getPaginaDiAppartenenza().getTitolo()));
             rs = selectModifica.executeQuery();
-            if(rs.next()) { //prendo solo la prima tupla, ossia quella con la data minore
+            if(rs.next()) { //prendo solo la prima tupla, ossia quella con la data maggiore
                 long dateTimestamp = rs.getDate("datamodificaproposta").getTime();
                 long timeTimestamp = rs.getTime("oramodificaproposta").getTime();
 
@@ -336,6 +407,58 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
+    /**
+     * getModifica2 permette di estrarre la modifica più recente di una frase dal database.
+     * @param frase the frase
+     * @return the modifica
+     */
+    public Modifica getModifica2(Frase frase) throws NotFoundException, IllegalArgumentException { //prendo la modifica più recente
+        PreparedStatement selectModifica = null;
+        Pagina p = null;
+        ResultSet rs = null;
+
+        try {
+            String query = "select m.idmodifica, m.testo, m.datamodificaproposta, m.oramodificaproposta, m.username from frase f join modifica m on (f.idpagina = ? and f.indice = ? and f.idpagina = m.idpaginafrase and f.testo = m.testofrase and f.indice = m.indice) \n" +
+                    "join valutazione v on (v.idmodifica = m.idmodifica and v.accettazione = true)\n" +
+                    "order by f.indice asc, m.datamodificaproposta desc, m.oramodificaproposta desc";
+            selectModifica = connection.prepareStatement(query);
+            selectModifica.setInt(1, getIdPagina(frase.getPaginaDiAppartenenza().getTitolo()));
+            selectModifica.setInt(2, frase.getIndice());
+            rs = selectModifica.executeQuery();
+            if(rs.next()) { //prendo solo la prima tupla, ossia quella con la data maggiore
+                long dateTimestamp = rs.getDate("datamodificaproposta").getTime();
+                long timeTimestamp = rs.getTime("oramodificaproposta").getTime();
+
+                // Sommo i due timestamp
+                long combinedTimestamp = dateTimestamp + timeTimestamp;
+                // Creo un oggetto java.util.Date utilizzando il timestamp combinato
+                java.util.Date utilDate = new java.util.Date(combinedTimestamp);
+                return new Modifica(rs.getInt("idmodifica"), rs.getString("testo"), utilDate, getUtente(rs.getString("username")),frase);
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della modifica: " + e.getMessage());
+        } finally {
+            try {
+                if (selectModifica != null) {
+                    selectModifica.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+            }
+        }
+        throw new NotFoundException();
+    }
+
+    /**
+     * getModifiche permette di estrarre tutte le modifiche di una frase dal database.
+     * @param frase the frase
+     * @return the modifiche
+     * @throws NotFoundException        the not found exception
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     public ArrayList<Modifica> getModifiche(Frase frase) throws NotFoundException, IllegalArgumentException { //prendo la modifica più recente
         PreparedStatement selectModifica = null;
         Pagina p = null;
@@ -374,6 +497,15 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
         return modifiche;
     }
+
+    /**
+     * getIdModifica permette di estrarre l'id di una modifica dal database dati modifica, frase, pagina e username modificatore. Il metodo è stato implementato ma non usato poichè non necessario.
+     * @param modifica the modifica
+     * @param frase the frase
+     * @param pagina the pagina
+     * @param usernamemodificatore the usernamemodificatore
+     * @return the id modifica
+     */
     public int getIdModifica(Modifica modifica, Frase frase, Pagina pagina, String usernamemodificatore) throws NotFoundException {
         PreparedStatement selectModifica = null;
         ResultSet rs = null;
@@ -410,6 +542,12 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
+    /**
+     * setValutazione permette di inserire una valutazione nel database dati accettazione, modifica e autore.
+     * @param accettazione the accettazione
+     * @param modifica the modifica
+     * @param autore the autore
+     */
     public void setValutazione(boolean accettazione, Modifica modifica, Utente autore) {
         PreparedStatement insertValutazione = null;
 
@@ -441,6 +579,13 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
     }
 
+    /**
+     * getValutazione permette di estrarre una valutazione dal database dati autore e modifica.
+     * @param modifica the modifica
+     * @param autore the autore
+     * @throws NotFoundException the not found exception
+     * @return the valutazione
+     */
     public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException {
         PreparedStatement selectValutazione = null;
         ResultSet rs = null;
@@ -484,6 +629,11 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
+    /**
+     * numeroPagineCreateDaUnUtente permette di estrarre il numero di pagine create da un utente dal database dati username.
+     * @param username the username
+     * @return the int
+     */
     public int numeroPagineCreateDaUnUtente(String username){
         PreparedStatement selectPagina = null;
         int numeroPagine=0;
@@ -514,6 +664,10 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return numeroPagine;
     }
 
+    /**
+     * checkEsistenzaUtenti permette di verificare se esistono utenti nel database.
+     * @return the boolean
+     */
     public boolean checkEsistenzaUtenti(){
         PreparedStatement selectUtente = null;
         ResultSet rs = null;
@@ -542,6 +696,10 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return false;
     }
 
+    /**
+     * checkEsistenzaPagine permette di verificare se esistono pagine nel database.
+     * @return the boolean
+     */
     public boolean checkEsistenzaPagine() {
         PreparedStatement selectPagina = null;
         ResultSet rs = null;
@@ -570,16 +728,20 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return false;
     }
 
+    /**
+     * getFrasi permette di estrarre tutte le frasi di una pagina dal database.
+     * @param pagina the pagina
+     * @return the frasi
+     */
     public ArrayList<Frase> getFrasi(Pagina pagina) {
         PreparedStatement selectFrase = null;
         ArrayList<Frase> frasi = new ArrayList<Frase>();
         ResultSet rs = null;
         String titolopagina = pagina.getTitolo();
         try {
-            String query =  "SELECT f.testo,f.indice,f.idpagina\n" +
-                            "FROM frase f\n" +
-                            "WHERE f.idpagina = ?\n" +
-                            "ORDER BY f.indice asc;";
+            String query =  "select * from frase f left join modifica m on (f.idpagina = ? and f.idpagina = m.idpaginafrase and f.testo = m.testofrase and f.indice = m.indice) " +
+                    "left join valutazione v on (v.idmodifica = m.idmodifica and accettazione = true)\n" +
+                    "order by f.indice asc, m.datamodificaproposta asc, m.oramodificaproposta asc";
             selectFrase = connection.prepareStatement(query);
             selectFrase.setInt(1, getIdPagina(titolopagina));
             rs = selectFrase.executeQuery();
@@ -605,313 +767,12 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return frasi;
     }
 
-    /*
-    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
-        int contatore=0;
-        int controlloStampa=0;
-        int controlloIndici=0;
-        PreparedStatement selectFrase = null;
-        ArrayList<Frase> frasitotali = new ArrayList<Frase>();
-        ArrayList<Integer> indiciVisitati = new ArrayList<Integer>();
-        ArrayList<Frase> frasiAggiornate = new ArrayList<Frase>();
-        ResultSet rs = null;
-        String titolopagina = pagina.getTitolo();
-        try {
-            String query = "SELECT f.testo,f.indice,f.idpagina\n" +
-                    "FROM frase f\n" +
-                    "WHERE f.idpagina = ?\n" +
-                    "ORDER BY f.indice asc;";
-            selectFrase = connection.prepareStatement(query);
-            selectFrase.setInt(1, getIdPagina(titolopagina));
-            rs = selectFrase.executeQuery();
-            while (rs.next()) {
-                frasitotali.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-            }
-            for(Frase f: frasitotali){
-                contatore=0;
-                controlloStampa=0;
-                controlloIndici=0;
-                for(int n: indiciVisitati){
-                    if(f.getIndice()==n){
-                        controlloIndici=1;
-                    }
-                }
-                if(controlloIndici==0){  //se non è già stato visitato faccio la query, altrimenti passo alla prossima frase
-                    for(Frase f2: frasitotali){
-                        if(f.getIndice()==f2.getIndice()){
-                            contatore=contatore+1;
-                        }
-                    }
-                    if(contatore == 2){
-                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
-                                "FROM frase f, modifica m, valutazione v\n" +
-                                "WHERE f.idpagina = ? and f.indice= ?\n" +
-                                "and f.testo=m.testoFrase\n" +
-                                "and f.indice=m.indice and f.idpagina=m.idpaginafrase and\n" +
-                                "m.idmodifica=v.idmodifica;";    //da mettere v.accettazzione = true ?
-                        selectFrase = connection.prepareStatement(query2);
-                        selectFrase.setInt(1, getIdPagina(titolopagina));
-                        selectFrase.setInt(2, f.getIndice());
-                        rs = selectFrase.executeQuery();
-                        while (rs.next()) {
-                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-                        }
-                        controlloStampa=1;
-                    } else if(contatore>2){
-                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
-                                "FROM valutazione v, modifica m\n" +
-                                "WHERE m.idmodifica=v.idmodifica and v.accettazione = true and\n" +
-                                "v.datavalutazione in (select max(v1.datavalutazione)\n" +
-                                "from valutazione v1\n" +
-                                "where m.idpaginafrase = ? and\n" +
-                                "m.indice= ? and\n" +
-                                "v1.accettazione = true and v.oravalutazione in\n" +
-                                "(select max(v2.oravalutazione)\n" +
-                                "from valutazione v2\n" +
-                                "where m.idpaginafrase = ? and\n" +
-                                "m.indice = ? and\n" +
-                                "v2.datavalutazione=v.datavalutazione and\n" +
-                                "v2.accettazione = true));";
-                        selectFrase = connection.prepareStatement(query2);
-                        selectFrase.setInt(1, getIdPagina(titolopagina));
-                        selectFrase.setInt(2, f.getIndice());
-                        selectFrase.setInt(3, getIdPagina(titolopagina));
-                        selectFrase.setInt(4, f.getIndice());
-                        rs = selectFrase.executeQuery();
-                        while (rs.next()) {
-                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-                        }
-                        controlloStampa=1;
-                    }
-                    if(controlloStampa==0){
-                        frasiAggiornate.add(f);
-                    }
-                }
-                indiciVisitati.add(f.getIndice());
-            }
-        } catch (SQLException e) {
-            System.out.println("Errore durante l'estrazione della frase: " + e.getMessage());
-        } catch (NotFoundException ex) {
-            System.out.println("Errore durante l'estrazione del id pagina: " + ex.getMessage());
-        } finally {
-            try {
-                if (selectFrase != null) {
-                    selectFrase.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
-
-            }
-        }
-        return frasiAggiornate;
-    }
-*/
-
-        /*
-    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
-        int contatore=0;
-        int controlloStampa=0;
-        int controlloIndici=0;
-        PreparedStatement selectFrase = null;
-        ArrayList<Frase> frasitotali = new ArrayList<Frase>();
-        ArrayList<Integer> indiciVisitati = new ArrayList<Integer>();
-        ArrayList<Frase> frasiAggiornate = new ArrayList<Frase>();
-        ResultSet rs = null;
-        String titolopagina = pagina.getTitolo();
-        try {
-            frasitotali= getFrasi(pagina);
-            for(Frase f: frasitotali){
-                contatore=0;
-                controlloStampa=0;
-                controlloIndici=0;
-                for(int n: indiciVisitati){
-                    if(f.getIndice()==n){
-                        controlloIndici=1;
-                    }
-                }
-                if(controlloIndici==0){  //se non è già stato visitato faccio la query, altrimenti passo alla prossima frase
-                    for(Frase f2: frasitotali){
-                        if(f.getIndice()==f2.getIndice()){
-                            contatore=contatore+1;
-                        }
-                    }
-                    if(contatore == 2){
-                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
-                                        "FROM frase f, modifica m, valutazione v\n" +
-                                        "WHERE f.idpagina = ? and f.indice= ?\n" +
-                                        "and f.testo = ? \n" +
-                                        "and f.indice=m.indice and f.idpagina=m.idpaginafrase and f.testo = m.testofrase and\n" +
-                                        "m.idmodifica=v.idmodifica and v.accettazione = true ;";
-                        selectFrase = connection.prepareStatement(query2);
-                        selectFrase.setInt(1, getIdPagina(titolopagina));
-                        selectFrase.setInt(2, f.getIndice());
-                        selectFrase.setString(3, f.getTesto());
-                        rs = selectFrase.executeQuery();
-                        while (rs.next()) {
-                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-                        }
-                        controlloStampa=1;
-                    } else if(contatore>2){
-                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
-                                        "FROM valutazione v, modifica m\n" +
-                                        "WHERE m.idpaginafrase = ? and m.indice = ? and " +
-                                        "m.idmodifica=v.idmodifica and v.accettazione = true and\n" +
-                                        "v.datavalutazione in (select max(v1.datavalutazione)\n" +
-                                        "from valutazione v1\n" +
-                                        "where m.idpaginafrase = ? and\n" +
-                                        "m.indice= ? and\n" +
-                                        "v1.accettazione = true and v.oravalutazione in\n" +
-                                        "(select max(v2.oravalutazione)\n" +
-                                        "from valutazione v2\n" +
-                                        "where m.idpaginafrase = ? and\n" +
-                                        "m.indice = ? and\n" +
-                                        "v2.datavalutazione=v.datavalutazione and\n" +
-                                        "v2.accettazione = true));";
-                        selectFrase = connection.prepareStatement(query2);
-                        selectFrase.setInt(1, getIdPagina(titolopagina));
-                        selectFrase.setInt(2, f.getIndice());
-                        selectFrase.setInt(3, getIdPagina(titolopagina));
-                        selectFrase.setInt(4, f.getIndice());
-                        selectFrase.setInt(5, getIdPagina(titolopagina));
-                        selectFrase.setInt(6, f.getIndice());
-                        rs = selectFrase.executeQuery();
-                        while (rs.next()) {
-                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-                        }
-                        controlloStampa=1;
-                    }
-                    if(controlloStampa==0){
-                        frasiAggiornate.add(f);
-                    }
-                }
-                indiciVisitati.add(f.getIndice());
-            }
-        } catch (SQLException e) {
-            System.out.println("Errore durante l'estrazione della frase: " + e.getMessage());
-        } catch (NotFoundException ex) {
-            System.out.println("Errore durante l'estrazione del id pagina: " + ex.getMessage());
-        } finally {
-            try {
-                if (selectFrase != null) {
-                    selectFrase.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
-
-            }
-        }
-        return frasiAggiornate;
-    }
-    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
-        int contatore=0;
-        int controlloStampa=0;
-        int controlloIndici=0;
-        PreparedStatement selectFrase = null;
-        ArrayList<Frase> frasitotali = new ArrayList<Frase>();
-        ArrayList<Integer> indiciVisitati = new ArrayList<Integer>();
-        ArrayList<Frase> frasiAggiornate = new ArrayList<Frase>();
-        ResultSet rs = null;
-        String titolopagina = pagina.getTitolo();
-        try {
-            String query = "SELECT f.testo,f.indice,f.idpagina\n" +
-                            "FROM frase f\n" +
-                            "WHERE f.idpagina = ?\n" +
-                            "ORDER BY f.indice asc;";
-            selectFrase = connection.prepareStatement(query);
-            selectFrase.setInt(1, getIdPagina(titolopagina));
-            rs = selectFrase.executeQuery();
-            while (rs.next()) {
-                frasitotali.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-            }
-            for(Frase f: frasitotali){
-                contatore=0;
-                controlloStampa=0;
-                controlloIndici=0;
-                for(int n: indiciVisitati){
-                    if(f.getIndice()==n){
-                        controlloIndici=1;
-                    }
-                }
-                if(controlloIndici==0){  //se non è già stato visitato faccio la query, altrimenti passo alla prossima frase
-                    for(Frase f2: frasitotali){
-                        if(f.getIndice()==f2.getIndice()){
-                            contatore=contatore+1;
-                        }
-                    }
-                    if(contatore == 2){
-                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
-                                "FROM frase f, modifica m, valutazione v\n" +
-                                "WHERE f.idpagina = ? and f.indice= ?\n" +
-                                "and f.testo=m.testoFrase\n" +
-                                "and f.indice=m.indice and f.idpagina=m.idpaginafrase and\n" +
-                                "m.idmodifica=v.idmodifica;";
-                        selectFrase = connection.prepareStatement(query2);
-                        selectFrase.setInt(1, getIdPagina(titolopagina));
-                        selectFrase.setInt(2, f.getIndice());
-                        rs = selectFrase.executeQuery();
-                        while (rs.next()) {
-                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-                        }
-                        controlloStampa=1;
-                    } else if(contatore>2){
-                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
-                                "FROM valutazione v, modifica m\n" +
-                                "WHERE m.idmodifica=v.idmodifica and v.accettazione = true and\n" +
-                                "v.datavalutazione in (select max(v1.datavalutazione)\n" +
-                                "from valutazione v1\n" +
-                                "where m.idpaginafrase = ? and\n" +
-                                "m.indice= ? and\n" +
-                                "v1.accettazione = true and v.oravalutazione in\n" +
-                                "(select max(v2.oravalutazione)\n" +
-                                "from valutazione v2\n" +
-                                "where m.idpaginafrase = ? and\n" +
-                                "m.indice = ? and\n" +
-                                "v2.datavalutazione=v.datavalutazione and\n" +
-                                "v2.accettazione = true));";
-                        selectFrase = connection.prepareStatement(query2);
-                        selectFrase.setInt(1, getIdPagina(titolopagina));
-                        selectFrase.setInt(2, f.getIndice());
-                        selectFrase.setInt(3, getIdPagina(titolopagina));
-                        selectFrase.setInt(4, f.getIndice());
-                        rs = selectFrase.executeQuery();
-                        while (rs.next()) {
-                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
-                        }
-                        controlloStampa=1;
-                    }
-                    if(controlloStampa==0){
-                        frasiAggiornate.add(f);
-                    }
-                    indiciVisitati.add(f.getIndice());
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Errore durante l'estrazione della frase: " + e.getMessage());
-        } catch (NotFoundException ex) {
-            System.out.println("Errore durante l'estrazione del id pagina: " + ex.getMessage());
-        } finally {
-            try {
-                if (selectFrase != null) {
-                    selectFrase.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
-
-            }
-        }
-        return frasiAggiornate;
-    }
-       */
-
+    /**
+     * getFrasiAggiornate permette di estrarre tutte le frasi aggiornate (ultime modifiche se presenti) di una pagina dal database.
+     * @param pagina the pagina
+     * @return the frasi aggiornate
+     * @throws NotFoundException the not found exception
+     */
     public ArrayList<Frase> getFrasiAggiornate(Pagina pagina) throws NotFoundException {
         int contatore=0;
         int controlloStampa=0;
@@ -923,7 +784,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
         java.util.Date dataMassima= Date.valueOf("1900-12-12");
         int confronto = -1;
         Modifica modificaMigliore = null;
-        frasiTotali= getFrasi(pagina);
+        frasiTotali = getFrasi(pagina);
         for(Frase f: frasiTotali){
             contatore=0;
             controlloStampa=0;
@@ -941,19 +802,11 @@ public class ListinoPostgresDAO implements ListinoDAO {
                 }
                 if(contatore==1){
                     frasiAggiornate.add(f);
-                    System.out.println(f.getTesto());
-                }else if(contatore>1) {
-                    modificheperFrase=getModifiche(f);
-                    for(Modifica m: modificheperFrase){
-                        Valutazione val = getValutazione(pagina.getAutore(),m);
-                        if(val.getAccettazione() == true){
-                            if(dataMassima.before(val.getDataEOraValutazione()) || val.getDataEOraValutazione().equals(dataMassima)){
-                                dataMassima=val.getDataEOraValutazione();
-                                System.out.println("datamax: " + dataMassima);
-                                modificaMigliore=m;
-                            }
-                        }
-                    }
+                }else if(contatore==2) {
+                    modificaMigliore=getModifica2(f); //controlare se accettazione è true
+                    frasiAggiornate.add(getFrase(modificaMigliore.getTesto(), pagina));
+                } else if(contatore > 2) {
+                    modificaMigliore=getModifica2(f);
                     frasiAggiornate.add(getFrase(modificaMigliore.getTesto(), pagina));
                 }
                 indiciVisitati.add(f.getIndice());
@@ -962,6 +815,11 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return frasiAggiornate;
     }
 
+    /**
+     * getModificaPropostaMenoRecente permette di estrarre la modifica proposta meno recente di una pagina dal database.
+     * @param autore the autore
+     * @return the modifica
+     */
     public Modifica getModificaPropostaMenoRecente(Utente autore){
         PreparedStatement selectModifica = null;
         ResultSet rs = null;
@@ -1025,7 +883,13 @@ public class ListinoPostgresDAO implements ListinoDAO {
         return modificaMenoRecente;
     }
 
-
+    /**
+     * getFrase permette di estrarre una frase dal database dati testo e pagina.
+     * @param testo  the testo
+     * @param pagina the pagina
+     * @return the frase
+     * @throws NotFoundException
+     */
     public Frase getFrase(String testo, Pagina pagina) throws NotFoundException {
         PreparedStatement selectFrase = null;
         ResultSet rs = null;
@@ -1035,7 +899,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
             selectFrase.setString(1, testo);
             selectFrase.setInt(2, getIdPagina(pagina.getTitolo()));
             rs = selectFrase.executeQuery();
-            if(rs.next()) { //TODO da fare anche per i link
+            if(rs.next()) {
                 return new Frase(testo, rs.getInt("indice"), pagina);
             }
         } catch (SQLException e) {
@@ -1057,6 +921,11 @@ public class ListinoPostgresDAO implements ListinoDAO {
         throw new NotFoundException();
     }
 
+    /**
+     * getNumeroModifichePerAutore permette di estrarre il numero di modifiche proposte per un autore dal database.
+     * @param autore the autore
+     * @return the int
+     */
     public int getNumeroModifichePerAutore(Utente autore) {
         PreparedStatement selectModifica = null;
         ResultSet rs = null;

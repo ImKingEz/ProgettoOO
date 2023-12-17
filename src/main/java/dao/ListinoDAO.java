@@ -110,12 +110,20 @@ public interface ListinoDAO {
      * Gets modifica.
      *
      * @param frase  the frase
-     * @param ordine the ordine
      * @return the modifica
      * @throws NotFoundException        the not found exception
      * @throws IllegalArgumentException the illegal argument exception
      */
-    public Modifica getModifica(Frase frase, String ordine) throws NotFoundException, IllegalArgumentException;
+    public Modifica getModifica(Frase frase) throws NotFoundException, IllegalArgumentException;
+    /**
+     * Gets modifica.
+     *
+     * @param frase  the frase
+     * @return the modifica
+     * @throws NotFoundException        the not found exception
+     * @throws IllegalArgumentException the illegal argument exception
+     */
+    public Modifica getModifica2(Frase frase) throws NotFoundException, IllegalArgumentException;
 
     /**
      * Gets id modifica.

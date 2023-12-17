@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * La gui finestrNotifiche permette di visualizzare le notifiche della modifica più vecchia proposta per un autore.
+ */
 public class FinestraNotifiche {
     private JPanel panelNotifiche;
     private JPanel panelNumeroNotifiche;
@@ -35,6 +38,14 @@ public class FinestraNotifiche {
     private Utente autore;
     private Modifica modifica;
     private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
+
+    /**
+     * Inizializza un nuovo Finestra notifiche.
+     *
+     * @param frameChiamante the frame chiamante
+     * @param controller     the controller
+     * @param autore         the autore
+     */
     public FinestraNotifiche(JFrame frameChiamante, Controller controller, Utente autore) {
         this.autore = autore;
         this.frameChiamante = frameChiamante;
