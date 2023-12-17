@@ -342,7 +342,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
         ResultSet rs = null;
         ArrayList<Modifica> modifiche = new ArrayList<Modifica>();
         try {
-            String query = "SELECT m.idmodifica, m.idmodifica, m.testo, m.username, m.datamodificaproposta, m.oramodificaproposta  FROM modifica m, frase f WHERE m.idpaginafrase = ? and m.testofrase = ? and m.indice = ?";
+            String query = "SELECT m.datamodificaproposta, m.oramodificaproposta, m.idmodifica, m.testo, m.username  FROM modifica m, frase f WHERE m.idpaginafrase = ? and m.testofrase = ? and m.indice = ?";
             selectModifica = connection.prepareStatement(query);
             selectModifica.setInt(1, getIdPagina(frase.getPaginaDiAppartenenza().getTitolo()));
             selectModifica.setString(2, frase.getTesto());
@@ -425,7 +425,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
             insertValutazione.setTime(3, oraValutazione);
             insertValutazione.setString(4, autore.getUsername());
             insertValutazione.setInt(5, modifica.getIdModifica());
-            modifica.setValutazione(new Valutazione(accettazione, currentDate, autore, modifica)); //
+            modifica.setValutazione(new Valutazione(accettazione, currentDate, autore, modifica));
             insertValutazione.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Errore durante l'inserimento della valutazione: " + ex.getMessage());
@@ -456,14 +456,14 @@ public class ListinoPostgresDAO implements ListinoDAO {
             selectValutazione.setInt(2, modifica.getIdModifica());
             rs = selectValutazione.executeQuery();
             if(rs.next()) {
-                long dateTimestamp = rs.getDate("datamodificaproposta").getTime();
-                long timeTimestamp = rs.getTime("oramodificaproposta").getTime();
+                long dateTimestamp = rs.getDate("datavalutazione").getTime();
+                long timeTimestamp = rs.getTime("oravalutazione").getTime();
                 // Sommo i due timestamp
                 long combinedTimestamp = dateTimestamp + timeTimestamp;
                 // Creo un oggetto java.util.Date utilizzando il timestamp combinato
                 java.util.Date utilDate = new java.util.Date(combinedTimestamp);
                 Valutazione valutazione = new Valutazione(rs.getBoolean("accettazione"), utilDate, autore, modifica);
-                modifica.setValutazione(valutazione); //
+                modifica.setValutazione(valutazione);
                 return valutazione;
             }
         } catch (SQLException e) {
@@ -604,6 +604,8 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
         return frasi;
     }
+
+    /*
     public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
         int contatore=0;
         int controlloStampa=0;
@@ -625,6 +627,102 @@ public class ListinoPostgresDAO implements ListinoDAO {
             while (rs.next()) {
                 frasitotali.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
             }
+            for(Frase f: frasitotali){
+                contatore=0;
+                controlloStampa=0;
+                controlloIndici=0;
+                for(int n: indiciVisitati){
+                    if(f.getIndice()==n){
+                        controlloIndici=1;
+                    }
+                }
+                if(controlloIndici==0){  //se non è già stato visitato faccio la query, altrimenti passo alla prossima frase
+                    for(Frase f2: frasitotali){
+                        if(f.getIndice()==f2.getIndice()){
+                            contatore=contatore+1;
+                        }
+                    }
+                    if(contatore == 2){
+                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
+                                "FROM frase f, modifica m, valutazione v\n" +
+                                "WHERE f.idpagina = ? and f.indice= ?\n" +
+                                "and f.testo=m.testoFrase\n" +
+                                "and f.indice=m.indice and f.idpagina=m.idpaginafrase and\n" +
+                                "m.idmodifica=v.idmodifica;";    //da mettere v.accettazzione = true ?
+                        selectFrase = connection.prepareStatement(query2);
+                        selectFrase.setInt(1, getIdPagina(titolopagina));
+                        selectFrase.setInt(2, f.getIndice());
+                        rs = selectFrase.executeQuery();
+                        while (rs.next()) {
+                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
+                        }
+                        controlloStampa=1;
+                    } else if(contatore>2){
+                        String query2 = "SELECT m.testo,m.indice,m.idpaginafrase\n" +
+                                "FROM valutazione v, modifica m\n" +
+                                "WHERE m.idmodifica=v.idmodifica and v.accettazione = true and\n" +
+                                "v.datavalutazione in (select max(v1.datavalutazione)\n" +
+                                "from valutazione v1\n" +
+                                "where m.idpaginafrase = ? and\n" +
+                                "m.indice= ? and\n" +
+                                "v1.accettazione = true and v.oravalutazione in\n" +
+                                "(select max(v2.oravalutazione)\n" +
+                                "from valutazione v2\n" +
+                                "where m.idpaginafrase = ? and\n" +
+                                "m.indice = ? and\n" +
+                                "v2.datavalutazione=v.datavalutazione and\n" +
+                                "v2.accettazione = true));";
+                        selectFrase = connection.prepareStatement(query2);
+                        selectFrase.setInt(1, getIdPagina(titolopagina));
+                        selectFrase.setInt(2, f.getIndice());
+                        selectFrase.setInt(3, getIdPagina(titolopagina));
+                        selectFrase.setInt(4, f.getIndice());
+                        rs = selectFrase.executeQuery();
+                        while (rs.next()) {
+                            frasiAggiornate.add(new Frase(rs.getString("testo"), rs.getInt("indice"), pagina));
+                        }
+                        controlloStampa=1;
+                    }
+                    if(controlloStampa==0){
+                        frasiAggiornate.add(f);
+                    }
+                }
+                indiciVisitati.add(f.getIndice());
+            }
+        } catch (SQLException e) {
+            System.out.println("Errore durante l'estrazione della frase: " + e.getMessage());
+        } catch (NotFoundException ex) {
+            System.out.println("Errore durante l'estrazione del id pagina: " + ex.getMessage());
+        } finally {
+            try {
+                if (selectFrase != null) {
+                    selectFrase.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Errore durante la chiusura dello statement: " + e.getMessage());
+
+            }
+        }
+        return frasiAggiornate;
+    }
+*/
+
+        /*
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
+        int contatore=0;
+        int controlloStampa=0;
+        int controlloIndici=0;
+        PreparedStatement selectFrase = null;
+        ArrayList<Frase> frasitotali = new ArrayList<Frase>();
+        ArrayList<Integer> indiciVisitati = new ArrayList<Integer>();
+        ArrayList<Frase> frasiAggiornate = new ArrayList<Frase>();
+        ResultSet rs = null;
+        String titolopagina = pagina.getTitolo();
+        try {
+            frasitotali= getFrasi(pagina);
             for(Frase f: frasitotali){
                 contatore=0;
                 controlloStampa=0;
@@ -710,7 +808,6 @@ public class ListinoPostgresDAO implements ListinoDAO {
         }
         return frasiAggiornate;
     }
-      /*
     public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
         int contatore=0;
         int controlloStampa=0;
@@ -815,6 +912,54 @@ public class ListinoPostgresDAO implements ListinoDAO {
     }
        */
 
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina) throws NotFoundException {
+        int contatore=0;
+        int controlloStampa=0;
+        int controlloIndici=0;
+        ArrayList<Frase> frasiTotali = new ArrayList<Frase>();
+        ArrayList<Frase> frasiAggiornate = new ArrayList<Frase>();
+        ArrayList<Integer> indiciVisitati = new ArrayList<Integer>();
+        ArrayList<Modifica> modificheperFrase = new ArrayList<Modifica>();
+        java.util.Date dataMassima= Date.valueOf("1900-12-12");
+        Modifica modificaMigliore = null;
+        frasiTotali= getFrasi(pagina);
+        for(Frase f: frasiTotali){
+            contatore=0;
+            controlloStampa=0;
+            controlloIndici=0;
+            for(int n: indiciVisitati){
+                if(f.getIndice()==n){
+                    controlloIndici=1;
+                }
+            }
+            if(controlloIndici==0){
+                for(Frase f2: frasiTotali){
+                    if(f.getIndice()==f2.getIndice()){
+                        contatore=contatore+1;
+                    }
+                }
+                if(contatore==1){
+                    frasiAggiornate.add(f);
+                    System.out.println(f.getTesto());
+                }else if(contatore>1) {
+                    modificheperFrase=getModifiche(f);
+                    for(Modifica m: modificheperFrase){
+                        if(getValutazione(pagina.getAutore(),m).getAccettazione()==true){
+                            if(getValutazione(pagina.getAutore(),m).getDataEOraValutazione().before(dataMassima) || getValutazione(pagina.getAutore(),m).getDataEOraValutazione().equals(dataMassima)){
+                                dataMassima=getValutazione(pagina.getAutore(),m).getDataEOraValutazione();
+                                modificaMigliore=m;
+                            }
+                        }
+                    }
+                    frasiAggiornate.add(modificaMigliore.getFraseRiferita());
+                    System.out.println((modificaMigliore.getFraseRiferita()).getTesto());
+                }
+                indiciVisitati.add(f.getIndice());
+            }
+        }
+        return frasiAggiornate;
+    }
+
     public Modifica getModificaPropostaMenoRecente(Utente autore){
         PreparedStatement selectModifica = null;
         ResultSet rs = null;
@@ -836,7 +981,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
             }
             for(Pagina p: pagineDellAutore) {
                 String query2 = "select m.idmodifica, m.testo, m.datamodificaproposta, m.oramodificaproposta, m.testofrase\n" +
-                        "from modifica m\n" +
+                        "from modifica m \n" +
                         "where m.idpaginafrase = ? and m.idmodifica not in (select v.idmodifica\n" +
                         "from valutazione v)";
                 selectModifica = connection.prepareStatement(query2);
@@ -929,7 +1074,7 @@ public class ListinoPostgresDAO implements ListinoDAO {
             }
             for(Pagina p: pagineDellAutore) {
                 String query2 = "select m.idmodifica, m.testo, m.datamodificaproposta, m.oramodificaproposta, m.testofrase\n" +
-                        "from modifica m\n" +
+                        "from modifica m \n" +
                         "where m.idpaginafrase = ? and m.idmodifica not in (select v.idmodifica\n" +
                         "from valutazione v)";
                 selectModifica = connection.prepareStatement(query2);

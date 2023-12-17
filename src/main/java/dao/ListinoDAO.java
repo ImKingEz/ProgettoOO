@@ -156,6 +156,7 @@ public interface ListinoDAO {
      */
     public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException;
 
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina) throws NotFoundException;
     /**
      * Gets frasi aggiornate.
      *

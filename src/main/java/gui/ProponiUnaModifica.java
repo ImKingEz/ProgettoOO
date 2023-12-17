@@ -34,14 +34,6 @@ public class ProponiUnaModifica {
     private JLabel labelListaFrasi;
     private JButton annullaButton;
 
-    /**
-     * Instanzia un nuovo Proponi una modifica.
-     *
-     * @param frameChiamante the frame chiamante
-     * @param controller     the controller
-     * @param u              the u
-     * @param pagina         the pagina
-     */
     public ProponiUnaModifica(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
