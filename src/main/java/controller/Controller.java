@@ -167,7 +167,7 @@ public class Controller {
     }
 
     public String getFrasiConIndici(Pagina pagina) {
-        String ret = "<html> ";
+        String ret = "<html> <br>";
 
         for(Frase f: listinoPostgresDAO.getFrasi(pagina)) {
             ret += f.getIndice() + ") " + f.getTesto();
@@ -182,7 +182,7 @@ public class Controller {
     }
 
     public String getFrasiConIndiciAggiornato(Pagina pagina) {
-        String ret = "<html> ";
+        String ret = "<html> <br>";
 
         for(Frase f: listinoPostgresDAO.getFrasiAggiornate(pagina)) {
             ret += f.getIndice() + ") " + f.getTesto();

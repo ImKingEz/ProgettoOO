@@ -74,7 +74,7 @@ public class InserisciFrase {
                     else {
                         controller.setFrase(textFieldFrase.getText(), pagina, controller.getPagina(textFieldLink.getText()));
                     }
-                    labelTesto.setText("<html>" + controller.getTestoTotale(pagina) + "</html>");
+                    labelTesto.setText("<html>" + controller.getTestoTotaleAggiornato(pagina) + "</html>");
                     textFieldFrase.setText("");
                     textFieldLink.setText("");
                 } catch (NotABlankException nabe) {
