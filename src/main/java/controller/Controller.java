@@ -138,7 +138,7 @@ public class Controller {
      * @param pagina the pagina
      * @return the testo totale aggiornato
      */
-    public String getTestoTotaleAggiornato(Pagina pagina) {
+    public String getTestoTotaleAggiornato(Pagina pagina) throws NotFoundException {
         String appoggio = "";
         for(Frase f: listinoPostgresDAO.getFrasiAggiornate(pagina)) {
             appoggio += f.getTesto() + " ";
@@ -156,7 +156,7 @@ public class Controller {
      * @param pagina the pagina
      * @return the int
      */
-    public int calcolaIndice(Pagina pagina) {
+    public int calcolaIndice(Pagina pagina) throws NotFoundException {
         return listinoPostgresDAO.getFrasiAggiornate(pagina).size() + 1;
     }
 
@@ -246,7 +246,7 @@ public class Controller {
      * @param pagina the pagina
      * @return the array list
      */
-    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina){
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina) throws NotFoundException {
         return listinoPostgresDAO.getFrasiAggiornate(pagina);
     }
 
@@ -279,8 +279,8 @@ public class Controller {
      * @param pagina the pagina
      * @return the frasi con indici aggiornato
      */
-    public String getFrasiConIndiciAggiornato(Pagina pagina) {
-        String ret = "<html> <br>";
+    public String getFrasiConIndiciAggiornato(Pagina pagina) throws NotFoundException {
+        String ret = "<html> ";
 
         for(Frase f: listinoPostgresDAO.getFrasiAggiornate(pagina)) {
             ret += f.getIndice() + ") " + f.getTesto();

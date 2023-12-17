@@ -27,7 +27,7 @@ public interface ListinoDAO {
     public void setValutazione(boolean accettazione, Modifica modifica, Utente autore);
     public Valutazione getValutazione(Utente autore, Modifica modifica) throws NotFoundException;
 
-    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina);
+    public ArrayList<Frase> getFrasiAggiornate(Pagina pagina) throws NotFoundException;
 
 
     public void setSchema();

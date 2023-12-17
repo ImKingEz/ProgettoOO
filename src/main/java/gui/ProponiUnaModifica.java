@@ -31,7 +31,7 @@ public class ProponiUnaModifica {
     private JLabel labelListaFrasi;
     private JButton annullaButton;
 
-    public ProponiUnaModifica(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) {
+    public ProponiUnaModifica(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) throws NotFoundException {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
         this.u = u;
@@ -69,14 +69,14 @@ public class ProponiUnaModifica {
         proponiLaModificaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String indice = textFieldInserisciIndice.getText();
+                int indice = Integer.parseInt(textFieldInserisciIndice.getText());
                 String testoProposto = textFieldTestoProposto.getText();
-                if (indice.isBlank() || testoProposto.isBlank()) {
+                if (textFieldInserisciIndice.getText().isBlank() || testoProposto.isBlank()) {
                     JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                 } else {
                     try {
                         for(Frase f: controller.getFrasiAggiornate(pagina)) {
-                            if (f.getIndice() == Integer.parseInt(indice)) {
+                            if (f.getIndice() == indice) {
                                 controller.setModifica(testoProposto, u.getUsername(), f, pagina);
                             }
                         }
@@ -90,7 +90,7 @@ public class ProponiUnaModifica {
                         frame.setVisible(false);
                         frame.dispose();
                         }
-                    catch (Exception ex) {
+                    catch (NotFoundException ex) {
                         JOptionPane.showMessageDialog(frame, "Non puoi lasciare un campo vuoto.");
                     }
                 }

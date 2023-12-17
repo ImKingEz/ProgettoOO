@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import controller.NotFoundException;
 import model.Frase;
 import controller.NotABlankException;
 import model.Pagina;
@@ -32,7 +33,7 @@ public class InserisciFrase {
     private Controller controller;
     private Pagina pagina;
     private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
-    public InserisciFrase(JFrame frameChiamante, Controller controller, Pagina pagina) {
+    public InserisciFrase(JFrame frameChiamante, Controller controller, Pagina pagina) throws NotFoundException {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
         this.pagina = pagina;
@@ -73,8 +74,8 @@ public class InserisciFrase {
                     textFieldFrase.setText("");
                 } catch (NotABlankException nabe) {
                     JOptionPane.showMessageDialog(frame,"Non puoi inserire un testo vuoto.");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                } catch (NotFoundException ex) {
+                    JOptionPane.showMessageDialog(frame,"Testo aggiornato non trovato.");
                 }
             }
         });

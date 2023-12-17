@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import controller.NotFoundException;
 import model.Pagina;
 
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class CercaPagina {
     private Controller controller;
     private Pagina pagina;
 
-    public CercaPagina(JFrame frameChiamante, Controller controller, Pagina pagina) {
+    public CercaPagina(JFrame frameChiamante, Controller controller, Pagina pagina) throws NotFoundException {
         this.frameChiamante = frameChiamante;
         this.controller = controller;
         this.pagina=pagina;
