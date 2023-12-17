@@ -14,6 +14,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * La gui ProponiUnaModifica permette di proporre una modifica ad una frase di una pagina, inserendo l'indice da modificare.
+ */
 public class ProponiUnaModifica {
     private final JFrame frameChiamante;
     private final Controller controller;
@@ -31,6 +34,14 @@ public class ProponiUnaModifica {
     private JLabel labelListaFrasi;
     private JButton annullaButton;
 
+    /**
+     * Instanzia un nuovo Proponi una modifica.
+     *
+     * @param frameChiamante the frame chiamante
+     * @param controller     the controller
+     * @param u              the u
+     * @param pagina         the pagina
+     */
     public ProponiUnaModifica(JFrame frameChiamante, Controller controller, Utente u, Pagina pagina) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;

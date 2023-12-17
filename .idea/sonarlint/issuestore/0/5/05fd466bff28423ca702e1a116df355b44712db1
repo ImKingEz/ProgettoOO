@@ -1,0 +1,37 @@
+
+k
+java:S1192€"HDefine a constant instead of duplicating this literal "(Link: " 4 times.(’ô¹Íûÿÿÿÿ8ÕŠœŸÇ1
+“
+java:S1319î"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(˜£Æøÿÿÿÿ8ÕŠœŸÇ1
+
+java:S1319ù"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(«Ÿ‚ 8ÖŠœŸÇ1
+9
+java:S1643~"Use a StringBuilder instead.(òÏé³8ÖŠœŸÇ1
+?
+java:S1643€"Use a StringBuilder instead.(’ô¹Íûÿÿÿÿ8ÖŠœŸÇ1
+:
+java:S1643"Use a StringBuilder instead.(òÏé³8ÖŠœŸÇ1
+?
+java:S1643’"Use a StringBuilder instead.(’ô¹Íûÿÿÿÿ8ÖŠœŸÇ1
+:
+java:S1643ˆ"Use a StringBuilder instead.(ÃÅ€œ8ÖŠœŸÇ1
+:
+java:S1643Š"Use a StringBuilder instead.(‡Ğ“ù8ÖŠœŸÇ1
+:
+java:S1643Œ"Use a StringBuilder instead.(Ç®…«8×ŠœŸÇ1
+:
+java:S1643"Use a StringBuilder instead.(ÃÅ€œ8ï”‡¸Ç1
+:
+java:S1643 "Use a StringBuilder instead.(‡Ğ“ù8ï”‡¸Ç1
+:
+java:S1643¢"Use a StringBuilder instead.(Ç®…«8ï”‡¸Ç1
+c
+java:S1126="AReplace this if-then-else statement by a single return statement.(é÷Š…øÿÿÿÿ8öŠœŸÇ1
+c
+java:S1126n"AReplace this if-then-else statement by a single return statement.(¶èÄØıÿÿÿÿ8ùŠœŸÇ1
+H
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8¢äÅ¸Ç1
+L
+java:S1128"/Remove this unused import 'java.util.Calendar'.(ÿÛö´8¡ÄÄ¸Ç1
+L
+java:S1068"*Remove this unused "pagina" private field.(°„È•ùÿÿÿÿ8¤äÅ¸Ç1

@@ -1,0 +1,38 @@
+
+g	java:S112X"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8Œ•ŸÇ1
+J
+java:S1604I"(Make this anonymous inner class a lambda(øº½ÿÿÿÿÿ8Œ•ŸÇ1
+E
+java:S1604\"(Make this anonymous inner class a lambda(ÏÚ¶¨8–ô†¸Ç1
+H
+java:S3010/"+Remove this assignment of "frameChiamante".(³òËã8Òô†¸Ç1
+D
+java:S30103""Remove this assignment of "frame".(Í›ï¹üÿÿÿÿ8Òô†¸Ç1
+R
+java:S2209/"5Change this instance-reference to a static reference.(³òËã8Ôô†¸Ç1
+l
+java:S32525"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(¹ºİÛ8Øô†¸Ç1
+E
+java:S1128"(Remove this unused import 'model.Frase'.(ñª8ÖµìŸÇ1
+F
+java:S1128")Remove this unused import 'model.Utente'.(•óÚØ8ÖµìŸÇ1
+K
+java:S1068"/Remove this unused "panelTitolo" private field.(»¦úU8•ŸÇ1
+K
+java:S1068".Remove this unused "panelTesto" private field.(ç„ì8•ŸÇ1
+W
+java:S1068"5Remove this unused "panelTitoloETesto" private field.(›º®½ùÿÿÿÿ8•ŸÇ1
+P
+java:S1068".Remove this unused "panelFrase" private field.(É²¨ñşÿÿÿÿ8•ŸÇ1
+P
+java:S1068"3Remove this unused "panelTestoFrase" private field.(ßÈ‚Ÿ8•ŸÇ1
+O
+java:S1068"2Remove this unused "panelInserisci" private field.(ª¨×Â8•ŸÇ1
+S
+java:S1068 "6Remove this unused "panelTornaIndietro" private field.(äß«Ï8•ŸÇ1
+T
+java:S1068""2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ8ëô†¸Ç1
+L
+java:S1068$"*Remove this unused "pagina" private field.(°„È•ùÿÿÿÿ8ìô†¸Ç1
+X
+java:S1068%"6Remove this unused "listinoPostgresDAO" private field.(­Œáºúÿÿÿÿ8ìô†¸Ç1

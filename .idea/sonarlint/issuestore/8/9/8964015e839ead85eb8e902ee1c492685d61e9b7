@@ -1,0 +1,27 @@
+
+>
+java:S1604@"(Make this anonymous inner class a lambda(ÏÚ¶¨
+A
+java:S3010'"+Remove this assignment of "frameChiamante".(³òËã
+=
+java:S3010*""Remove this assignment of "frame".(ë›ã³ùÿÿÿÿ
+K
+java:S2209'"5Change this instance-reference to a static reference.(³òËã
+e
+java:S3252,"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(¹ºİÛ
+?
+java:S1128")Remove this unused import 'model.Utente'.(•óÚØ
+L
+java:S1068"6Remove this unused "panelPaginaStorico" private field.(Â¢‚œ
+P
+java:S1068"5Remove this unused "panelTitoloETesto" private field.(›º®½ùÿÿÿÿ
+D
+java:S1068"/Remove this unused "panelTitolo" private field.(»¦úU
+D
+java:S1068".Remove this unused "panelTesto" private field.(ç„ì
+L
+java:S1068"6Remove this unused "panelTornaIndietro" private field.(äß«Ï
+M
+java:S1068"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ
+E
+java:S1068"*Remove this unused "pagina" private field.(°„È•ùÿÿÿÿ

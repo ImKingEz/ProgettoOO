@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * La gui CercaPagina permette di visualizzare una pagina cercata al suo stato corrente.
+ */
 public class CercaPagina {
     private JPanel panelPaginaCercata;
     private JPanel panelTitoloETesto;
@@ -24,6 +27,13 @@ public class CercaPagina {
     private Controller controller;
     private Pagina pagina;
 
+    /**
+     * Instanzia un nuovo Cerca pagina.
+     *
+     * @param frameChiamante the frame chiamante
+     * @param controller     the controller
+     * @param pagina         the pagina
+     */
     public CercaPagina(JFrame frameChiamante, Controller controller, Pagina pagina) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;

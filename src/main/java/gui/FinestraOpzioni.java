@@ -12,6 +12,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
+/**
+ * La gui FinestraOpzioni permette di visualizzare tutte le azioni disponibili per l'utente.
+ */
 public class FinestraOpzioni {
     private JPanel panelOpzioni;
     private JButton creaUnaPaginaButton;
@@ -37,6 +40,13 @@ public class FinestraOpzioni {
     private Pagina paginaCercata;
     private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
 
+    /**
+     * Instanzia un nuovo Finestra opzioni.
+     *
+     * @param frameChiamante the frame chiamante
+     * @param controller     the controller
+     * @param u              the u
+     */
     public FinestraOpzioni(JFrame frameChiamante, Controller controller, Utente u) {
         this.u = u;
         this.frameChiamante = frameChiamante;
@@ -230,6 +240,9 @@ public class FinestraOpzioni {
     }
 
     /**
+     * $$$ get root component $$$ j component.
+     *
+     * @return the j component
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {

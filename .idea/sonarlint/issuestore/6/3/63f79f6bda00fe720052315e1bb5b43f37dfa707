@@ -1,0 +1,27 @@
+
+E
+java:S1604["(Make this anonymous inner class a lambda(ú­Šˆ8™ÕÐ”Ç1
+F
+java:S1604‚"(Make this anonymous inner class a lambda(Ã›õ¶8šÕÐ”Ç1
+H
+java:S3010("+Remove this assignment of "frameChiamante".(³òËã8®ÕÐ”Ç1
+R
+java:S2209("5Change this instance-reference to a static reference.(³òËã8¯ÕÐ”Ç1
+q
+java:S3252-"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(éïÍÆþÿÿÿÿ8¯ÕÐ”Ç1
+[
+java:S1128"9Remove this unused import 'controller.NotFoundException'.(ˆå¹òùÿÿÿÿ8×­Ô”Ç1
+E
+java:S1128")Remove this unused import 'model.Pagina'.(©¹±"8·ÕÐ”Ç1
+Z
+java:S1068"8Remove this unused "panelNumeroNotifiche" private field.(ê´®…ýÿÿÿÿ8·ÕÐ”Ç1
+]
+java:S1068";Remove this unused "labelNumNotificheTitolo" private field.(äÏ×—ÿÿÿÿÿ8·ÕÐ”Ç1
+S
+java:S1068"1Remove this unused "panelModifica" private field.(±¾ÇÎþÿÿÿÿ8·ÕÐ”Ç1
+T
+java:S1068""2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ8¸ÕÐ”Ç1
+L
+java:S1068#"*Remove this unused "autore" private field.(û°Þ½ýÿÿÿÿ8¸ÕÐ”Ç1
+X
+java:S1068%"6Remove this unused "listinoPostgresDAO" private field.(­Œáºúÿÿÿÿ8¸ÕÐ”Ç1

@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * La gui Storico permette di visualizzare lo storico di una pagina.
+ */
 public class Storico {
     private JPanel panelPaginaStorico;
     private JPanel panelTitoloETesto;
@@ -25,6 +28,13 @@ public class Storico {
     private static JFrame frameChiamante;
     private Pagina pagina;
 
+    /**
+     * Instanzia un nuovo Storico.
+     *
+     * @param frameChiamante the frame chiamante
+     * @param controller     the controller
+     * @param pagina         the pagina
+     */
     public Storico(JFrame frameChiamante, Controller controller, Pagina pagina) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;

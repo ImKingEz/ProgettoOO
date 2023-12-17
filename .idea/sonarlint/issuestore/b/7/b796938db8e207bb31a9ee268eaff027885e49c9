@@ -1,0 +1,75 @@
+
+u
+java:S1192˜"WDefine a constant instead of duplicating this literal "Nessuna pagina trovata" 3 times.(È¸›Œ8©ÕÕŸÇ1
+J
+java:S1604W"(Make this anonymous inner class a lambda(•£¡™øÿÿÿÿ8ªÕÕŸÇ1
+J
+java:S1604o"(Make this anonymous inner class a lambda(º¹®Àÿÿÿÿÿ8ªÕÕŸÇ1
+E
+java:S1604}"(Make this anonymous inner class a lambda(°™ÍŠ8ªÕÕŸÇ1
+F
+java:S1604ƒ"(Make this anonymous inner class a lambda(îˆÏÌ8ªÕÕŸÇ1
+K
+java:S1604‹"(Make this anonymous inner class a lambda(ÔàİÎùÿÿÿÿ8ªÕÕŸÇ1
+F
+java:S1604œ"(Make this anonymous inner class a lambda(°™ÍŠ8ªÕÕŸÇ1
+K
+java:S1604¨"(Make this anonymous inner class a lambda(² ºˆÿÿÿÿÿ8ªÕÕŸÇ1
+F
+java:S1604®"(Make this anonymous inner class a lambda(–æ‰8ªÕÕŸÇ1
+x
+java:S1450"[Remove the "panelAnnulla" field and declare it as a local variable in the relevant methods.(Â×¾†8ÌÕÕŸÇ1
+|
+java:S1450"_Remove the "panelCercaPagina" field and declare it as a local variable in the relevant methods.(ŞÎ»€8ÍÕÕŸÇ1
+{
+java:S1450"^Remove the "panelCreaPagina" field and declare it as a local variable in the relevant methods.(óşÔ8ÍÕÕŸÇ1
+
+java:S1450"]Remove the "panelNotifiche" field and declare it as a local variable in the relevant methods.(§¤ãÚúÿÿÿÿ8ÍÕÕŸÇ1
+…
+java:S1450"cRemove the "panelProponiModifica" field and declare it as a local variable in the relevant methods.(“¬Ä×ûÿÿÿÿ8ÍÕÕŸÇ1
+t
+java:S37762"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(Ùö¦ğıÿÿÿÿ8ÒÕÕŸÇ1
+H
+java:S30104"+Remove this assignment of "frameChiamante".(³òËã8ÓÕÕŸÇ1
+?
+java:S30107""Remove this assignment of "frame".(á¾õŸ8ÓÕÕŸÇ1
+R
+java:S22094"5Change this instance-reference to a static reference.(³òËã8ÓÕÕŸÇ1
+q
+java:S32529"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(éïÍÆşÿÿÿÿ8ÔÕÕŸÇ1
+a
+java:S1854u"?Remove this useless assignment to local variable "cercaPagina".(Åº¼‚øÿÿÿÿ8êÕÕŸÇ1
+R
+java:S1481u"0Remove this unused "cercaPagina" local variable.(Åº¼‚øÿÿÿÿ8ëÕÕŸÇ1
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8ìÕÕŸÇ1
+e
+java:S1854”"BRemove this useless assignment to local variable "inserisciFrase".(¨¹Ÿ·ûÿÿÿÿ8îÕÕŸÇ1
+V
+java:S1481”"3Remove this unused "inserisciFrase" local variable.(¨¹Ÿ·ûÿÿÿÿ8ğÕÕŸÇ1
+d
+java:S1854¢"FRemove this useless assignment to local variable "proponiUnaModifica".(èÅŒì8ñÕÕŸÇ1
+U
+java:S1481¢"7Remove this unused "proponiUnaModifica" local variable.(èÅŒì8òÕÕŸÇ1
+h
+java:S1854«"ERemove this useless assignment to local variable "finestraNotifiche".(ôİüÿÿÿÿ8óÕÕŸÇ1
+Y
+java:S1481«"6Remove this unused "finestraNotifiche" local variable.(ôİüÿÿÿÿ8óÕÕŸÇ1
+^
+java:S1854·";Remove this useless assignment to local variable "storico".(ÿ«Ê«üÿÿÿÿ8ôÕÕŸÇ1
+O
+java:S1481·",Remove this unused "storico" local variable.(ÿ«Ê«üÿÿÿÿ8öÕÕŸÇ1
+|
+java:S1171Á"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8öÕÕŸÇ1
+p	java:S100Ï"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8÷ÕÕŸÇ1
+p	java:S100ø"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8úÕÕŸÇ1
+Y
+java:S1068"7Remove this unused "panelInserisciFrase" private field.(ê¶í£ûÿÿÿÿ8ûÕÕŸÇ1
+M
+java:S1068!"0Remove this unused "panelStorico" private field.(¬®âé8ûÕÕŸÇ1
+T
+java:S1068$"2Remove this unused "frameChiamante" private field.(Èö¶¾úÿÿÿÿ8ûÕÕŸÇ1
+G
+java:S1068%"%Remove this unused "u" private field.(«†Å§ıÿÿÿÿ8ûÕÕŸÇ1
+X
+java:S1068)"6Remove this unused "listinoPostgresDAO" private field.(­Œáºúÿÿÿÿ8ûÕÕŸÇ1

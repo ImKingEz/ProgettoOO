@@ -1,0 +1,29 @@
+
+E
+java:S1604H"(Make this anonymous inner class a lambda(îˆÏÌ8èÉ‰÷Æ1
+J
+java:S1604P"(Make this anonymous inner class a lambda(Œ õİøÿÿÿÿ8èÉ‰÷Æ1
+t
+java:S3776-"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(õ›¡üÿÿÿÿ8òÉ‰÷Æ1
+l
+java:S32525"OUse static access with "javax.swing.WindowConstants" for "DO_NOTHING_ON_CLOSE".(¹ºİÛ8óÉ‰÷Æ1
+[
+java:S1128"9Remove this unused import 'controller.NotFoundException'.(ˆå¹òùÿÿÿÿ8Ô÷úœÇ1
+]
+java:S1128	";Remove this unused import 'postgresDAO.ListinoPostgresDAO'.(ÄèÒùÿÿÿÿ8Ô÷úœÇ1
+T
+java:S1068"2Remove this unused "frameChiamante" private field.(°ˆ‚àıÿÿÿÿ8÷É‰÷Æ1
+G
+java:S1068"%Remove this unused "u" private field.(¢—½°ûÿÿÿÿ8÷É‰÷Æ1
+L
+java:S1068"*Remove this unused "pagina" private field.(Ş•¯üÿÿÿÿ8÷É‰÷Æ1
+U
+java:S1068"3Remove this unused "panelListaFrasi" private field.(ëıôùÿÿÿÿ8÷É‰÷Æ1
+P
+java:S1068".Remove this unused "labelFrasi" private field.(ãşû¼úÿÿÿÿ8÷É‰÷Æ1
+Z
+java:S1068"8Remove this unused "panelInserisciIndice" private field.(‚£Êÿÿÿÿÿ8÷É‰÷Æ1
+Y
+java:S1068"7Remove this unused "labelInserisciTesto" private field.(üÈº—úÿÿÿÿ8÷É‰÷Æ1
+U
+java:S1068 "8Remove this unused "labelInserisciIndice" private field.(ùŒ¯†8÷É‰÷Æ1

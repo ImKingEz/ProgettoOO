@@ -1,0 +1,45 @@
+
+E
+java:S1604+"(Make this anonymous inner class a lambda(ºÙò8ÊÚ°òÆ1
+D
+java:S16041"(Make this anonymous inner class a lambda(«ìãK8ÊÚ°òÆ1
+J
+java:S16047"(Make this anonymous inner class a lambda(œ…òœşÿÿÿÿ8ÊÚ°òÆ1
+E
+java:S1604P"(Make this anonymous inner class a lambda(ÖãºÂ8ÊÚ°òÆ1
+€
+java:S1450"dRemove the "inserisciAutoreButton" field and declare it as a local variable in the relevant methods.(•Ïœ48ƒÛ°òÆ1
+v
+java:S1450"YRemove the "panelLogin" field and declare it as a local variable in the relevant methods.(Şùæà8„Û°òÆ1
+„
+java:S1450"gRemove the "panelRegistrazioneUtente" field and declare it as a local variable in the relevant methods.(¤ü»ı8„Û°òÆ1
+n
+java:S3776#"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ÀŸú8Û°òÆ1
+d
+java:S1126%"BReplace this if-then-else statement by a single method invocation.(ÌÄ´şıÿÿÿÿ8Û°òÆ1
+£
+java:S1186-"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8Û°òÆ1
+£
+java:S11863"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼ Òşüÿÿÿÿ8–Û°òÆ1
+d
+java:S1126I"BReplace this if-then-else statement by a single method invocation.(ÌÄ´şıÿÿÿÿ8©Û°òÆ1
+`
+java:S1854["CRemove this useless assignment to local variable "finestraOpzioni".(§²¶Ñ8­Û°òÆ1
+R
+java:S1481V"0Remove this unused "returnLogin" local variable.(ÕŠº˜ıÿÿÿÿ8²Û°òÆ1
+Q
+java:S1481["4Remove this unused "finestraOpzioni" local variable.(§²¶Ñ8´Û°òÆ1
+Z
+java:S1854r"8Remove this useless assignment to local variable "home".(â•õîúÿÿÿÿ8·Û°òÆ1
+K
+java:S1481r")Remove this unused "home" local variable.(â•õîúÿÿÿÿ8¹Û°òÆ1
+f
+java:S3252t"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(¢¡´8ºÛ°òÆ1
+{
+java:S1171y"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8ºÛ°òÆ1
+p	java:S100‡"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–­Œßúÿÿÿÿ8»Û°òÆ1
+p	java:S100£"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ ¨úúÿÿÿÿ8ˆßéÆ1
+S
+java:S1068"1Remove this unused "panelUsername" private field.(ßÖÎüÿÿÿÿ8ÃÛ°òÆ1
+S
+java:S1068"1Remove this unused "panelPassword" private field.(•ŸóÎüÿÿÿÿ8ÄÛ°òÆ1

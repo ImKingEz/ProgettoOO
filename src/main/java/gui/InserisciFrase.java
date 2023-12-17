@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * La gui InserisciFrase permette di inserire una frase in una pagina. A sua volta viene visualizzato il testo della pagina aggiornato.
+ */
 public class InserisciFrase {
     private JPanel panelInserisciFrase;
     private JPanel panelTitolo;
@@ -32,6 +35,14 @@ public class InserisciFrase {
     private Controller controller;
     private Pagina pagina;
     private ListinoPostgresDAO listinoPostgresDAO = new ListinoPostgresDAO();
+
+    /**
+     * Instanzia un nuovo Inserisci frase.
+     *
+     * @param frameChiamante the frame chiamante
+     * @param controller     the controller
+     * @param pagina         the pagina
+     */
     public InserisciFrase(JFrame frameChiamante, Controller controller, Pagina pagina) {
         this.frameChiamante = frameChiamante;
         this.controller = controller;

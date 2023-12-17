@@ -8,6 +8,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * The type Connessione database.
+ */
 public class ConnessioneDatabase {
     private static ConnessioneDatabase instance;
     private Connection connection = null;
@@ -48,10 +51,21 @@ public class ConnessioneDatabase {
         }
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         return connection;
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     * @throws SQLException the sql exception
+     */
     public static ConnessioneDatabase getInstance() throws SQLException {
 // se la connessione non esiste o è chiusa ne creo una nuova
         if (instance == null) {

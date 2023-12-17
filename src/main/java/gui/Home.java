@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 
+/**
+ * La gui Home permette di scegliere se effettuare il login o la registrazione.
+ */
 public class Home {
     private JPanel panelHome;
     private JButton registrazioneUtenteButton;
@@ -26,6 +29,9 @@ public class Home {
     private String usernameInserito;
     private String passwordInserita;
 
+    /**
+     * Instanzia un nuovo Home.
+     */
     public Home() {
         controller.setSchema();
         if(controller.almenoUnAutoreOUnUtente()) {
@@ -98,6 +104,11 @@ public class Home {
         });
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         frame = new JFrame("Progetto OO");
         Home home = new Home();
@@ -144,6 +155,9 @@ public class Home {
     }
 
     /**
+     * $$$ get root component $$$ j component.
+     *
+     * @return the j component
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
