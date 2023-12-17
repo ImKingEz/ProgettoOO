@@ -90,32 +90,6 @@
               </component>
             </children>
           </grid>
-          <grid id="6704a" binding="panelTestoLink" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-            <constraints/>
-            <properties>
-              <minimumSize width="230" height="80"/>
-              <preferredSize width="230" height="80"/>
-            </properties>
-            <border type="none"/>
-            <children>
-              <component id="729cb" class="javax.swing.JLabel">
-                <constraints/>
-                <properties>
-                  <maximumSize width="200" height="17"/>
-                  <minimumSize width="200" height="17"/>
-                  <preferredSize width="200" height="17"/>
-                  <text value="Titolo pagina da linkare:"/>
-                </properties>
-              </component>
-              <component id="55a31" class="javax.swing.JTextField" binding="textFieldLink">
-                <constraints/>
-                <properties>
-                  <minimumSize width="150" height="40"/>
-                  <preferredSize width="150" height="40"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
           <grid id="8d0fa" binding="panelInserisci" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>

@@ -27,8 +27,6 @@ public class InserisciFrase {
     private JLabel labelTesto;
     private JButton tornaIndietroButton;
     private JPanel panelTornaIndietro;
-    private JTextField textFieldLink;
-    private JPanel panelTestoLink;
     private static JFrame frame;
     private static JFrame frameChiamante;
     private Controller controller;
@@ -68,15 +66,11 @@ public class InserisciFrase {
                     if(textFieldFrase.getText().isBlank()) {
                         throw new NotABlankException();
                     }
-                    else if(textFieldLink.getText().isBlank()) {
-                        controller.setFrase(textFieldFrase.getText(),pagina);
-                    }
                     else {
-                        controller.setFrase(textFieldFrase.getText(), pagina, controller.getPagina(textFieldLink.getText()));
+                        controller.setFrase(textFieldFrase.getText(), pagina);
                     }
                     labelTesto.setText("<html>" + controller.getTestoTotaleAggiornato(pagina) + "</html>");
                     textFieldFrase.setText("");
-                    textFieldLink.setText("");
                 } catch (NotABlankException nabe) {
                     JOptionPane.showMessageDialog(frame,"Non puoi inserire un testo vuoto.");
                 } catch (Exception ex) {
